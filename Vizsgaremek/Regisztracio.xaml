@@ -1,0 +1,25 @@
+﻿<Window x:Class="Vizsgaremek.Regisztracio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vizsgaremek"
+        mc:Ignorable="d"
+        Title="Regisztracio" Height="250" Width="400">
+    <Grid>
+        <TextBox HorizontalAlignment="Center" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="felhNevDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+        <PasswordBox HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top" Width="120" x:Name="jelszoEloszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
+        <PasswordBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,74,0,0" x:Name="jelszoMasodszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
+        <ComboBox HorizontalAlignment="Center" Margin="0,106,0,0" VerticalAlignment="Top" Width="120" x:Name="jogosultsag">
+            <ComboBoxItem IsSelected="true">Felszolgáló</ComboBoxItem>
+            <ComboBoxItem>Szakács</ComboBoxItem>
+            <ComboBoxItem>Pultos</ComboBoxItem>
+        </ComboBox>
+        <Button Content="Regisztráció" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Click="regisztralas" IsEnabled="False" x:Name="regisztralasGomb"/>
+        <Label Content="Felhasználónév:" HorizontalAlignment="Left" Margin="38,16,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Jelszó:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Jelszó mégegyszer:" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Jogosultság: " HorizontalAlignment="Left" Margin="52,104,0,0" VerticalAlignment="Top" Height="26"/>
+
+    </Grid>
+</Window>
