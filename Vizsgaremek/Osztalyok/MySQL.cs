@@ -11,25 +11,18 @@ namespace Vizsgaremek.Osztalyok
     public class MySQL
     {
         public static MySqlConnection conn = new("server=localhost;database=hamb;username=root;pwd=;sslmode=none;");
-        private static Dictionary<string, string> lekerdezesek = new();
 
         /// <summary>
         /// Ez a funkció lefuttat egy queryt, vagy non queryt, és visszatér egy string típusú listával, amiben query esetében a sorok találhatóak, non query esetében az hogy sikeresen lefutott , vagy egy SQL hiba.
         /// </summary>
-        /// <param name="command">SQL Parancs, ha a dictionary tartalmazza az SQL parancsot akkor csak egy Dict kulcs, különben teljes SQL parancs</param>
-        /// <param name="nonQuery">True: nem szeretnénk felhasználni a visszatérési értékét, False: visszakapunk egy string listát.</param>
-        /// <param name="dictionaryTartalmazza">Eldönti hogy tartalmazza-e a dictionary egészében a parancsot vagy nem.</param>
+        /// <param name="command">Egy teljes SQL lekérdezés, szöveg formában.</param>
+        /// <param name="nonQuery">True: ha sikerül akkor csak azt kapjuk vissza hogy sikerült-e vagy hibát, False: visszakapjuk a listát az értékekkel.</param>
         /// <returns></returns>
-        public static List<string> query(string command, bool nonQuery, bool dictionaryTartalmazza)
+        public static List<string> query(string command, bool nonQuery)
         {
 
             List<string> result = new(); // eredmények, ezt töltjük fel és térünk vissza vele
-            string query; //maga az SQL parancs, ha nonQuery akkor paraméterbe megkapja teljes egészébe
-            if (!dictionaryTartalmazza)
-                query = command;
-            else
-                query = lekerdezesek[command];
-
+            string query = command; //maga az SQL parancs
             MySqlDataReader reader;
             MySqlCommand comm = new(query, conn);
             try

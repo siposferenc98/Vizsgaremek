@@ -35,7 +35,7 @@ namespace Vizsgaremek
                 string pw = MySQL.hashPW(jelszoEloszor.Password);
                 int jog = jogosultsag.SelectedIndex + 1;
                 string nonQuery = $"INSERT INTO login VALUES('{felh}', '{pw}', {jog})";
-                List<string> eredmeny = MySQL.query(nonQuery, true, false);
+                List<string> eredmeny = MySQL.query(nonQuery, true);
                 MessageBox.Show(eredmeny[0].ToString());
                 Close();
             }

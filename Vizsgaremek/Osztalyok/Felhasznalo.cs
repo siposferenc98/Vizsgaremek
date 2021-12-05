@@ -11,7 +11,7 @@ namespace Vizsgaremek.Osztalyok
         public string nev;
         public int id { get; private set; }
         public int jog { get; private set; }
-        public Felhasznalo(string nev, int id, int jog)
+        public Felhasznalo(int id, string nev, int jog)
         {
             this.nev = nev;
             this.id = id;

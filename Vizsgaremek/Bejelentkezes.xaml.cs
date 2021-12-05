@@ -21,14 +21,6 @@ namespace Vizsgaremek
     /// </summary>
     public partial class Bejelentkezes : Window
     {
-        private List<Felhasznalo> felh = new List<Felhasznalo>
-        {
-            new Felhasznalo("Feri",1,4),
-            new Felhasznalo("Jani",2,3),
-            new Felhasznalo("Márk",3,2),
-            new Felhasznalo("Dani",4,1),
-        };
-
         public Bejelentkezes()
         {
             InitializeComponent();
@@ -58,10 +50,12 @@ namespace Vizsgaremek
             string felhasznalo = felhasznaloBX.Text;
             string pw = MySQL.hashPW(jelszoBX.Password);
             string queryNotInDictionary = $"SELECT * FROM login WHERE acc = '{felhasznalo}' AND pw = '{pw}'";
-            List<string> eredmenyek = MySQL.query(queryNotInDictionary, false, false);
+            List<string> eredmenyek = MySQL.query(queryNotInDictionary, false);
             if (eredmenyek.Count > 0)
             {
-                MessageBox.Show(eredmenyek[0]);
+                AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
+                MessageBox.Show(AktualisFelhasznalo.felhasznalo.jog.ToString());
+
             }
             else
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
