@@ -48,14 +48,13 @@ namespace Vizsgaremek
         private void bejelentkezes(object sender, RoutedEventArgs e)
         {
             string felhasznalo = felhasznaloBX.Text;
-            string pw = MySQL.hashPW(jelszoBX.Password);
-            string queryNotInDictionary = $"SELECT * FROM login WHERE acc = '{felhasznalo}' AND pw = '{pw}'";
-            List<string> eredmenyek = MySQL.query(queryNotInDictionary, false);
+            string pw = MySQL.hashPW(jelszoBX.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
+            string nonQuery = $"SELECT * FROM login WHERE acc = '{felhasznalo}' AND pw = '{pw}'";
+            List<string> eredmenyek = MySQL.query(nonQuery, false); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
             if (eredmenyek.Count > 0)
             {
                 AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
                 MessageBox.Show(AktualisFelhasznalo.felhasznalo.jog.ToString());
-
             }
             else
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");

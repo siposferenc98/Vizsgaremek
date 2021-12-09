@@ -10,6 +10,7 @@ namespace Vizsgaremek.Osztalyok
 {
     public class MySQL
     {
+        //MySqlConnection példányosítva, paraméterbe a connection stringet kapja meg.
         public static MySqlConnection conn = new("server=localhost;database=hamb;username=root;pwd=;sslmode=none;");
 
         /// <summary>
@@ -22,9 +23,8 @@ namespace Vizsgaremek.Osztalyok
         {
 
             List<string> result = new(); // eredmények, ezt töltjük fel és térünk vissza vele
-            string query = command; //maga az SQL parancs
-            MySqlDataReader reader;
-            MySqlCommand comm = new(query, conn);
+            MySqlDataReader reader; //ezzel tudjuk sorrol sorra kiolvasni a sorokat a db-ből, .GetString() funkcióval kinyerni egy cella adatát pl.
+            MySqlCommand comm = new(command , conn); //MySqlCommand egy példánya, első paraméterbe az SQL query stringet kapja a paraméterünkből, második paraméterként a connectiont.
             try
             {
 
@@ -51,7 +51,7 @@ namespace Vizsgaremek.Osztalyok
             {
                 result.Add(ex.ToString());
             }
-            conn.Close();
+            conn.Close();//bezárjuk a csatlakozást.
             return result;
         }
 

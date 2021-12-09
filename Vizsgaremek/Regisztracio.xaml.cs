@@ -25,6 +25,11 @@ namespace Vizsgaremek
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Végrehajtja a regisztrálást a db-ben, lecsekkolja hogy a jelszó verifikáció jó-e.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void regisztralas(object sender, RoutedEventArgs e)
         {
             if (jelszoEloszor.Password != jelszoMasodszor.Password)
@@ -32,9 +37,9 @@ namespace Vizsgaremek
             else
             {
                 string felh = felhNevDoboz.Text;
-                string pw = MySQL.hashPW(jelszoEloszor.Password);
-                int jog = jogosultsag.SelectedIndex + 1;
-                string nonQuery = $"INSERT INTO login VALUES('{felh}', '{pw}', {jog})";
+                string pw = MySQL.hashPW(jelszoEloszor.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
+                int jog = jogosultsag.SelectedIndex + 1; 
+                string nonQuery = $"INSERT INTO login VALUES('','{felh}', '{pw}', {jog})";
                 List<string> eredmeny = MySQL.query(nonQuery, true);
                 MessageBox.Show(eredmeny[0].ToString());
                 Close();
