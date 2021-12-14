@@ -1,3 +1,4 @@
 ﻿regisztracio-INSERT INTO login VALUES('',@felh , @pw, @jog)
 regisztracioletezik-SELECT acc FROM login WHERE acc = @felh
 bejelentkezes-SELECT * FROM login WHERE acc = @felh AND pw = @pw
+pincerkeszfrissit-SELECT razon,fazon,asztal FROM rendeles WHERE etelstatus = 4 AND italstatus = 4

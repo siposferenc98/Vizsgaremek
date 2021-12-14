@@ -26,8 +26,9 @@
         </DockPanel>
         <ListBox Grid.Row="1" Grid.Column="1">
             <ListBoxItem>Nyitott</ListBoxItem></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="2">
-            <ListBoxItem>Zárt</ListBoxItem></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2" x:Name="zartListBox">
+            <ListBoxItem>Zárt</ListBoxItem>
+        </ListBox>
     </Grid>
 
 </Window>
