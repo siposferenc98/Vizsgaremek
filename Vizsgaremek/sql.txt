@@ -1,0 +1,3 @@
+﻿regisztracio-INSERT INTO login VALUES('',@felh , @pw, @jog)
+regisztracioletezik-SELECT acc FROM login WHERE acc = @felh
+bejelentkezes-SELECT * FROM login WHERE acc = @felh AND pw = @pw

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Vizsgaremek.Osztalyok;
+using MySql.Data.MySqlClient;
 
 namespace Vizsgaremek
 {
@@ -38,11 +39,23 @@ namespace Vizsgaremek
             {
                 string felh = felhNevDoboz.Text;
                 string pw = MySQL.hashPW(jelszoEloszor.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
-                int jog = jogosultsag.SelectedIndex + 1; 
-                string nonQuery = $"INSERT INTO login VALUES('','{felh}', '{pw}', {jog})";
-                List<string> eredmeny = MySQL.query(nonQuery, true);
-                MessageBox.Show(eredmeny[0].ToString());
-                Close();
+                int jog = jogosultsag.SelectedIndex + 1;
+                //MySqlParameter , konstruktor első paramétere a cserélendő paraméter, a második az érték hogy mire.
+                MySqlParameter fparam = new("@felh", felh);
+                MySqlParameter pwparam = new("@pw", pw);
+                MySqlParameter jogparam = new("@jog", jog);
+                List<MySqlParameter> paramListLetezikE = new() { fparam }; //létrehozunk egy listát paraméterekkel
+                List<string> letezikE = MySQL.query("regisztracioletezik", false, paramListLetezikE); //először megnézzük egy selecttel hogy létezik-e ilyen felhasználó, ha nincs benne semmi akkor nem,szóval lehet regisztrálni.
+
+                if (letezikE.Count == 0)
+                {
+                    List<MySqlParameter> paramListRegisztracio = new() { fparam, pwparam, jogparam }; //új paraméterlista
+                    List<string> eredmeny = MySQL.query("regisztracio", true, paramListRegisztracio);
+                    MessageBox.Show(eredmeny[0].ToString()); //kiiratjuk az eredmény listánk elemét, vagy sikeres lesz, vagy hibát fog tartalmazni.
+                    Close();
+                }
+                else
+                    MessageBox.Show("Ez a felhasználó már létezik!");
             }
         }
 

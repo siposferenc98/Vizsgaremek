@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Vizsgaremek.Osztalyok;
+using MySql.Data.MySqlClient;
 
 namespace Vizsgaremek
 {
@@ -24,6 +25,7 @@ namespace Vizsgaremek
         public Bejelentkezes()
         {
             InitializeComponent();
+            MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
         }
 
         /// <summary>
@@ -49,8 +51,10 @@ namespace Vizsgaremek
         {
             string felhasznalo = felhasznaloBX.Text;
             string pw = MySQL.hashPW(jelszoBX.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
-            string nonQuery = $"SELECT * FROM login WHERE acc = '{felhasznalo}' AND pw = '{pw}'";
-            List<string> eredmenyek = MySQL.query(nonQuery, false); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
+            MySqlParameter fparam = new("@felh", felhasznalo);
+            MySqlParameter pwparam = new("@pw", pw);
+            List<MySqlParameter> param = new() {fparam, pwparam};
+            List<string> eredmenyek = MySQL.query("bejelentkezes", false, param); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
             if (eredmenyek.Count > 0)
             {
                 AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
