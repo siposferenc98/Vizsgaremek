@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="FelszolgaloUI" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
+        <DockPanel Grid.ColumnSpan="3">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Opciók">
+                    <MenuItem Header="Kijelentkezés"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <ListBox Grid.Row="1" Grid.Column="1">
+            <ListBoxItem>Nyitott</ListBoxItem></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2">
+            <ListBoxItem>Zárt</ListBoxItem></ListBox>
     </Grid>
+
 </Window>

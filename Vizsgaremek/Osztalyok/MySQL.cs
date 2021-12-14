@@ -14,7 +14,7 @@ namespace Vizsgaremek.Osztalyok
     {
         //MySqlConnection példányosítva, paraméterbe a connection stringet kapja meg.
         public static MySqlConnection conn = new("server=localhost;database=hamb;username=root;pwd=;sslmode=none;");
-
+        //ebben tároljuk az összes sql lekérdezést, formátum : 'kulcs'-'lekérdezés'
         private static Dictionary<string, string> lekerdezesekDict = new();
 
         /// <summary>
@@ -31,28 +31,30 @@ namespace Vizsgaremek.Osztalyok
             MySqlDataReader reader; //ezzel tudjuk sorrol sorra kiolvasni a sorokat a db-ből, .GetString() funkcióval kinyerni egy cella adatát pl.
             MySqlCommand comm = new(lekerdezesekDict[command] , conn); //MySqlCommand egy példánya, első paraméterbe az SQL query stringet kapja a paraméterünkből, második paraméterként a connectiont.
             
-            //végigmegyünk a paraméterek listán, és a MySqlCommandhoz hozzáadjuk a paramétereket.
+            //végigmegyünk a paraméterek listán ha nem null(meg lett adva), és a MySqlCommandhoz hozzáadjuk a paramétereket.
             if(parameterek is not null)
                 foreach (MySqlParameter par in parameterek)
                     comm.Parameters.Add(par);
             
             try
             {
-
+                //Létrehozzuk a kapcsolatot, megnézzük hogy a műveletnél kérjük e vissza az értékeket
                 conn.Open();
                 switch(nonQuery)
                 {
+                    //Ha nem nonQuery, akkor kérjük szóval
                     case false:
-                        reader = comm.ExecuteReader();
-                        if (reader.HasRows)
-                            while (reader.Read())
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                    result.Add(reader.GetString(i));
+                        reader = comm.ExecuteReader(); //a datareader objektumunk = lesz a mysqlcommand.executereader funkcióval
+                        if (reader.HasRows) //ha a lekérdezés visszatért sorokkal
+                            while (reader.Read()) //akkor ameddig tudjuk olvasni a sorokat
+                                for (int i = 0; i < reader.FieldCount; i++) //végigmegyünk egy sor celláin (FieldCount = hány cellából áll egy sor)
+                                    result.Add(reader.GetString(i)); //és hozzáadjuk a visszatérési Listánkhoz
                         break;
 
+                    // Amennyiben nonQuery
                     case true:
-                        int sorok = comm.ExecuteNonQuery();
-                        if (sorok > 0)
+                        int sorok = comm.ExecuteNonQuery(); //lementjük egy int változóba hogy hány sor lett érintett
+                        if (sorok > 0) //ha több mint 0 akkor sikeresen elvégezte
                             result.Add("A művelet sikeresen elvégezve!");
                         break;
                 }
@@ -60,21 +62,26 @@ namespace Vizsgaremek.Osztalyok
             }
             catch(Exception ex)
             {
+                //Minden hibát elkapunk és belerakjuk a visszatérési tömbbe,majd visszatérünk vele.
                 result.Add(ex.ToString());
             }
             conn.Close();//bezárjuk a csatlakozást.
             return result;
         }
 
-
+        /// <summary>
+        /// Ez a funkció készít egy MD5 hasht egy beküldött jelszóból.
+        /// </summary>
+        /// <param name="pw">Jelszó szöveg formában.</param>
+        /// <returns>Visszatér egy 32 hosszú (hash)string-el.</returns>
         public static string hashPW(string pw)
         {
-            byte[] passtobytearr = ASCIIEncoding.ASCII.GetBytes(pw);
-            byte[] md5hashbytearr = new MD5CryptoServiceProvider().ComputeHash(passtobytearr);
+            byte[] passtobytearr = ASCIIEncoding.ASCII.GetBytes(pw); //A beküldött jelszót átalakítjuk egy byte tömbbé.
+            byte[] md5hashbytearr = new MD5CryptoServiceProvider().ComputeHash(passtobytearr); //A byte tömbből kiszámítjuk a hasht, egy adott szövegből a hash mindig ugyanaz lesz, bejelentkezésnél már hashelve küldjük be a db-be, és a 2 hasht hasonlítjuk össze.
             string md5hash = "";
             foreach (byte a in md5hashbytearr)
             {
-                md5hash += a.ToString("x2");
+                md5hash += a.ToString("x2"); //visszaalakítjuk hexadecimális értékeké
             }
             return md5hash;
         }

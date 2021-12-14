@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Vizsgaremek.Felszolgalo
+namespace Vizsgaremek.Pultos
 {
     /// <summary>
-    /// Interaction logic for FelszolgaloUI.xaml
+    /// Interaction logic for PultosUI.xaml
     /// </summary>
-    public partial class FelszolgaloUI : Window
+    public partial class PultosUI : Window
     {
-        public FelszolgaloUI()
+        public PultosUI()
         {
             InitializeComponent();
         }
-
     }
 }

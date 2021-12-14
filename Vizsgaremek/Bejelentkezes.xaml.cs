@@ -51,14 +51,28 @@ namespace Vizsgaremek
         {
             string felhasznalo = felhasznaloBX.Text;
             string pw = MySQL.hashPW(jelszoBX.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
+            //Létrehozzuk a paramétereket
             MySqlParameter fparam = new("@felh", felhasznalo);
             MySqlParameter pwparam = new("@pw", pw);
-            List<MySqlParameter> param = new() {fparam, pwparam};
+            List<MySqlParameter> param = new() {fparam, pwparam}; //hozzáadjuk egy paraméter típusú listához
             List<string> eredmenyek = MySQL.query("bejelentkezes", false, param); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
+
             if (eredmenyek.Count > 0)
             {
                 AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
-                MessageBox.Show(AktualisFelhasznalo.felhasznalo.jog.ToString());
+                MessageBox.Show($"Üdvözlünk {AktualisFelhasznalo.felhasznalo.nev} !");
+                //1-Felszolgáló, 2-Szakács, 3-Pultos, 4-Admin
+                switch (AktualisFelhasznalo.felhasznalo.jog)
+                {
+                    case 1:
+                        Window felszolgaloUI = new Felszolgalo.FelszolgaloUI();
+                        felszolgaloUI.Show();
+                        Close();
+                        break;
+                    default:
+                        MessageBox.Show("Még nincsk ész");
+                        break;
+                }
             }
             else
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
