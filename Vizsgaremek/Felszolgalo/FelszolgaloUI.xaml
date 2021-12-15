@@ -27,8 +27,9 @@
         <ListBox Grid.Row="1" Grid.Column="1">
             <ListBoxItem>Nyitott</ListBoxItem></ListBox>
         <ListBox Grid.Row="1" Grid.Column="2" x:Name="zartListBox">
-            <ListBoxItem>Zárt</ListBoxItem>
+            
         </ListBox>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="97,305,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 
 </Window>

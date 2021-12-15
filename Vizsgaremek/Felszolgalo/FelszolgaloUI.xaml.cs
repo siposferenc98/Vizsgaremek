@@ -21,6 +21,8 @@ namespace Vizsgaremek.Felszolgalo
     /// </summary>
     public partial class FelszolgaloUI : Window
     {
+        //TODO ÖSSZES RENDELÉST 1BE GYŰJTENI,VÉGIGMENNI ÉS ELDÖNTENI MELYIK LISTBOXBA KERÜLJÖN, LEKÉRDEZÉSBE NEM KELL WHERE FELTÉTEL.
+        private List<Rendeles> keszRendelesek = new();
         public FelszolgaloUI()
         {
             InitializeComponent();
@@ -32,17 +34,26 @@ namespace Vizsgaremek.Felszolgalo
         {
             Dispatcher.Invoke(() =>
             {
-                zartListBox.Items.Clear();
-                List<string> keszRendelesek = MySQL.query("pincerkeszfrissit", false);
-                if (keszRendelesek.Any())
-                    for (int i = 0; i < keszRendelesek.Count; i += 3)
+                keszRendelesek = new();
+                List<int> eredmeny = MySQL.query("pincerkeszfrissit", false).Select(int.Parse).ToList();
+                if (eredmeny.Any())
+                    for (int i = 0; i < eredmeny.Count; i += 5)
                     {
-                        string rendeles = $"{keszRendelesek[i]} {keszRendelesek[i + 1]} {keszRendelesek[i + 2]}";
-                        zartListBox.Items.Add(rendeles);
+                        Rendeles rendeles = new(eredmeny[i], eredmeny[i + 1], eredmeny[i + 2], eredmeny[i + 3], eredmeny[i + 4]);
+                        keszRendelesek.Add(rendeles);
                     }
+                keszListboxFeltolt();
                 
             });
             
+        }
+
+        private void keszListboxFeltolt()
+        {
+            zartListBox.Items.Clear();
+            if (keszRendelesek.Any())
+                foreach (Rendeles r in keszRendelesek)
+                    zartListBox.Items.Add(r);
         }
 
         private async void keszListboxFrissitAsync()
@@ -56,5 +67,12 @@ namespace Vizsgaremek.Felszolgalo
             
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Rendeles item in zartListBox.Items)
+            {
+                MessageBox.Show($"{item.razon}");
+            }
+        }
     }
 }
