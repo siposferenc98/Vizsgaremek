@@ -21,12 +21,11 @@ namespace Vizsgaremek.Felszolgalo
     /// </summary>
     public partial class FelszolgaloUI : Window
     {
-        //TODO ÖSSZES RENDELÉST 1BE GYŰJTENI,VÉGIGMENNI ÉS ELDÖNTENI MELYIK LISTBOXBA KERÜLJÖN, LEKÉRDEZÉSBE NEM KELL WHERE FELTÉTEL.
-        private List<Rendeles> keszRendelesek = new();
+        
         public FelszolgaloUI()
         {
             InitializeComponent();
-            Task.Run(() => keszListboxFrissitAsync());
+            Task.Run(() => listboxokFrissitAsync());
             
         }
 
@@ -34,29 +33,28 @@ namespace Vizsgaremek.Felszolgalo
         {
             Dispatcher.Invoke(() =>
             {
-                keszRendelesek = new();
-                List<int> eredmeny = MySQL.query("pincerkeszfrissit", false).Select(int.Parse).ToList();
-                if (eredmeny.Any())
-                    for (int i = 0; i < eredmeny.Count; i += 5)
-                    {
-                        Rendeles rendeles = new(eredmeny[i], eredmeny[i + 1], eredmeny[i + 2], eredmeny[i + 3], eredmeny[i + 4]);
-                        keszRendelesek.Add(rendeles);
-                    }
-                keszListboxFeltolt();
-                
+                Rendelesek.rendelesekFrissit();
+                listboxokFeltolt();
             });
             
         }
 
-        private void keszListboxFeltolt()
+        private void listboxokFeltolt()
         {
+            nyitottListBox.Items.Clear();
             zartListBox.Items.Clear();
-            if (keszRendelesek.Any())
-                foreach (Rendeles r in keszRendelesek)
-                    zartListBox.Items.Add(r);
+
+            if (Rendelesek.rendelesekLista.Any())
+                foreach (Rendeles r in Rendelesek.rendelesekLista)
+                {
+                    if (r.etelstatus > 1 || r.etelstatus > 1)
+                        zartListBox.Items.Add(r);
+                    else
+                        nyitottListBox.Items.Add(r);
+                }
         }
 
-        private async void keszListboxFrissitAsync()
+        private async void listboxokFrissitAsync()
         {
 
             while (true)

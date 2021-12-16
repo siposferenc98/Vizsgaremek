@@ -24,8 +24,11 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListBox Grid.Row="1" Grid.Column="1">
-            <ListBoxItem>Nyitott</ListBoxItem></ListBox>
+        
+        <ListBox Grid.Row="1" Grid.Column="1" x:Name="nyitottListBox">
+            
+        </ListBox>
+        
         <ListBox Grid.Row="1" Grid.Column="2" x:Name="zartListBox">
             
         </ListBox>
