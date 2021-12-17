@@ -64,13 +64,5 @@ namespace Vizsgaremek.Felszolgalo
             }
             
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (Rendeles item in zartListBox.Items)
-            {
-                MessageBox.Show($"{item.razon}");
-            }
-        }
     }
 }

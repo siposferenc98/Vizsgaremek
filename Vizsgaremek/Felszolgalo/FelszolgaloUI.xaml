@@ -9,7 +9,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="25px"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -17,6 +19,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
+        <!--Felső menü-->
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Opciók">
@@ -24,15 +27,33 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+        <!--Labelök-->
+        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Rendelés felvétel</Label>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Felvett rendelések</Label>
+        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Kész rendelések</Label>
+        <!--Rendelések listboxok-->
+        <ListBox Grid.Row="2" Grid.Column="1" x:Name="nyitottListBox"/>
+        <ListBox Grid.Row="2" Grid.Column="2" x:Name="zartListBox"/>
+        <!--Aktív rendelések vezérlő-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+            <Button Margin="10px" Height="30px">Törlés</Button>
+            <Button Margin="10px" Height="30px">Részletek</Button>
+        </StackPanel>
+        <!--Kész rendelések vezérlő-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
+            <Button Margin="10px" Height="30px">Törlés</Button>
+            <Button Margin="10px" Height="30px">Részletek</Button>
+            <Button Margin="10px" Height="30px">Fizetve</Button>
+        </StackPanel>
         
-        <ListBox Grid.Row="1" Grid.Column="1" x:Name="nyitottListBox">
-            
-        </ListBox>
-        
-        <ListBox Grid.Row="1" Grid.Column="2" x:Name="zartListBox">
-            
-        </ListBox>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="97,305,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
+        <!--Rendelésfelvétel grid-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
     </Grid>
 
 </Window>
