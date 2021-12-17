@@ -52,6 +52,18 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="4">
+                <Label HorizontalAlignment="Center">Asztal:</Label>
+                <ComboBox x:Name="asztalokComboBox" Height="20px"></ComboBox>
+                
+            </StackPanel>
         </Grid>
 
     </Grid>
