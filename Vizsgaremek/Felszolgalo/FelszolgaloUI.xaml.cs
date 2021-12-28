@@ -25,7 +25,6 @@ namespace Vizsgaremek.Felszolgalo
         public FelszolgaloUI()
         {
             InitializeComponent();
-            asztalokComboBoxFeltolt();
             Task.Run(() => listboxokFrissitAsync());
             
         }
@@ -59,13 +58,12 @@ namespace Vizsgaremek.Felszolgalo
             if (Rendelesek.rendelesekLista.Any())
                 foreach (Rendeles r in Rendelesek.rendelesekLista)
                 {
-                    if (r.etelstatus > 1 || r.etelstatus > 1)
+                    if (r.etelstatus > 1 || r.italstatus> 1)
                         zartListBox.Items.Add(r);
                     else
                         nyitottListBox.Items.Add(r);
                 }
         }
-
 
         private void asztalokComboBoxFeltolt()
         {
@@ -76,8 +74,15 @@ namespace Vizsgaremek.Felszolgalo
                 if (!Rendelesek.rendelesekLista.Any(x => x.asztal == i) ||
                     Rendelesek.rendelesekLista.Any(x => x.asztal == i && x.etelstatus == 4))
                     asztalokComboBox.Items.Add(i);
-                
+
             }
+        }
+
+        private void tetelUiMegnyit(object sender, RoutedEventArgs e)
+        {
+            Window tetelUI = new TetelUI();
+            tetelUI.Owner = this;
+            tetelUI.Show();
         }
     }
 }

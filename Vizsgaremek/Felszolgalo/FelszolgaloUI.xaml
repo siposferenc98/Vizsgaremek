@@ -41,30 +41,42 @@
         </StackPanel>
         <!--Kész rendelések vezérlő-->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
-            <Button Margin="10px" Height="30px">Törlés</Button>
-            <Button Margin="10px" Height="30px">Részletek</Button>
-            <Button Margin="10px" Height="30px">Fizetve</Button>
+            <Button Margin="5px" Height="30px">Törlés</Button>
+            <Button Margin="5px" Height="30px">Részletek</Button>
+            <Button Margin="5px" Height="30px">Fizetésre vár</Button>
+            <Button Margin="5px" Height="30px">Fizetve</Button>
         </StackPanel>
-        
-        <!--Rendelésfelvétel grid-->
+        <!--Foglalás/tétel-->
         <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="4">
-                <Label HorizontalAlignment="Center">Asztal:</Label>
-                <ComboBox x:Name="asztalokComboBox" Height="20px"></ComboBox>
-                
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="10px">
+                    <Label>Foglalás:</Label>
+                    <ComboBox Width="50px">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10px">
+                    <Label HorizontalAlignment="Center">Asztal:</Label>
+                    <ComboBox x:Name="asztalokComboBox" Width="50px"></ComboBox>
+                </StackPanel>
             </StackPanel>
+            <Button Grid.Column="1" Height="30px" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">Rendelés felvétele</Button>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label>Rendelés:</Label>
+                <ComboBox Width="50px"></ComboBox>
+            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="1" Height="30px" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
         </Grid>
+        
 
     </Grid>
 

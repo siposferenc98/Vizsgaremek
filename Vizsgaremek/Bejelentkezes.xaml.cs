@@ -57,7 +57,7 @@ namespace Vizsgaremek
             List<MySqlParameter> param = new() {fparam, pwparam}; //hozzáadjuk egy paraméter típusú listához
             List<string> eredmenyek = MySQL.query("bejelentkezes", false, param); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
 
-            if (eredmenyek.Count > 0)
+            if (eredmenyek.Count > 1)
             {
                 AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
                 MessageBox.Show($"Üdvözlünk {AktualisFelhasznalo.felhasznalo.nev} !");
@@ -74,6 +74,8 @@ namespace Vizsgaremek
                         break;
                 }
             }
+            else if (eredmenyek.Count is 1)
+                MessageBox.Show(eredmenyek[0]);
             else
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
         }

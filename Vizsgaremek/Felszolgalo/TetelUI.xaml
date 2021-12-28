@@ -1,0 +1,50 @@
+﻿<Window x:Class="Vizsgaremek.Felszolgalo.TetelUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
+        mc:Ignorable="d"
+        Title="TetelUI" Height="450" Width="800">
+
+    <!--Rendelésfelvétel grid-->
+    <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label HorizontalAlignment="Center">Hamburger:</Label>
+            <ComboBox x:Name="hamburgerComboBox" Height="20px"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Darab:</Label>
+            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label HorizontalAlignment="Center">Köret:</Label>
+            <ComboBox x:Name="koretComboBox" Height="20px"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label HorizontalAlignment="Center">Ital:</Label>
+            <ComboBox x:Name="italComboBox" Height="20px"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Label HorizontalAlignment="Center">Desszert:</Label>
+            <ComboBox x:Name="desszertComboBox" Height="20px"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            
+        </StackPanel>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150px">Tétel hozzáadása</Button>
+    </Grid>
+
+</Window>

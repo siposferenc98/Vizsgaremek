@@ -9,7 +9,6 @@ namespace Vizsgaremek.Osztalyok
     class Rendeles
     {
         public int razon, fazon, asztal, etelstatus, italstatus;
-        public string megj;
 
         public Rendeles(int razon, int fazon, int asztal, int etelstatus, int italstatus)
         {

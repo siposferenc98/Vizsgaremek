@@ -2,3 +2,4 @@
 regisztracioletezik-SELECT acc FROM login WHERE acc = @felh
 bejelentkezes-SELECT * FROM login WHERE acc = @felh AND pw = @pw
 rendeleslekerdezes-SELECT * FROM rendeles
+hamburgerlekerdezes-SELECT * FROM burger
