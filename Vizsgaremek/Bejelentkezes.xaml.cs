@@ -25,8 +25,7 @@ namespace Vizsgaremek
         public Bejelentkezes()
         {
             InitializeComponent();
-            MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
-            Hamburgerek.hamburgerekFrissit();
+            inditasiEljarasok();
         }
 
         /// <summary>
@@ -79,6 +78,15 @@ namespace Vizsgaremek
                 MessageBox.Show(eredmenyek[0]);
             else
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
+        }
+
+        private void inditasiEljarasok()
+        {
+            MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
+            Hamburgerek.hamburgerekFrissit();
+            Italok.italokFrissit();
+            Desszertek.desszertekFrissit();
+            Koretek.koretekFrissit();
         }
 
         private void regisztracio(object sender, RoutedEventArgs e)

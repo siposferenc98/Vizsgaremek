@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
         mc:Ignorable="d"
         Title="TetelUI" Height="450" Width="800">
-
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
     <!--Tétel grid-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,57 +33,53 @@
         </Grid.RowDefinitions>
         <!--Termékek comboboxok-->
         <StackPanel Grid.Row="0">
-            <Label HorizontalAlignment="Center">Hamburger:</Label>
-            <ComboBox x:Name="hamburgerComboBox" Height="20px"></ComboBox>
+            <Label>Hamburger:</Label>
+            <ComboBox x:Name="hamburgerComboBox" SelectionChanged="leirasValtoztat"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <Label HorizontalAlignment="Center">Köret:</Label>
-            <ComboBox x:Name="koretComboBox" Height="20px"></ComboBox>
+            <Label>Köret:</Label>
+            <ComboBox x:Name="koretComboBox" SelectionChanged="leirasValtoztat"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <Label HorizontalAlignment="Center">Ital:</Label>
-            <ComboBox x:Name="italComboBox" Height="20px"></ComboBox>
+            <Label>Ital:</Label>
+            <ComboBox x:Name="italComboBox"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <Label HorizontalAlignment="Center">Desszert:</Label>
-            <ComboBox x:Name="desszertComboBox" Height="20px"></ComboBox>
+            <Label>Desszert:</Label>
+            <ComboBox x:Name="desszertComboBox" SelectionChanged="leirasValtoztat"></ComboBox>
         </StackPanel>
         <!--Darab input-->
         <StackPanel Grid.Row="0" Grid.Column="1">
-            <Label HorizontalAlignment="Center">Darab:</Label>
+            <Label>Darab:</Label>
             <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label HorizontalAlignment="Center">Darab:</Label>
+            <Label>Darab:</Label>
             <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
-            <Label HorizontalAlignment="Center">Darab:</Label>
+            <Label>Darab:</Label>
             <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <Label HorizontalAlignment="Center">Darab:</Label>
+            <Label>Darab:</Label>
             <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
         <!--Leírások-->
         <StackPanel Grid.Row="0" Grid.Column="2">
-            <Label HorizontalAlignment="Center">Leírás:</Label>
-            <TextBlock TextWrapping="Wrap"></TextBlock>
+            <Label>Leírás:</Label>
+            <TextBlock TextWrapping="Wrap" x:Name="hamburgerComboBoxleiras"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <Label HorizontalAlignment="Center">Leírás:</Label>
-            <TextBlock TextWrapping="Wrap"></TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <Label HorizontalAlignment="Center">Leírás:</Label>
-            <TextBlock TextWrapping="Wrap"></TextBlock>
+            <Label>Leírás:</Label>
+            <TextBlock TextWrapping="Wrap" x:Name="koretComboBoxleiras"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
-            <Label HorizontalAlignment="Center">Leírás:</Label>
-            <TextBlock TextWrapping="Wrap"></TextBlock>
+            <Label>Leírás:</Label>
+            <TextBlock TextWrapping="Wrap" x:Name="desszertComboBoxleiras"></TextBlock>
         </StackPanel>
         <!--Gombok-->
-        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150px">Tétel hozzáadása</Button>
+        <Button Grid.Row="5" Grid.ColumnSpan="3">Tétel hozzáadása</Button>
     </Grid>
 
 </Window>

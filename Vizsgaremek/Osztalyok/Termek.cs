@@ -8,9 +8,9 @@ namespace Vizsgaremek.Osztalyok
 {
     class Termek
     {
-        int azon, ar;
-        string nev , leiras;
-        public Termek(int azon, string nev, int ar, string leiras)
+        public int azon, ar;
+        public string nev, leiras;
+        public Termek(int azon, string nev, int ar, string leiras = null)
         {
             this.azon = azon;
             this.ar = ar;

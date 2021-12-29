@@ -36,7 +36,18 @@ namespace Vizsgaremek.Felszolgalo
         private void comboBoxokFeltolt()
         {
             Hamburgerek.hamburgerLista.ForEach(x => hamburgerComboBox.Items.Add(x));
+            Italok.italLista.ForEach(x => italComboBox.Items.Add(x));
+            Desszertek.desszertLista.ForEach(x => desszertComboBox.Items.Add(x));
+            Koretek.koretLista.ForEach(x => koretComboBox.Items.Add(x));
+            
         }
 
+        private void leirasValtoztat(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            TextBlock leiras = (TextBlock)FindName(cb.Name + "leiras");
+            Termek termek = (Termek)cb.SelectedItem;
+            leiras.Text = termek.leiras;
+        }
     }
 }

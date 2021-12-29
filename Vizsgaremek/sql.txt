@@ -3,3 +3,6 @@ regisztracioletezik-SELECT email FROM felhasznalo WHERE email = @email
 bejelentkezes-SELECT * FROM felhasznalo WHERE email = @felh AND pw = @pw
 rendeleslekerdezes-SELECT * FROM rendeles
 hamburgerlekerdezes-SELECT * FROM burger
+itallekerdezes-SELECT * FROM ital
+desszerteklekerdezes-SELECT * FROM desszert
+koretlekerdezes-SELECT * FROM koret

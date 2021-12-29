@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
         mc:Ignorable="d"
         Title="FelszolgaloUI" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20px"></RowDefinition>
@@ -28,9 +34,9 @@
             </Menu>
         </DockPanel>
         <!--Labelök-->
-        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Rendelés felvétel</Label>
-        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Felvett rendelések</Label>
-        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Kész rendelések</Label>
+        <Label Grid.Row="1">Rendelés felvétel</Label>
+        <Label Grid.Row="1" Grid.Column="1">Felvett rendelések</Label>
+        <Label Grid.Row="1" Grid.Column="2">Kész rendelések</Label>
         <!--Rendelések listboxok-->
         <ListBox Grid.Row="2" Grid.Column="1" x:Name="nyitottListBox"/>
         <ListBox Grid.Row="2" Grid.Column="2" x:Name="zartListBox"/>
@@ -59,17 +65,16 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10px">
                     <Label>Foglalás:</Label>
-                    <ComboBox Width="50px">
-                        <ComboBoxItem>1</ComboBoxItem>
-                        <ComboBoxItem>2</ComboBoxItem>
-                    </ComboBox>
+                    <ComboBox Width="50px"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10px">
-                    <Label HorizontalAlignment="Center">Asztal:</Label>
+                    <Label>Asztal:</Label>
                     <ComboBox x:Name="asztalokComboBox" Width="50px"></ComboBox>
                 </StackPanel>
             </StackPanel>
             <Button Grid.Column="1" Height="30px" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">Rendelés felvétele</Button>
+            
+            <!--Rendelés-->
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Label>Rendelés:</Label>
                 <ComboBox Width="50px"></ComboBox>

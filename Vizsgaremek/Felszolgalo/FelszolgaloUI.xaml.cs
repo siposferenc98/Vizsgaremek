@@ -25,6 +25,7 @@ namespace Vizsgaremek.Felszolgalo
         public FelszolgaloUI()
         {
             InitializeComponent();
+            asztalokComboBoxFeltolt();
             Task.Run(() => listboxokFrissitAsync());
             
         }
@@ -71,10 +72,9 @@ namespace Vizsgaremek.Felszolgalo
             Rendelesek.rendelesekFrissit();
             for (int i = 0; i < 10; i++)
             {
-                if (!Rendelesek.rendelesekLista.Any(x => x.asztal == i) ||
-                    Rendelesek.rendelesekLista.Any(x => x.asztal == i && x.etelstatus == 4))
-                    asztalokComboBox.Items.Add(i);
-
+                if (Rendelesek.rendelesekLista.Any(x => x.asztal == i && x.etelstatus < 3))
+                    continue;
+                asztalokComboBox.Items.Add(i);
             }
         }
 
