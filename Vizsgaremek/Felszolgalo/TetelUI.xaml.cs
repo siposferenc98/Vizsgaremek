@@ -24,12 +24,18 @@ namespace Vizsgaremek.Felszolgalo
         public TetelUI()
         {
             InitializeComponent();
+            comboBoxokFeltolt();
         }
 
         private void csakSzamok(object sender, TextCompositionEventArgs e)
         {
             Regex szamokPattern = new Regex("[^0-9]+");
             e.Handled = szamokPattern.IsMatch(e.Text);
+        }
+
+        private void comboBoxokFeltolt()
+        {
+            Hamburgerek.hamburgerLista.ForEach(x => hamburgerComboBox.Items.Add(x));
         }
 
     }

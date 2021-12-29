@@ -12,13 +12,13 @@ namespace Vizsgaremek.Osztalyok
 
         public static void rendelesekFrissit()
         {
-            List<int> eredmeny = MySQL.query("rendeleslekerdezes", false).Select(int.Parse).ToList();
+            List<string> eredmeny = MySQL.query("rendeleslekerdezes", false);
             rendelesekLista = new();
 
             if (eredmeny.Any())
-                for (int i = 0; i < eredmeny.Count; i += 5)
+                for (int i = 0; i < eredmeny.Count; i += 6)
                 {
-                    Rendeles rendeles = new(eredmeny[i], eredmeny[i + 1], eredmeny[i + 2], eredmeny[i + 3], eredmeny[i + 4]);
+                    Rendeles rendeles = new(int.Parse(eredmeny[i]), int.Parse(eredmeny[i + 1]),int.Parse(eredmeny[i + 2]), eredmeny[i + 3],int.Parse(eredmeny[i + 4]),int.Parse(eredmeny[i + 5]));
                     rendelesekLista.Add(rendeles);
                 }
         }

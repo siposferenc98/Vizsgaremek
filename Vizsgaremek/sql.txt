@@ -1,5 +1,5 @@
-﻿regisztracio-INSERT INTO login VALUES('',@felh , @pw, @jog)
-regisztracioletezik-SELECT acc FROM login WHERE acc = @felh
-bejelentkezes-SELECT * FROM login WHERE acc = @felh AND pw = @pw
+﻿regisztracio-INSERT INTO felhasznalo VALUES('', @teljesnev, @lakh, @tel, @email, @jog, @pw)
+regisztracioletezik-SELECT email FROM felhasznalo WHERE email = @email
+bejelentkezes-SELECT * FROM felhasznalo WHERE email = @felh AND pw = @pw
 rendeleslekerdezes-SELECT * FROM rendeles
 hamburgerlekerdezes-SELECT * FROM burger

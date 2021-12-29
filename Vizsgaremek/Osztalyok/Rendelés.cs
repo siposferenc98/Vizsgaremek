@@ -9,14 +9,16 @@ namespace Vizsgaremek.Osztalyok
     class Rendeles
     {
         public int razon, fazon, asztal, etelstatus, italstatus;
+        public string ido;
 
-        public Rendeles(int razon, int fazon, int asztal, int etelstatus, int italstatus)
+        public Rendeles(int razon, int fazon, int asztal,string ido, int etelstatus, int italstatus)
         {
             this.razon = razon;
             this.fazon = fazon;
             this.asztal = asztal;
             this.etelstatus = etelstatus;
             this.italstatus = italstatus;
+            this.ido = ido;
         }
 
         public override string ToString()

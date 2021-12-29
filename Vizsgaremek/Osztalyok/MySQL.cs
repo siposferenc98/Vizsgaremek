@@ -13,7 +13,7 @@ namespace Vizsgaremek.Osztalyok
     public class MySQL
     {
         //MySqlConnection példányosítva, paraméterbe a connection stringet kapja meg.
-        public static MySqlConnection conn = new("server=localhost;database=hamb;username=root;pwd=;sslmode=none;");
+        public static MySqlConnection conn = new("server=localhost;database=burgeretterem;username=root;pwd=;sslmode=none;");
         //ebben tároljuk az összes sql lekérdezést, formátum : 'kulcs'-'lekérdezés'
         private static Dictionary<string, string> lekerdezesekDict = new();
 

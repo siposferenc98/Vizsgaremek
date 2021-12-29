@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Vizsgaremek.Osztalyok;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace Vizsgaremek
 {
@@ -37,19 +38,25 @@ namespace Vizsgaremek
                 MessageBox.Show("A jelszavaknak egyeznie kell!");
             else
             {
-                string felh = felhNevDoboz.Text;
+                string teljesnev = teljesNevDoboz.Text;
                 string pw = MySQL.hashPW(jelszoEloszor.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
+                string lakhely = lakhelyDoboz.Text;
+                string telszam = telszamDoboz.Text;
+                string email = emailDoboz.Text;
                 int jog = jogosultsag.SelectedIndex + 1;
                 //MySqlParameter , konstruktor első paramétere a cserélendő paraméter, a második az érték hogy mire.
-                MySqlParameter fparam = new("@felh", felh);
-                MySqlParameter pwparam = new("@pw", pw);
+                MySqlParameter teljesnevparam = new("@teljesnev", teljesnev);
+                MySqlParameter lakhelyparam = new("@lakh", lakhely);
+                MySqlParameter telparam = new("@tel", telszam);
+                MySqlParameter emailparam = new("@email", email);
                 MySqlParameter jogparam = new("@jog", jog);
-                List<MySqlParameter> paramListLetezikE = new() { fparam }; //létrehozunk egy listát paraméterekkel
+                MySqlParameter pwparam = new("@pw", pw);
+                List<MySqlParameter> paramListLetezikE = new() { emailparam }; //létrehozunk egy listát csak a felhasználónév paraméterrel
                 List<string> letezikE = MySQL.query("regisztracioletezik", false, paramListLetezikE); //először megnézzük egy selecttel hogy létezik-e ilyen felhasználó, ha nincs benne semmi akkor nem,szóval lehet regisztrálni.
 
                 if (letezikE.Count == 0)
                 {
-                    List<MySqlParameter> paramListRegisztracio = new() { fparam, pwparam, jogparam }; //új paraméterlista
+                    List<MySqlParameter> paramListRegisztracio = new() { teljesnevparam, lakhelyparam, telparam, emailparam, jogparam, pwparam }; //új paraméterlista
                     List<string> eredmeny = MySQL.query("regisztracio", true, paramListRegisztracio);
                     MessageBox.Show(eredmeny[0].ToString()); //kiiratjuk az eredmény listánk elemét, vagy sikeres lesz, vagy hibát fog tartalmazni.
                     Close();
@@ -61,10 +68,16 @@ namespace Vizsgaremek
 
         private void regisztraciosDobozMindKitoltveE(object sender, RoutedEventArgs e)
         {
-            if (felhNevDoboz.Text.Length > 0 && jelszoEloszor.Password.Length > 0 && jelszoMasodszor.Password.Length > 0)
+            if (teljesNevDoboz.Text.Length > 0 && jelszoEloszor.Password.Length > 0 && jelszoMasodszor.Password.Length > 0 && lakhelyDoboz.Text.Length > 0 && telszamDoboz.Text.Length > 0 && emailDoboz.Text.Length > 0)
                 regisztralasGomb.IsEnabled = true;
             else
                 regisztralasGomb.IsEnabled = false;
+        }
+
+        private void csakSzamok(object sender, TextCompositionEventArgs e)
+        {
+            Regex szamokPattern = new Regex("[^0-9]+");
+            e.Handled = szamokPattern.IsMatch(e.Text);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Vizsgaremek.Osztalyok
             if (eredmeny.Any())
                 for (int i = 0; i < eredmeny.Count; i += 4)
                 {
-                    Termek termek = new(int.Parse(eredmeny[i]),int.Parse(eredmeny[i+1]),eredmeny[i+2],eredmeny[i+3]);
+                    Termek termek = new(int.Parse(eredmeny[i]),eredmeny[i + 1], int.Parse(eredmeny[i + 2]),eredmeny[i + 3]);
                     hamburgerLista.Add(termek);
                 }
         }

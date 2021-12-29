@@ -5,21 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek"
         mc:Ignorable="d"
-        Title="Regisztracio" Height="250" Width="400">
+        Title="Regisztracio" Height="350" Width="400">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="felhNevDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
-        <PasswordBox HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top" Width="120" x:Name="jelszoEloszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
-        <PasswordBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,74,0,0" x:Name="jelszoMasodszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
-        <ComboBox HorizontalAlignment="Center" Margin="0,106,0,0" VerticalAlignment="Top" Width="120" x:Name="jogosultsag">
-            <ComboBoxItem IsSelected="true">Felszolgáló</ComboBoxItem>
-            <ComboBoxItem>Szakács</ComboBoxItem>
-            <ComboBoxItem>Pultos</ComboBoxItem>
-        </ComboBox>
-        <Button Content="Regisztráció" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Click="regisztralas" IsEnabled="False" x:Name="regisztralasGomb"/>
-        <Label Content="Felhasználónév:" HorizontalAlignment="Left" Margin="38,16,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Jelszó:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Jelszó mégegyszer:" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Jogosultság: " HorizontalAlignment="Left" Margin="52,104,0,0" VerticalAlignment="Top" Height="26"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Email:" Height="26" HorizontalAlignment="Center"/>
+            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="emailDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Jelszó:" Height="26" HorizontalAlignment="Center"/>
+            <PasswordBox Width="120" x:Name="jelszoEloszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Jelszó mégegyszer:" Height="26" HorizontalAlignment="Center"/>
+            <PasswordBox Width="120" x:Name="jelszoMasodszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+            <Label Content="Lakhely:" Height="26" HorizontalAlignment="Center"/>
+            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="lakhelyDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+            <Label Content="Telefonszám:" Height="26" HorizontalAlignment="Center"/>
+            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="telszamDoboz" TextChanged="regisztraciosDobozMindKitoltveE" PreviewTextInput="csakSzamok"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
+            <Label Content="Teljes Név:" Height="26" HorizontalAlignment="Center"/>
+            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="teljesNevDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+        </StackPanel>
+        
+        <!--Jogosultság-->
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <Label Content="Jogosultság:" Height="26" HorizontalAlignment="Center"/>
+            <ComboBox HorizontalAlignment="Center" Height="25" x:Name="jogosultsag" Width="200">
+                <ComboBoxItem IsSelected="true">Felszolgáló</ComboBoxItem>
+                <ComboBoxItem>Szakács</ComboBoxItem>
+                <ComboBoxItem>Pultos</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        
+        
+        
 
+        <Button Content="Regisztráció" Grid.Row="4" Grid.ColumnSpan="2" Click="regisztralas" IsEnabled="False" x:Name="regisztralasGomb"/>
     </Grid>
 </Window>

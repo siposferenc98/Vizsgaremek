@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="TetelUI" Height="450" Width="800">
 
-    <!--Rendelésfelvétel grid-->
-    <Grid Grid.Row="2">
+    <!--Tétel grid-->
+    <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -18,16 +19,12 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
         </Grid.RowDefinitions>
+        <!--Termékek comboboxok-->
         <StackPanel Grid.Row="0">
             <Label HorizontalAlignment="Center">Hamburger:</Label>
             <ComboBox x:Name="hamburgerComboBox" Height="20px"></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <Label HorizontalAlignment="Center">Darab:</Label>
-            <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label HorizontalAlignment="Center">Köret:</Label>
@@ -41,10 +38,42 @@
             <Label HorizontalAlignment="Center">Desszert:</Label>
             <ComboBox x:Name="desszertComboBox" Height="20px"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="4">
-            
+        <!--Darab input-->
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Darab:</Label>
+            <TextBox PreviewTextInput="csakSzamok"></TextBox>
         </StackPanel>
-        <Button Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150px">Tétel hozzáadása</Button>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Darab:</Label>
+            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Darab:</Label>
+            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Darab:</Label>
+            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+        </StackPanel>
+        <!--Leírások-->
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Label HorizontalAlignment="Center">Leírás:</Label>
+            <TextBlock TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label HorizontalAlignment="Center">Leírás:</Label>
+            <TextBlock TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Label HorizontalAlignment="Center">Leírás:</Label>
+            <TextBlock TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="2">
+            <Label HorizontalAlignment="Center">Leírás:</Label>
+            <TextBlock TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <!--Gombok-->
+        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150px">Tétel hozzáadása</Button>
     </Grid>
 
 </Window>

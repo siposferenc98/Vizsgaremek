@@ -26,6 +26,7 @@ namespace Vizsgaremek
         {
             InitializeComponent();
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
+            Hamburgerek.hamburgerekFrissit();
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Vizsgaremek
 
             if (eredmenyek.Count > 1)
             {
-                AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], int.Parse(eredmenyek[3]));
+                AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], eredmenyek[2], eredmenyek[3], eredmenyek[4], int.Parse(eredmenyek[5]));
                 MessageBox.Show($"Üdvözlünk {AktualisFelhasznalo.felhasznalo.nev} !");
                 //1-Felszolgáló, 2-Szakács, 3-Pultos, 4-Admin
                 switch (AktualisFelhasznalo.felhasznalo.jog)
