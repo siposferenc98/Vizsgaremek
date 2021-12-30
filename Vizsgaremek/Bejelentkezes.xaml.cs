@@ -83,10 +83,10 @@ namespace Vizsgaremek
         private void inditasiEljarasok()
         {
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
-            Hamburgerek.hamburgerekFrissit();
-            Italok.italokFrissit();
-            Desszertek.desszertekFrissit();
-            Koretek.koretekFrissit();
+            Termekek.listaFrissit("hamburgerlekerdezes", 'h');
+            Termekek.listaFrissit("koretlekerdezes", 'k');
+            Termekek.listaFrissit("desszerteklekerdezes", 'd');
+            Termekek.listaFrissit("itallekerdezes", 'i');
         }
 
         private void regisztracio(object sender, RoutedEventArgs e)

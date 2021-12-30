@@ -42,7 +42,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2">
             <Label>Ital:</Label>
-            <ComboBox x:Name="italComboBox"></ComboBox>
+            <ComboBox x:Name="italComboBox" SelectionChanged="leirasValtoztat"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3">
             <Label>Desszert:</Label>
@@ -73,6 +73,10 @@
         <StackPanel Grid.Row="1" Grid.Column="2">
             <Label>Leírás:</Label>
             <TextBlock TextWrapping="Wrap" x:Name="koretComboBoxleiras"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Label>Leírás:</Label>
+            <TextBlock TextWrapping="Wrap" x:Name="italComboBoxleiras"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
             <Label>Leírás:</Label>

@@ -35,10 +35,10 @@ namespace Vizsgaremek.Felszolgalo
 
         private void comboBoxokFeltolt()
         {
-            Hamburgerek.hamburgerLista.ForEach(x => hamburgerComboBox.Items.Add(x));
-            Italok.italLista.ForEach(x => italComboBox.Items.Add(x));
-            Desszertek.desszertLista.ForEach(x => desszertComboBox.Items.Add(x));
-            Koretek.koretLista.ForEach(x => koretComboBox.Items.Add(x));
+            Termekek.listakDictionary['h'].ForEach(x => hamburgerComboBox.Items.Add(x));
+            Termekek.listakDictionary['i'].ForEach(x => italComboBox.Items.Add(x));
+            Termekek.listakDictionary['d'].ForEach(x => desszertComboBox.Items.Add(x));
+            Termekek.listakDictionary['k'].ForEach(x => koretComboBox.Items.Add(x));
             
         }
 
