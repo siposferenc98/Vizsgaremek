@@ -77,9 +77,9 @@
             <!--Rendelés-->
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Label>Rendelés:</Label>
-                <ComboBox Width="50px"></ComboBox>
+                <ComboBox Width="50px" x:Name="rendelesekComboBox" SelectionChanged="rendelesekComboBoxValasztas"></ComboBox>
             </StackPanel>
-            <Button Grid.Column="1" Grid.Row="1" Height="30px" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
+            <Button Grid.Column="1" Grid.Row="1" Height="30px" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" x:Name="tetelUIGomb" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
         </Grid>
         
 

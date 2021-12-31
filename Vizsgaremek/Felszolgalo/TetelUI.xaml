@@ -52,19 +52,19 @@
         <!--Darab input-->
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Label>Darab:</Label>
-            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+            <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="hamburgerDB"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label>Darab:</Label>
-            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+            <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="koretDB"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <Label>Darab:</Label>
-            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+            <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="italDB"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label>Darab:</Label>
-            <TextBox PreviewTextInput="csakSzamok"></TextBox>
+            <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="desszertDB"></TextBox>
         </StackPanel>
         <!--Leírások-->
         <StackPanel Grid.Row="0" Grid.Column="2">

@@ -55,6 +55,7 @@ namespace Vizsgaremek.Felszolgalo
         {
             nyitottListBox.Items.Clear();
             zartListBox.Items.Clear();
+            
 
             if (Rendelesek.rendelesekLista.Any())
                 foreach (Rendeles r in Rendelesek.rendelesekLista)
@@ -63,6 +64,9 @@ namespace Vizsgaremek.Felszolgalo
                         zartListBox.Items.Add(r);
                     else
                         nyitottListBox.Items.Add(r);
+
+                    if(!rendelesekComboBox.Items.Contains(r.razon) && r.etelstatus < 3 && r.italstatus < 3)
+                        rendelesekComboBox.Items.Add(r.razon);
                 }
         }
 
@@ -80,9 +84,17 @@ namespace Vizsgaremek.Felszolgalo
 
         private void tetelUiMegnyit(object sender, RoutedEventArgs e)
         {
-            Window tetelUI = new TetelUI();
+            Window tetelUI = new TetelUI((int)rendelesekComboBox.SelectedItem);
             tetelUI.Owner = this;
             tetelUI.Show();
+        }
+        private void rendelesekComboBoxValasztas(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (cb.SelectedItem is not null)
+                tetelUIGomb.IsEnabled = true;
+            else
+                tetelUIGomb.IsEnabled = false;
         }
 
         private void rendelesReszletek(object sender, RoutedEventArgs e)
@@ -91,5 +103,6 @@ namespace Vizsgaremek.Felszolgalo
             Window reszletek = new RendelesReszletekUI(rendeles);
             reszletek.Show();
         }
+
     }
 }

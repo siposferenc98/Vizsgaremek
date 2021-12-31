@@ -21,9 +21,14 @@ namespace Vizsgaremek.Felszolgalo
     /// </summary>
     public partial class TetelUI : Window
     {
-        public TetelUI()
+        private readonly int rendelesID;
+        private int hazon, kazon, dazon, iazon;
+        private int hdb, kdb, ddb, idb;
+
+        public TetelUI(int rendelesID)
         {
             InitializeComponent();
+            this.rendelesID = rendelesID;
             comboBoxokFeltolt();
         }
 
@@ -31,6 +36,20 @@ namespace Vizsgaremek.Felszolgalo
         {
             Regex szamokPattern = new Regex("[^0-9]+");
             e.Handled = szamokPattern.IsMatch(e.Text);
+        }
+
+        private void dbErtekBeallitas(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            int textSzamkent = !string.IsNullOrEmpty(tb.Text) ? int.Parse(tb.Text) : 0;
+            if (tb.Name.StartsWith('h'))
+                hdb = textSzamkent;
+            else if (tb.Name.StartsWith('k'))
+                kdb = textSzamkent;
+            else if (tb.Name.StartsWith('d'))
+                ddb = textSzamkent;
+            else
+                idb = textSzamkent;
         }
 
         private void comboBoxokFeltolt()
@@ -48,11 +67,21 @@ namespace Vizsgaremek.Felszolgalo
             TextBlock leiras = (TextBlock)FindName(cb.Name + "leiras");
             Termek termek = (Termek)cb.SelectedItem;
             leiras.Text = termek.leiras;
+
+            if (cb.Name.StartsWith('h'))
+                hazon = termek.azon;
+            else if (cb.Name.StartsWith('k'))
+                kazon = termek.azon;
+            else if (cb.Name.StartsWith('d'))
+                dazon = termek.azon;
+            else
+                iazon = termek.azon;
+
         }
 
         private void tetelHozzaad(object sender, RoutedEventArgs e)
         {
-            
+            MessageBox.Show($"RendelésID : {rendelesID} \n Burger: {hazon} db: {hdb} \n Köret: {kazon}, db: {kdb} \n Desszert: {dazon}, db: {ddb} \n Ital: {iazon}, db: {idb}");
         }
     }
 }
