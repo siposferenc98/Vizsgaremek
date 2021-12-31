@@ -44,6 +44,7 @@ namespace Vizsgaremek.Felszolgalo
                     $"{t.koret.nev}, {t.kdb} db, ár: {t.kdb*t.koret.ar} Ft. \n" +
                     $"{t.desszert.nev}, {t.kdb} db, ár: {t.ddb*t.desszert.ar} Ft. \n" +
                     $"{t.ital.nev}, {t.kdb} db, ár: {t.idb*t.ital.ar} Ft. \n" +
+                    $"Megjegyzés: {t.megjegyzes} \n " +
                     $"Összesen: {t.vegosszeg} Ft.";
                 expander.Content = rendelesreszletek;
                 sp.Children.Add(cim);

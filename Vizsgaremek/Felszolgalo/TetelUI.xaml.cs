@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using Vizsgaremek.Osztalyok;
+using MySql.Data.MySqlClient;
 
 namespace Vizsgaremek.Felszolgalo
 {
@@ -22,7 +23,6 @@ namespace Vizsgaremek.Felszolgalo
     public partial class TetelUI : Window
     {
         private readonly int rendelesID;
-        private int hazon, kazon, dazon, iazon;
         private int hdb, kdb, ddb, idb;
 
         public TetelUI(int rendelesID)
@@ -66,22 +66,45 @@ namespace Vizsgaremek.Felszolgalo
             ComboBox cb = (ComboBox)sender;
             TextBlock leiras = (TextBlock)FindName(cb.Name + "leiras");
             Termek termek = (Termek)cb.SelectedItem;
-            leiras.Text = termek.leiras;
-
-            if (cb.Name.StartsWith('h'))
-                hazon = termek.azon;
-            else if (cb.Name.StartsWith('k'))
-                kazon = termek.azon;
-            else if (cb.Name.StartsWith('d'))
-                dazon = termek.azon;
-            else
-                iazon = termek.azon;
-
+            leiras.Text = $"{termek.leiras}, {termek.ar} Ft.";
         }
 
         private void tetelHozzaad(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"RendelésID : {rendelesID} \n Burger: {hazon} db: {hdb} \n Köret: {kazon}, db: {kdb} \n Desszert: {dazon}, db: {ddb} \n Ital: {iazon}, db: {idb}");
+            Termek hamburger = (Termek)hamburgerComboBox.SelectedItem;
+            Termek koret = (Termek)koretComboBox.SelectedItem;
+            Termek ital = (Termek)italComboBox.SelectedItem;
+            Termek desszert = (Termek)desszertComboBox.SelectedItem;
+            string megjegyzes = megjegyzesTextBox.Text;
+            MessageBoxResult okcancel = MessageBox.Show(
+                $"RendelésID : {rendelesID} \n " +
+                $"Burger: {hamburger.nev} db: {hdb} \n " +
+                $"Köret: {koret.nev}, db: {kdb} \n " +
+                $"Desszert: {desszert.nev}, db: {ddb} \n " +
+                $"Ital: {ital.nev}, db: {idb} \n " +
+                $"Megjegyzés: {megjegyzes} \n " +
+                $"Összesen: {hamburger.ar * hdb + koret.ar * kdb + desszert.ar * ddb + ital.ar * idb}",
+                "Tétel megerősítése", 
+                MessageBoxButton.OKCancel);
+
+            if(okcancel == MessageBoxResult.OK)
+            {
+                //@razon, @hazon, @hdb, @kazon, @kdb, @dazon, @ddb, @iazon, @idb, 1, 1, @megjegyzes
+                MySqlParameter razonparam = new("@razon", rendelesID);
+                MySqlParameter hazonparam = new("@hazon", hamburger.azon);
+                MySqlParameter hdbparam = new("@hdb", hdb);
+                MySqlParameter kazonparam = new("@kazon", koret.azon);
+                MySqlParameter kdbparam = new("@kdb", kdb);
+                MySqlParameter dazonparam = new("@dazon", desszert.azon);
+                MySqlParameter ddbparam = new("@ddb", ddb);
+                MySqlParameter iazonparam = new("@iazon", ital.azon);
+                MySqlParameter idbparam = new("@idb", idb);
+                MySqlParameter megjegyzesparam = new("@megjegyzes", megjegyzes);
+                List<MySqlParameter> paramListTetel = new() { razonparam, hazonparam, hdbparam, kazonparam, kdbparam, dazonparam, ddbparam, iazonparam, idbparam, megjegyzesparam };
+                MySQL.query("tetelbeszur", true, paramListTetel);
+                Close();
+            }
+
         }
     }
 }

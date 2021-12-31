@@ -36,7 +36,7 @@ namespace Vizsgaremek.Felszolgalo
             while (true)
             {
                 keszListboxFrissit();
-                await Task.Delay(5000);
+                await Task.Delay(10000);
             }
             
         }
@@ -101,8 +101,17 @@ namespace Vizsgaremek.Felszolgalo
         {
             Rendeles rendeles = (Rendeles)nyitottListBox.SelectedItem;
             Window reszletek = new RendelesReszletekUI(rendeles);
+            reszletek.Owner = this;
             reszletek.Show();
         }
 
+        private void nyitottListBoxValasztas(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            if (lb.SelectedItem is not null)
+                felvettRendelesekVezerlo.IsEnabled = true;
+            else
+                felvettRendelesekVezerlo.IsEnabled = false;
+        }
     }
 }

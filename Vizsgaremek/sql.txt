@@ -7,3 +7,4 @@ itallekerdezes-SELECT * FROM ital
 desszerteklekerdezes-SELECT * FROM desszert
 koretlekerdezes-SELECT * FROM koret
 rendelestetelek-SELECT * FROM tetel WHERE tetel.razon = @razon
+tetelbeszur-INSERT INTO tetel VALUES('', @razon, @hazon, @hdb, @kazon, @kdb, @dazon, @ddb, @iazon, @idb, 1, 1, @megjegyzes)

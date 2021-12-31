@@ -38,10 +38,10 @@
         <Label Grid.Row="1" Grid.Column="1">Felvett rendelések</Label>
         <Label Grid.Row="1" Grid.Column="2">Kész rendelések</Label>
         <!--Rendelések listboxok-->
-        <ListBox Grid.Row="2" Grid.Column="1" x:Name="nyitottListBox"/>
+        <ListBox Grid.Row="2" Grid.Column="1" x:Name="nyitottListBox" SelectionChanged="nyitottListBoxValasztas"/>
         <ListBox Grid.Row="2" Grid.Column="2" x:Name="zartListBox"/>
         <!--Aktív rendelések vezérlő-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False" x:Name="felvettRendelesekVezerlo">
             <Button Margin="10px" Height="30px">Törlés</Button>
             <Button Margin="10px" Height="30px" Click="rendelesReszletek">Részletek</Button>
         </StackPanel>
