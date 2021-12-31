@@ -6,3 +6,4 @@ hamburgerlekerdezes-SELECT * FROM burger
 itallekerdezes-SELECT * FROM ital
 desszerteklekerdezes-SELECT * FROM desszert
 koretlekerdezes-SELECT * FROM koret
+rendelestetelek-SELECT * FROM tetel WHERE tetel.razon = @razon

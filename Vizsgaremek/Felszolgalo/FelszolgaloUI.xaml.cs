@@ -84,5 +84,12 @@ namespace Vizsgaremek.Felszolgalo
             tetelUI.Owner = this;
             tetelUI.Show();
         }
+
+        private void rendelesReszletek(object sender, RoutedEventArgs e)
+        {
+            Rendeles rendeles = (Rendeles)nyitottListBox.SelectedItem;
+            Window reszletek = new RendelesReszletekUI(rendeles);
+            reszletek.Show();
+        }
     }
 }

@@ -12,6 +12,7 @@
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="SelectedIndex" Value="0"></Setter>
         </Style>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -83,7 +84,7 @@
             <TextBlock TextWrapping="Wrap" x:Name="desszertComboBoxleiras"></TextBlock>
         </StackPanel>
         <!--Gombok-->
-        <Button Grid.Row="5" Grid.ColumnSpan="3">Tétel hozzáadása</Button>
+        <Button Grid.Row="5" Grid.ColumnSpan="3" Click="tetelHozzaad">Tétel hozzáadása</Button>
     </Grid>
 
 </Window>

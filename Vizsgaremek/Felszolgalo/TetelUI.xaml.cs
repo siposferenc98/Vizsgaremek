@@ -49,5 +49,10 @@ namespace Vizsgaremek.Felszolgalo
             Termek termek = (Termek)cb.SelectedItem;
             leiras.Text = termek.leiras;
         }
+
+        private void tetelHozzaad(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

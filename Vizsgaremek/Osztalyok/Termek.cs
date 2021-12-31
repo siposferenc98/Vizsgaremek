@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Vizsgaremek.Osztalyok
 {
-    class Termek
+    public class Termek
     {
         public int azon, ar;
         public string nev, leiras;
+
         public Termek(int azon, string nev, int ar, string leiras = null)
         {
             this.azon = azon;

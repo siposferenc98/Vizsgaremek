@@ -43,7 +43,7 @@
         <!--Aktív rendelések vezérlő-->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
             <Button Margin="10px" Height="30px">Törlés</Button>
-            <Button Margin="10px" Height="30px">Részletek</Button>
+            <Button Margin="10px" Height="30px" Click="rendelesReszletek">Részletek</Button>
         </StackPanel>
         <!--Kész rendelések vezérlő-->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">

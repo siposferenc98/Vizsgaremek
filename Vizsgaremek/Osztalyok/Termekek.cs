@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vizsgaremek.Osztalyok
 {
-    class Termekek
+    public class Termekek
     {
         /*public static List<Termek> hamburgerLista = new();
         public static List<Termek> koretLista = new();

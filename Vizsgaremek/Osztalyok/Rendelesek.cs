@@ -18,7 +18,7 @@ namespace Vizsgaremek.Osztalyok
             if (eredmeny.Any())
                 for (int i = 0; i < eredmeny.Count; i += 6)
                 {
-                    Rendeles rendeles = new(int.Parse(eredmeny[i]), int.Parse(eredmeny[i + 1]),int.Parse(eredmeny[i + 2]), eredmeny[i + 3],int.Parse(eredmeny[i + 4]),int.Parse(eredmeny[i + 5]));
+                    Rendeles rendeles = new(int.Parse(eredmeny[i]), int.Parse(eredmeny[i + 1]),int.Parse(eredmeny[i + 2]),DateTime.Parse(eredmeny[i + 3]),int.Parse(eredmeny[i + 4]),int.Parse(eredmeny[i + 5]));
                     rendelesekLista.Add(rendeles);
                 }
         }
