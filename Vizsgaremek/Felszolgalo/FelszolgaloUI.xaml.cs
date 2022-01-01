@@ -26,8 +26,7 @@ namespace Vizsgaremek.Felszolgalo
         public FelszolgaloUI()
         {
             InitializeComponent();
-            asztalokComboBoxFeltolt();
-            foglalasComboBoxFeltolt();
+            comboListBoxokFrissites();
             Task.Run(() => listboxokFrissitAsync());
             
         }
@@ -68,10 +67,17 @@ namespace Vizsgaremek.Felszolgalo
                         felvettRendelesek.Items.Add(r);
                     else if(r.etelstatus < 4 && r.italstatus < 4)
                         keszRendelesek.Items.Add(r);
-
-                    if(!rendelesekComboBox.Items.Contains(r.razon) && r.etelstatus < 3 && r.italstatus < 3)
-                        rendelesekComboBox.Items.Add(r.razon);
                 }
+        }
+
+        private void rendelesekComboBoxFeltolt()
+        {
+            rendelesekComboBox.Items.Clear();
+            foreach(Rendeles r in Rendelesek.rendelesekLista)
+            {
+                if(r.etelstatus < 4 && r.italstatus < 4)
+                    rendelesekComboBox.Items.Add(r.razon);
+            }
         }
 
         private void asztalokComboBoxFeltolt()
@@ -95,6 +101,14 @@ namespace Vizsgaremek.Felszolgalo
             {
                 foglalasComboBox.Items.Add(f);
             }
+        }
+
+        private void comboListBoxokFrissites()
+        {
+            asztalokComboBoxFeltolt();
+            foglalasComboBoxFeltolt();
+            rendelesekComboBoxFeltolt();
+            listboxokFeltolt();
         }
 
 
@@ -153,8 +167,7 @@ namespace Vizsgaremek.Felszolgalo
             List<MySqlParameter> rendelesFelvetelParams = new() { foglalasparam, asztalparam };
             List<string> eredmeny = MySQL.query("rendelesfelvetel", true, rendelesFelvetelParams);
             MessageBox.Show(eredmeny[0]);
-            asztalokComboBoxFeltolt();
-            listboxokFeltolt();
+            comboListBoxokFrissites();
         }
 
 
@@ -171,8 +184,7 @@ namespace Vizsgaremek.Felszolgalo
                 List<MySqlParameter> rendelesTorlesParams = new() { razonparam };
                 List<string> eredmeny = MySQL.query("rendelestorles", true, rendelesTorlesParams);
                 MessageBox.Show(eredmeny[0]);
-                asztalokComboBoxFeltolt();
-                listboxokFeltolt();
+                comboListBoxokFrissites();
             }
 
         }
@@ -192,6 +204,7 @@ namespace Vizsgaremek.Felszolgalo
                 List<MySqlParameter> rendelesAllapotValtoztat = new() { razonparam, allapotparam};
                 List<string> eredmeny = MySQL.query("rendelesallapotvaltoztat", true, rendelesAllapotValtoztat);
                 MessageBox.Show(eredmeny[0]);
+                comboListBoxokFrissites();
             }
         }
     }
