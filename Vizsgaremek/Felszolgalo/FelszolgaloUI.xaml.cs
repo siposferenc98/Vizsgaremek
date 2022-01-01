@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Vizsgaremek.Osztalyok;
+using MySql.Data.MySqlClient;
 
 namespace Vizsgaremek.Felszolgalo
 {
@@ -26,10 +27,12 @@ namespace Vizsgaremek.Felszolgalo
         {
             InitializeComponent();
             asztalokComboBoxFeltolt();
+            foglalasComboBoxFeltolt();
             Task.Run(() => listboxokFrissitAsync());
             
         }
 
+        //Async frissítések
         private async void listboxokFrissitAsync()
         {
 
@@ -51,19 +54,20 @@ namespace Vizsgaremek.Felszolgalo
             
         }
 
+        //Listboxok,comboboxok feltöltése
         private void listboxokFeltolt()
         {
-            nyitottListBox.Items.Clear();
-            zartListBox.Items.Clear();
+            felvettRendelesek.Items.Clear();
+            keszRendelesek.Items.Clear();
             
 
             if (Rendelesek.rendelesekLista.Any())
                 foreach (Rendeles r in Rendelesek.rendelesekLista)
                 {
-                    if (r.etelstatus > 1 || r.italstatus> 1)
-                        zartListBox.Items.Add(r);
-                    else
-                        nyitottListBox.Items.Add(r);
+                    if (r.etelstatus == 1 && r.italstatus == 1)
+                        felvettRendelesek.Items.Add(r);
+                    else if(r.etelstatus < 4 && r.italstatus < 4)
+                        keszRendelesek.Items.Add(r);
 
                     if(!rendelesekComboBox.Items.Contains(r.razon) && r.etelstatus < 3 && r.italstatus < 3)
                         rendelesekComboBox.Items.Add(r.razon);
@@ -82,13 +86,20 @@ namespace Vizsgaremek.Felszolgalo
             }
         }
 
-        private void tetelUiMegnyit(object sender, RoutedEventArgs e)
+        private void foglalasComboBoxFeltolt()
         {
-            Window tetelUI = new TetelUI((int)rendelesekComboBox.SelectedItem);
-            tetelUI.Owner = this;
-            tetelUI.Show();
+            foglalasComboBox.Items.Clear();
+            Felhasznalok.felhasznalokFrissit();
+            Foglalasok.foglalasokFrissit();
+            foreach (Foglalas f in Foglalasok.foglalasLista.Where(x=>x.megjelent == false))
+            {
+                foglalasComboBox.Items.Add(f);
+            }
         }
-        private void rendelesekComboBoxValasztas(object sender, SelectionChangedEventArgs e)
+
+
+        //Onselectionchanged eventekre 
+        private void tetelUIIsEnabled(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
             if (cb.SelectedItem is not null)
@@ -96,22 +107,92 @@ namespace Vizsgaremek.Felszolgalo
             else
                 tetelUIGomb.IsEnabled = false;
         }
+        private void listBoxVezerloIsEnabled(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            StackPanel vezerlo = (StackPanel)FindName(lb.Name+"Vezerlo");
+            if (lb.SelectedItem is not null)
+                vezerlo.IsEnabled = true;
+            else
+                vezerlo.IsEnabled = false;
+        }
+        private void rendelesFelvetelIsEnabled(object sender, SelectionChangedEventArgs e)
+        {
+            if (foglalasComboBox.SelectedItem is not null && asztalokComboBox.SelectedItem is not null)
+                rendelesFelvetelGomb.IsEnabled = true;
+            else
+                rendelesFelvetelGomb.IsEnabled = false;
+        }
 
+
+        //Új ablakok megnyitása
+        private void tetelUiMegnyit(object sender, RoutedEventArgs e)
+        {
+            Window tetelUI = new TetelUI((int)rendelesekComboBox.SelectedItem);
+            tetelUI.Owner = this;
+            tetelUI.Show();
+        }
         private void rendelesReszletek(object sender, RoutedEventArgs e)
         {
-            Rendeles rendeles = (Rendeles)nyitottListBox.SelectedItem;
+            Button reszletekgomb = (Button)sender;
+            string nev = reszletekgomb.Name;
+            Rendeles rendeles = nev == "felvettRendelesekReszletek" ? (Rendeles)felvettRendelesek.SelectedItem : (Rendeles)keszRendelesek.SelectedItem;
+
             Window reszletek = new RendelesReszletekUI(rendeles);
             reszletek.Owner = this;
             reszletek.Show();
         }
 
-        private void nyitottListBoxValasztas(object sender, SelectionChangedEventArgs e)
+
+        //Mysql törlés,beszúrás
+        private void rendelesFelvetel(object sender, RoutedEventArgs e)
         {
-            ListBox lb = (ListBox)sender;
-            if (lb.SelectedItem is not null)
-                felvettRendelesekVezerlo.IsEnabled = true;
-            else
-                felvettRendelesekVezerlo.IsEnabled = false;
+            Foglalas foglalas = (Foglalas)foglalasComboBox.SelectedItem;
+            MySqlParameter foglalasparam = new("@fazon", foglalas.azon);
+            MySqlParameter asztalparam = new("@asztal", asztalokComboBox.SelectedValue);
+            List<MySqlParameter> rendelesFelvetelParams = new() { foglalasparam, asztalparam };
+            List<string> eredmeny = MySQL.query("rendelesfelvetel", true, rendelesFelvetelParams);
+            MessageBox.Show(eredmeny[0]);
+            asztalokComboBoxFeltolt();
+            listboxokFeltolt();
+        }
+
+
+        private void rendelesTorles(object sender, RoutedEventArgs e)
+        {
+            Button torlesGomb = (Button)sender;
+            string nev = torlesGomb.Name;
+            Rendeles rendeles = nev == "felvettRendelesekTorles" ? (Rendeles)felvettRendelesek.SelectedItem : (Rendeles)keszRendelesek.SelectedItem;
+
+            MessageBoxResult megerosites = MessageBox.Show($"Biztosan törölni akarod a {rendeles.razon} számú rendelést?", "Rendelés Törlése", MessageBoxButton.OKCancel);
+            if (megerosites == MessageBoxResult.OK)
+            {
+                MySqlParameter razonparam = new("@razon", rendeles.razon);
+                List<MySqlParameter> rendelesTorlesParams = new() { razonparam };
+                List<string> eredmeny = MySQL.query("rendelestorles", true, rendelesTorlesParams);
+                MessageBox.Show(eredmeny[0]);
+                asztalokComboBoxFeltolt();
+                listboxokFeltolt();
+            }
+
+        }
+
+        private void fizetesreVar(object sender, RoutedEventArgs e)
+        {
+            Rendeles rendeles = (Rendeles)keszRendelesek.SelectedItem;
+            Button allapotvaltoztatgomb = (Button)sender;
+            string nev = allapotvaltoztatgomb.Name;
+            int allapot = nev == "fVar" ? 3 : 4;
+
+            MessageBoxResult megerosites = MessageBox.Show($"Biztosan meg akarod változtatni a {rendeles.razon} számú rendelés állapotát?", "Rendelés állapot", MessageBoxButton.OKCancel);
+            if(megerosites == MessageBoxResult.OK)
+            {
+                MySqlParameter razonparam = new("@razon", rendeles.razon);
+                MySqlParameter allapotparam = new("@allapot", allapot);
+                List<MySqlParameter> rendelesAllapotValtoztat = new() { razonparam, allapotparam};
+                List<string> eredmeny = MySQL.query("rendelesallapotvaltoztat", true, rendelesAllapotValtoztat);
+                MessageBox.Show(eredmeny[0]);
+            }
         }
     }
 }

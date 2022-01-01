@@ -38,19 +38,19 @@
         <Label Grid.Row="1" Grid.Column="1">Felvett rendelések</Label>
         <Label Grid.Row="1" Grid.Column="2">Kész rendelések</Label>
         <!--Rendelések listboxok-->
-        <ListBox Grid.Row="2" Grid.Column="1" x:Name="nyitottListBox" SelectionChanged="nyitottListBoxValasztas"/>
-        <ListBox Grid.Row="2" Grid.Column="2" x:Name="zartListBox"/>
+        <ListBox Grid.Row="2" Grid.Column="1" x:Name="felvettRendelesek" SelectionChanged="listBoxVezerloIsEnabled"/>
+        <ListBox Grid.Row="2" Grid.Column="2" x:Name="keszRendelesek" SelectionChanged="listBoxVezerloIsEnabled"/>
         <!--Aktív rendelések vezérlő-->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False" x:Name="felvettRendelesekVezerlo">
-            <Button Margin="10px" Height="30px">Törlés</Button>
-            <Button Margin="10px" Height="30px" Click="rendelesReszletek">Részletek</Button>
+            <Button Margin="10px" Height="30px" Click="rendelesTorles" x:Name="felvettRendelesekTorles">Törlés</Button>
+            <Button Margin="10px" Height="30px" Click="rendelesReszletek" x:Name="felvettRendelesekReszletek">Részletek</Button>
         </StackPanel>
         <!--Kész rendelések vezérlő-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
-            <Button Margin="5px" Height="30px">Törlés</Button>
-            <Button Margin="5px" Height="30px">Részletek</Button>
-            <Button Margin="5px" Height="30px">Fizetésre vár</Button>
-            <Button Margin="5px" Height="30px">Fizetve</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" IsEnabled="False" x:Name="keszRendelesekVezerlo">
+            <Button Margin="5px" Height="30px" Click="rendelesTorles">Törlés</Button>
+            <Button Margin="5px" Height="30px" Click="rendelesReszletek">Részletek</Button>
+            <Button Margin="5px" Height="30px" Click="fizetesreVar" x:Name="fVar">Fizetésre vár</Button>
+            <Button Margin="5px" Height="30px" Click="fizetesreVar" x:Name="fFizetve">Fizetve</Button>
         </StackPanel>
         <!--Foglalás/tétel-->
         <Grid Grid.Row="2">
@@ -65,19 +65,19 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10px">
                     <Label>Foglalás:</Label>
-                    <ComboBox Width="50px"></ComboBox>
+                    <ComboBox Width="50px" x:Name="foglalasComboBox" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10px">
                     <Label>Asztal:</Label>
-                    <ComboBox x:Name="asztalokComboBox" Width="50px"></ComboBox>
+                    <ComboBox x:Name="asztalokComboBox" Width="50px" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
             </StackPanel>
-            <Button Grid.Column="1" Height="30px" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">Rendelés felvétele</Button>
+            <Button Grid.Column="1" Height="30px" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False" x:Name="rendelesFelvetelGomb" Click="rendelesFelvetel">Rendelés felvétele</Button>
             
             <!--Rendelés-->
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Label>Rendelés:</Label>
-                <ComboBox Width="50px" x:Name="rendelesekComboBox" SelectionChanged="rendelesekComboBoxValasztas"></ComboBox>
+                <ComboBox Width="50px" x:Name="rendelesekComboBox" SelectionChanged="tetelUIIsEnabled"></ComboBox>
             </StackPanel>
             <Button Grid.Column="1" Grid.Row="1" Height="30px" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" x:Name="tetelUIGomb" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
         </Grid>

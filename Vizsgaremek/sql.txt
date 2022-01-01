@@ -8,3 +8,8 @@ desszerteklekerdezes-SELECT * FROM desszert
 koretlekerdezes-SELECT * FROM koret
 rendelestetelek-SELECT * FROM tetel WHERE tetel.razon = @razon
 tetelbeszur-INSERT INTO tetel VALUES('', @razon, @hazon, @hdb, @kazon, @kdb, @dazon, @ddb, @iazon, @idb, 1, 1, @megjegyzes)
+foglalaslekerdezes-SELECT * FROM foglalas
+felhasznaloklistalekerdezes-SELECT azon,nev,lak,tel,email,jog FROM felhasznalo
+rendelesfelvetel-INSERT INTO rendeles VALUES('', @fazon, @asztal, now(), 1, 1)
+rendelestorles-DELETE FROM rendeles WHERE razon = @razon
+rendelesallapotvaltoztat-UPDATE rendeles SET etelstatus = @allapot , italstatus = @allapot WHERE razon = @razon

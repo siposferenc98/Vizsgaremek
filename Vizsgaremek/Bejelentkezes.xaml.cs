@@ -87,6 +87,7 @@ namespace Vizsgaremek
             Termekek.listaFrissit("koretlekerdezes", 'k');
             Termekek.listaFrissit("desszerteklekerdezes", 'd');
             Termekek.listaFrissit("itallekerdezes", 'i');
+            
         }
 
         private void regisztracio(object sender, RoutedEventArgs e)
