@@ -13,6 +13,7 @@ namespace Vizsgaremek.Osztalyok
         public int razon, fazon, asztal, etelstatus, italstatus;
         public DateTime ido;
         public List<Tetel> tetelek;
+        //Amint van tétel lista, összeadjuk a végösszegeket belőlük és az lesz a rendelés végösszege, különben 0.
         private int vegosszeg => tetelek is not null ? tetelek.Sum(x=>x.vegosszeg) : 0 ;
 
         public Rendeles(int razon, int fazon, int asztal, DateTime ido, int etelstatus, int italstatus)
@@ -41,7 +42,7 @@ namespace Vizsgaremek.Osztalyok
         }
 
 
-
+        //Ez lesz meghívva minden alkalommal amikor belerakjuk egy listboxba,comboboxba, vagy csak simán kiiratjuk.
         public override string ToString()
         {
             string eStatus = "Folyamatban";

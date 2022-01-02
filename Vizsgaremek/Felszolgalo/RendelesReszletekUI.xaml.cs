@@ -49,15 +49,7 @@ namespace Vizsgaremek.Felszolgalo
                 cim.Content = $"{t.tazon} számú tétel.";
                 Expander expander = new();
                 Label rendelesreszletek = new();
-                rendelesreszletek.Content = 
-                    $"{t.burger.nev}, {t.bdb} db, ár: {t.bdb*t.burger.ar} Ft. \n" +
-                    $"{t.koret.nev}, {t.kdb} db, ár: {t.kdb*t.koret.ar} Ft. \n" +
-                    $"{t.ital.nev}, {t.idb} db, ár: {t.idb*t.ital.ar} Ft. \n" +
-                    $"{t.desszert.nev}, {t.ddb} db, ár: {t.ddb*t.desszert.ar} Ft. \n" +
-                    $"Megjegyzés: {t.megjegyzes} \n " +
-                    $"Összesen: {t.vegosszeg} Ft. \n \n" +
-                    $"Állapot: Étel:{(t.etelstatus == 3 ? "Felszolgálva" : t.etelstatus == 2 ? "Kész" : "Folyamatban")} , " +
-                    $"Ital: {(t.italstatus == 3 ? "Felszolgálva" : t.italstatus == 2 ? "Kész" : "Folyamatban")}";
+                rendelesreszletek.Content = t;
                 expander.Content = rendelesreszletek;
                 sp.Children.Add(tid);
                 sp.Children.Add(cim);

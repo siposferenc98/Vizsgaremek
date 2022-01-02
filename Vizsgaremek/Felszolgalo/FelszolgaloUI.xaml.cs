@@ -86,7 +86,7 @@ namespace Vizsgaremek.Felszolgalo
             Rendelesek.rendelesekFrissit();
             for (int i = 0; i < 10; i++)
             {
-                if (Rendelesek.rendelesekLista.Any(x => x.asztal == i && x.etelstatus < 3))
+                if (Rendelesek.rendelesekLista.Any(x => x.asztal == i && x.etelstatus < 4))
                     continue;
                 asztalokComboBox.Items.Add(i);
             }

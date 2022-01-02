@@ -70,19 +70,22 @@ namespace Vizsgaremek
                         Close();
                         break;
                     default:
-                        MessageBox.Show("Még nincsk ész");
+                        MessageBox.Show("Még nincs kész");
                         break;
                 }
             }
-            else if (eredmenyek.Count is 1)
+            else if (eredmenyek.Count is 1) //ha a count 1 akkor valószínüleg hiba lesz benne.
                 MessageBox.Show(eredmenyek[0]);
-            else
+            else //ha semmi akkor meg nem jók az adatok
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
         }
+
 
         private void inditasiEljarasok()
         {
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
+
+            //A termékek osztályba van kommentelve
             Termekek.listaFrissit("hamburgerlekerdezes", 'h');
             Termekek.listaFrissit("koretlekerdezes", 'k');
             Termekek.listaFrissit("desszerteklekerdezes", 'd');
