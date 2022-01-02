@@ -13,3 +13,5 @@ felhasznaloklistalekerdezes-SELECT azon,nev,lak,tel,email,jog FROM felhasznalo
 rendelesfelvetel-INSERT INTO rendeles VALUES('', @fazon, @asztal, now(), 1, 1)
 rendelestorles-DELETE FROM rendeles WHERE razon = @razon
 rendelesallapotvaltoztat-UPDATE tetel SET etelstatus = @allapot , italstatus = @allapot WHERE razon = @razon
+tetelmodosit-UPDATE tetel SET bazon = @hazon, bdb = @hdb, kazon = @kazon, kdb = @kdb, dazon = @dazon, ddb = @ddb, iazon = @iazon, idb = @idb, megjegyzes = @megjegyzes WHERE tazon = @tazon
+teteltorlese-DELETE FROM tetel WHERE tazon = @tazon

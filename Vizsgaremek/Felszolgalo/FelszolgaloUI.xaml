@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
         mc:Ignorable="d"
-        Title="FelszolgaloUI" Height="450" Width="800">
+        Title="FelszolgaloUI" MinHeight="550" Height="550" MinWidth="900" Width="900">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
