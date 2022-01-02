@@ -40,20 +40,7 @@ namespace Vizsgaremek.Felszolgalo
 
             foreach (Tetel t in rendeles.tetelek)
             {
-                StackPanel sp = new();
-                sp.Orientation = Orientation.Horizontal;
-                Label tid = new();
-                tid.Content = t.tazon;
-                tid.Visibility = Visibility.Hidden;
-                Label cim = new();
-                cim.Content = $"{t.tazon} számú tétel.";
-                Expander expander = new();
-                Label rendelesreszletek = new();
-                rendelesreszletek.Content = t;
-                expander.Content = rendelesreszletek;
-                sp.Children.Add(tid);
-                sp.Children.Add(cim);
-                sp.Children.Add(expander);
+                StackPanel sp = StackPanelExpander.tetelElemKeszit(t);
                 tetelekListBox.Items.Add(sp);
             }
         }
@@ -94,9 +81,7 @@ namespace Vizsgaremek.Felszolgalo
             {
                 tetelSzerkesztesTorles.IsEnabled = true;
                 StackPanel sp = (StackPanel)lb.SelectedItem;
-                Label label = (Label)sp.Children[0];
-                int tazon = (int)label.Content;
-                tetel = rendeles.tetelek.First(x => x.tazon == tazon);
+                tetel = rendeles.tetelek.First(x => x.tazon == (int)sp.Tag);
 
                 hamburgerComboBox.SelectedItem = tetel.burger;
                 hamburgerDB.Text = tetel.bdb.ToString();

@@ -69,6 +69,11 @@ namespace Vizsgaremek
                         felszolgaloUI.Show();
                         Close();
                         break;
+                    case 2:
+                        Window szakacsUI = new Szakacs.SzakacsUI();
+                        szakacsUI.Show();
+                        Close();
+                        break;
                     default:
                         MessageBox.Show("Még nincs kész");
                         break;

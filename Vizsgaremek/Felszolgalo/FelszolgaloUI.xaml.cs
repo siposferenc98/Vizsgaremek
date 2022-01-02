@@ -37,13 +37,13 @@ namespace Vizsgaremek.Felszolgalo
 
             while (true)
             {
-                keszListboxFrissit();
+                rendelesekFrissitListBoxokFeltolt();
                 await Task.Delay(10000);
             }
             
         }
 
-        private void keszListboxFrissit()
+        private void rendelesekFrissitListBoxokFeltolt()
         {
             Dispatcher.Invoke(() =>
             {
