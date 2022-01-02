@@ -13,6 +13,10 @@ namespace Vizsgaremek.Osztalyok
         public DateTime idopontDatum, idopontOraPerc, leadva;
         public Felhasznalo felhasznalo => Felhasznalok.felhasznaloLista.First(x => x.id == azon);
 
+        public Foglalas()
+        {
+        }
+
         public Foglalas(int fazon, int azon, int szemelydb, DateTime idopontDatum,DateTime idopontOraPerc, DateTime leadva, bool megjelent)
         {
             this.fazon = fazon;

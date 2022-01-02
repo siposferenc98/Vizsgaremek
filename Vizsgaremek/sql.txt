@@ -15,3 +15,4 @@ rendelestorles-DELETE FROM rendeles WHERE razon = @razon
 rendelesallapotvaltoztat-UPDATE tetel SET etelstatus = @allapot , italstatus = @allapot WHERE razon = @razon
 tetelmodosit-UPDATE tetel SET bazon = @hazon, bdb = @hdb, kazon = @kazon, kdb = @kdb, dazon = @dazon, ddb = @ddb, iazon = @iazon, idb = @idb, megjegyzes = @megjegyzes WHERE tazon = @tazon
 teteltorlese-DELETE FROM tetel WHERE tazon = @tazon
+vendegfoglalasbeszur-INSERT INTO foglalas VALUES('',1,1,now(),now(),now(),0);

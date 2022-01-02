@@ -132,7 +132,7 @@ namespace Vizsgaremek.Felszolgalo
         }
         private void rendelesFelvetelIsEnabled(object sender, SelectionChangedEventArgs e)
         {
-            if (foglalasComboBox.SelectedItem is not null && asztalokComboBox.SelectedItem is not null)
+            if (asztalokComboBox.SelectedItem is not null)
                 rendelesFelvetelGomb.IsEnabled = true;
             else
                 rendelesFelvetelGomb.IsEnabled = false;
@@ -161,7 +161,19 @@ namespace Vizsgaremek.Felszolgalo
         //Mysql törlés,beszúrás
         private void rendelesFelvetel(object sender, RoutedEventArgs e)
         {
-            Foglalas foglalas = (Foglalas)foglalasComboBox.SelectedItem;
+            Foglalas foglalas = new();
+            if (foglalasComboBox.SelectedItem is not null)
+            {
+                foglalas = (Foglalas)foglalasComboBox.SelectedItem;
+            }
+            else
+            {
+                foglalas = new() { azon = 1, szemelydb = 1 };
+                List<string> foglalase = MySQL.query("vendegfoglalasbeszur", true);
+                MessageBox.Show(foglalase[0]);
+            }
+
+            
             MySqlParameter foglalasparam = new("@fazon", foglalas.azon);
             MySqlParameter asztalparam = new("@asztal", asztalokComboBox.SelectedValue);
             List<MySqlParameter> rendelesFelvetelParams = new() { foglalasparam, asztalparam };
