@@ -207,5 +207,13 @@ namespace Vizsgaremek.Felszolgalo
                 comboListBoxokFrissites();
             }
         }
+
+        private void kijelentkezes(object sender, RoutedEventArgs e)
+        {
+            AktualisFelhasznalo.felhasznalo = null;
+            Window bejelentkezes = new Bejelentkezes();
+            bejelentkezes.Show();
+            Close();
+        }
     }
 }

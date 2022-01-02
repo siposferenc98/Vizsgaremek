@@ -45,7 +45,9 @@ namespace Vizsgaremek.Felszolgalo
                     $"{t.desszert.nev}, {t.kdb} db, ár: {t.ddb*t.desszert.ar} Ft. \n" +
                     $"{t.ital.nev}, {t.kdb} db, ár: {t.idb*t.ital.ar} Ft. \n" +
                     $"Megjegyzés: {t.megjegyzes} \n " +
-                    $"Összesen: {t.vegosszeg} Ft.";
+                    $"Összesen: {t.vegosszeg} Ft. \n \n" +
+                    $"Állapot: Étel:{(t.etelstatus == 3 ? "Felszolgálva" : t.etelstatus == 2 ? "Kész" : "Folyamatban")} , " +
+                    $"Ital: {(t.italstatus == 3 ? "Felszolgálva" : t.italstatus == 2 ? "Kész" : "Folyamatban")}";
                 expander.Content = rendelesreszletek;
                 sp.Children.Add(cim);
                 sp.Children.Add(expander);

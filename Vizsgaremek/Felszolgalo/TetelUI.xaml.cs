@@ -101,7 +101,8 @@ namespace Vizsgaremek.Felszolgalo
                 MySqlParameter idbparam = new("@idb", idb);
                 MySqlParameter megjegyzesparam = new("@megjegyzes", megjegyzes);
                 List<MySqlParameter> paramListTetel = new() { razonparam, hazonparam, hdbparam, kazonparam, kdbparam, dazonparam, ddbparam, iazonparam, idbparam, megjegyzesparam };
-                MySQL.query("tetelbeszur", true, paramListTetel);
+                List<string> eredmeny = MySQL.query("tetelbeszur", true, paramListTetel);
+                MessageBox.Show(eredmeny[0]);
                 Close();
             }
 

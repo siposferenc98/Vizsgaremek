@@ -91,6 +91,7 @@ namespace Vizsgaremek.Osztalyok
         /// </summary>
         public static void dictionaryFeltolt()
         {
+            lekerdezesekDict = new();
             StreamReader sr = new("./sql.txt");
             while (!sr.EndOfStream)
             {
