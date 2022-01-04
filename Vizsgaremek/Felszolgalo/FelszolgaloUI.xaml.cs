@@ -168,13 +168,14 @@ namespace Vizsgaremek.Felszolgalo
             }
             else
             {
-                foglalas = new() { azon = 1, szemelydb = 1 };
                 List<string> foglalase = MySQL.query("vendegfoglalasbeszur", true);
+                Foglalasok.foglalasokFrissit();
+                foglalas = Foglalasok.foglalasLista.Last();
                 MessageBox.Show(foglalase[0]);
             }
 
             
-            MySqlParameter foglalasparam = new("@fazon", foglalas.azon);
+            MySqlParameter foglalasparam = new("@fazon", foglalas.fazon);
             MySqlParameter asztalparam = new("@asztal", asztalokComboBox.SelectedValue);
             List<MySqlParameter> rendelesFelvetelParams = new() { foglalasparam, asztalparam };
             List<string> eredmeny = MySQL.query("rendelesfelvetel", true, rendelesFelvetelParams);
@@ -226,6 +227,18 @@ namespace Vizsgaremek.Felszolgalo
             Window bejelentkezes = new Bejelentkezes();
             bejelentkezes.Show();
             Close();
+        }
+
+        private void vendegChecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.IsChecked == true)
+            {
+                foglalasComboBox.SelectedItem = null;
+                foglalasComboBox.IsEnabled = false;
+            }
+            else
+                foglalasComboBox.IsEnabled = true;
         }
     }
 }

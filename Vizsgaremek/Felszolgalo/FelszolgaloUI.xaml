@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
         mc:Ignorable="d"
-        Title="FelszolgaloUI" MinHeight="550" Height="550" MinWidth="900" Width="900">
+        Title="FelszolgaloUI" MinHeight="550" Height="550" MinWidth="1024" Width="1024">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -67,6 +67,7 @@
                     <Label>Foglalás:</Label>
                     <ComboBox Width="50px" x:Name="foglalasComboBox" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
+                <CheckBox HorizontalAlignment="Center" Unchecked="vendegChecked" Checked="vendegChecked">Vendég</CheckBox>
                 <StackPanel Orientation="Horizontal" Margin="10px">
                     <Label>Asztal:</Label>
                     <ComboBox x:Name="asztalokComboBox" Width="50px" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>

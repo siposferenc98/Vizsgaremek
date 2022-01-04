@@ -24,7 +24,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <!--Labelök-->
+        <!--Tételek,tétel kész-->
         <Label Grid.Row="1">Beérkezett tételek</Label>
         <ListBox Grid.Row="2" x:Name="tetelekListBox" SelectionChanged="tetelekListBoxValasztas"></ListBox>
         <Button Grid.Row="3" IsEnabled="False" x:Name="tetelKeszGomb" Click="tetelKesz">Tétel kész!</Button>

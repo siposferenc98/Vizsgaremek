@@ -74,6 +74,11 @@ namespace Vizsgaremek
                         szakacsUI.Show();
                         Close();
                         break;
+                    case 3:
+                        Window pultosUI = new Pultos.PultosUI();
+                        pultosUI.Show();
+                        Close();
+                        break;
                     default:
                         MessageBox.Show("Még nincs kész");
                         break;

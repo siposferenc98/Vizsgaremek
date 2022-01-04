@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="PultosUI" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="25px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Felső menü-->
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Opciók">
+                    <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <!--Tételek,tétel kész-->
+        <Label Grid.Row="1">Beérkezett tételek</Label>
+        <ListBox Grid.Row="2" x:Name="tetelekListBox" SelectionChanged="tetelekListBoxValasztas"></ListBox>
+        <Button Grid.Row="3" IsEnabled="False" x:Name="tetelKeszGomb" Click="tetelKesz">Tétel kész!</Button>
     </Grid>
 </Window>

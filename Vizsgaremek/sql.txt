@@ -17,3 +17,4 @@ tetelmodosit-UPDATE tetel SET bazon = @hazon, bdb = @hdb, kazon = @kazon, kdb = 
 teteltorlese-DELETE FROM tetel WHERE tazon = @tazon
 vendegfoglalasbeszur-INSERT INTO foglalas VALUES('',1,1,now(),now(),now(),0)
 etelkesz-UPDATE tetel SET etelstatus = 2 WHERE tazon = @tazon
+italkesz-UPDATE tetel SET italstatus = 2 WHERE tazon = @tazon
