@@ -20,8 +20,6 @@
             <Setter Property="Margin" Value="10px"></Setter>
         </Style>
     </Window.Resources>
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>

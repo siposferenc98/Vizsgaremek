@@ -6,7 +6,57 @@
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
         Title="AdminUI" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Felső menü-->
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Opciók">
+                    <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label>Mai bevétel:</Label>
+                <Label x:Name="maiBevetel"></Label>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label>Havi bevétel:</Label>
+                <Label x:Name="haviBevetel"></Label>
+            </StackPanel>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">Frissítés</Button>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <Label>Összes bevétel:</Label>
+                <Label x:Name="osszesBevetel"></Label>
+            </StackPanel>
+            <Canvas Grid.Row="2" Grid.ColumnSpan="1" x:Name="asztalok"></Canvas>
+        </Grid>
     </Grid>
 </Window>

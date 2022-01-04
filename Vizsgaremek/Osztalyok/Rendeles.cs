@@ -14,7 +14,7 @@ namespace Vizsgaremek.Osztalyok
         public DateTime ido;
         public List<Tetel> tetelek;
         //Amint van tétel lista, összeadjuk a végösszegeket belőlük és az lesz a rendelés végösszege, különben 0.
-        private int vegosszeg => tetelek is not null ? tetelek.Sum(x=>x.vegosszeg) : 0 ;
+        public int vegosszeg => tetelek is not null ? tetelek.Sum(x=>x.vegosszeg) : 0 ;
 
         public Rendeles(int razon, int fazon, int asztal, DateTime ido, int etelstatus, int italstatus)
         {

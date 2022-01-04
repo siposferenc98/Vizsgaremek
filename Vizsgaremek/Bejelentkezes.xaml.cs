@@ -79,6 +79,11 @@ namespace Vizsgaremek
                         pultosUI.Show();
                         Close();
                         break;
+                    case 4:
+                        Window adminUI = new Admin.AdminUI();
+                        adminUI.Show();
+                        Close();
+                        break;
                     default:
                         MessageBox.Show("Még nincs kész");
                         break;
