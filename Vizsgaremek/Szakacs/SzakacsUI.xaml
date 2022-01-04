@@ -11,13 +11,13 @@
             <RowDefinition Height="20px"></RowDefinition>
             <RowDefinition Height="25px"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--Felső menü-->
-        <DockPanel Grid.ColumnSpan="3">
+        <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Opciók">
                     <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
@@ -26,11 +26,7 @@
         </DockPanel>
         <!--Labelök-->
         <Label Grid.Row="1">Beérkezett tételek</Label>
-        <Label Grid.Row="1" Grid.Column="1">Opciók, leírás</Label>
-        <ListBox Grid.Row="2" x:Name="tetelekListBox"></ListBox>
-        <!--Vezérlő-->
-        <Grid Grid.Row="2" Grid.Column="1">
-            
-        </Grid>
+        <ListBox Grid.Row="2" x:Name="tetelekListBox" SelectionChanged="tetelekListBoxValasztas"></ListBox>
+        <Button Grid.Row="3" IsEnabled="False" x:Name="tetelKeszGomb" Click="tetelKesz">Tétel kész!</Button>
     </Grid>
 </Window>

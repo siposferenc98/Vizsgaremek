@@ -5,12 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="550" Height="550" MinWidth="900" Width="900">
+        Title="MainWindow" MinHeight="600" Height="600" MinWidth="900" Width="900">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="5px"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10px"></Setter>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="10px"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10px"></Setter>
+        </Style>
+    </Window.Resources>
+    
+    
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="70,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="szovegValtozott" x:Name="felhasznaloBX"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="70,100,0,0" VerticalAlignment="Top" Width="120" x:Name="jelszoBX" PasswordChanged="szovegValtozott"/>
-        <Button Content="Bejelentkezés" HorizontalAlignment="Left" Margin="92,136,0,0" VerticalAlignment="Top" IsEnabled="false" x:Name="loginBTN" Click="bejelentkezes"/>
-        <Button Content="Regisztráció" HorizontalAlignment="Left" Margin="96,175,0,0" VerticalAlignment="Top" Click="regisztracio"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Label HorizontalAlignment="Center">Üdvözlünk!</Label>
+                <Label HorizontalAlignment="Center" FontSize="24">Személyzeti bejelentkezés</Label>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Label>Email cím:</Label>
+                <TextBox TextChanged="szovegValtozott" x:Name="felhasznaloBX"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Label>Jelszó:</Label>
+                <PasswordBox x:Name="jelszoBX" PasswordChanged="szovegValtozott"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <Button Content="Bejelentkezés" IsDefault="True" IsEnabled="false" x:Name="loginBTN" Click="bejelentkezes"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalAlignment="Center">Nincs még felhasználója?</Label>
+                    <Button Content="Regisztráció" Click="regisztracio"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
