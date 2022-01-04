@@ -24,7 +24,8 @@ namespace Vizsgaremek.Admin
         {
             InitializeComponent();
             bevetelSzamol();
-            asztalokRajzolCiklus();
+            asztalokRajzol();
+            aktualisVendegekSzamol();
         }
 
         private void bevetelSzamol()
@@ -40,51 +41,30 @@ namespace Vizsgaremek.Admin
             osszesBevetel.Content = $"{osszesOsszeg} Ft.";
         }
 
-        private void asztalokRajzolCiklus()
+        private void asztalokRajzol()
         {
+            asztalok.Children.Clear();
             int x = 10;
             bool fentE = true;
             for (int i = 1; i <= 10; i++)
             {
-                asztalokRajzol(x, fentE, i);
+                asztalok.Children.Add(Asztalok.rajzol(x, fentE, i));
                 fentE = !fentE;
                 if(i > 0 && fentE)
                     x += 35;
             }
         }
 
-        private void asztalokRajzol(int x, bool fentE, int asztalszam)
+        private void aktualisVendegekSzamol()
         {
-            List<Rendeles> aktivRendelesek = Rendelesek.rendelesekLista.Where(x => x.etelstatus < 4 && x.italstatus < 4).ToList();
-            Canvas canvas = asztalok;
-            Viewbox vb = new();
-            vb.Tag = asztalszam;
-            vb.MouseLeftButtonDown += test;
-            vb.Width = 30;
-            vb.Height = 30;
-
-            Grid grid = new();
-            grid.Width = 20;
-            grid.Height = 20;
-            vb.Child = grid;
-
-            Ellipse el = new();
-            el.Stroke = new SolidColorBrush(Colors.Black);
-            if (aktivRendelesek.Any(x => x.asztal == asztalszam))
-                el.Fill = new SolidColorBrush(Colors.Red);
-
-            TextBlock tb = new();
-            tb.TextAlignment = TextAlignment.Center;
-            tb.VerticalAlignment = VerticalAlignment.Center;
-            tb.Text = asztalszam.ToString();
-
-            grid.Children.Add(el);
-            grid.Children.Add(tb);
-            Canvas.SetLeft(vb, x);
-            if(!fentE)
-                Canvas.SetTop(vb, 55);
-
-            canvas.Children.Add(vb);
+            Foglalasok.foglalasokFrissit();
+            List<Rendeles> aktualisRendelesek = Rendelesek.rendelesekLista.Where(x => x.etelstatus < 4 && x.italstatus < 4).ToList();
+            int vendegek = 0;
+            foreach (Rendeles r in aktualisRendelesek)
+            {
+                vendegek += Foglalasok.foglalasLista.First(x => x.fazon == r.fazon).szemelydb;
+            }
+            aktualisVendegek.Content = vendegek;
         }
 
         private void kijelentkezes(object sender, RoutedEventArgs e)
@@ -95,18 +75,33 @@ namespace Vizsgaremek.Admin
             Close();
         }
 
-        private void test(object sender, RoutedEventArgs e)
-        {
-            Viewbox el = (Viewbox)sender;
-            Rendeles rendeles = Rendelesek.rendelesekLista.FirstOrDefault(x=> x.asztal == (int)el.Tag && x.etelstatus < 4 && x.italstatus < 4);
-            if (rendeles is not null)
-            {
-                Window rendelesReszletekUI = new Felszolgalo.RendelesReszletekUI(rendeles);
-                rendelesReszletekUI.Show();
-            }
-            else
-                MessageBox.Show("Az asztal üres / nincs még rendelés felvéve hozzá!");
 
+        private void felszolgaloraValtas(object sender, RoutedEventArgs e)
+        {
+            Window felszolgaloUI = new Felszolgalo.FelszolgaloUI();
+            felszolgaloUI.Owner = this;
+            felszolgaloUI.Show();
+        }
+
+        private void szakacsraValtas(object sender, RoutedEventArgs e)
+        {
+            Window szakacsUI = new Szakacs.SzakacsUI();
+            szakacsUI.Owner = this;
+            szakacsUI.Show();
+        }
+
+        private void pultosraValtas(object sender, RoutedEventArgs e)
+        {
+            Window pultosUI = new Pultos.PultosUI();
+            pultosUI.Owner = this;
+            pultosUI.Show();
+        }
+
+        private void frissites(object sender, RoutedEventArgs e)
+        {
+            bevetelSzamol();
+            asztalokRajzol();
+            aktualisVendegekSzamol();
         }
     }
 }

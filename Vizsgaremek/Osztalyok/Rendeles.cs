@@ -54,7 +54,7 @@ namespace Vizsgaremek.Osztalyok
             if(etelstatus == 2 && italstatus == 2)
                 return $"({razon}.r.sz) Asztal: {asztal}, felszolgálásra vár!";
             if (etelstatus == 3 && italstatus == 3)
-                return $"({razon}.r.sz) fizetésre vár, összeg: {vegosszeg}!";
+                return $"({razon}.r.sz) Asztal: {asztal}, fizetésre vár, összeg: {vegosszeg}!";
             if (etelstatus == 4 && italstatus == 4)
                 return $"({razon}.r.sz) Asztal: {asztal}, fizetve!";
 

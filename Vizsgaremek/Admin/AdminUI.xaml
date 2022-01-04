@@ -30,6 +30,11 @@
                 <MenuItem Header="Opciók">
                     <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
                 </MenuItem>
+                <MenuItem Header="Felületek">
+                    <MenuItem Header="Felszolgáló" Click="felszolgaloraValtas"></MenuItem>
+                    <MenuItem Header="Szakács" Click="szakacsraValtas"></MenuItem>
+                    <MenuItem Header="Pultos" Click="pultosraValtas"></MenuItem>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1">
@@ -51,12 +56,35 @@
                 <Label>Havi bevétel:</Label>
                 <Label x:Name="haviBevetel"></Label>
             </StackPanel>
-                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">Frissítés</Button>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="frissites">Frissítés</Button>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                 <Label>Összes bevétel:</Label>
                 <Label x:Name="osszesBevetel"></Label>
             </StackPanel>
+            
             <Canvas Grid.Row="2" Grid.ColumnSpan="1" x:Name="asztalok"></Canvas>
+
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <Label>Aktuális vendégek:</Label>
+                <Label x:Name="aktualisVendegek"></Label>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button>Termékek módosítása</Button>
+            <Button Grid.Column="1">Felhasználók módosítása</Button>
+            <Button Grid.Row="1">Rendelés előzmények</Button>
+            
         </Grid>
     </Grid>
 </Window>

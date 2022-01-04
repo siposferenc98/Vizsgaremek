@@ -30,7 +30,7 @@ namespace Vizsgaremek.Osztalyok
 
         public override string ToString()
         {
-            return $"{fazon} sz.f.,név: {felhasznalo.nev}";
+            return $"{fazon} sz.f.,név: {felhasznalo.nev}, {szemelydb} főre.";
         }
     }
 }
