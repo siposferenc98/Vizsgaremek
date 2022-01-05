@@ -97,7 +97,7 @@ namespace Vizsgaremek.Felszolgalo
             foglalasComboBox.Items.Clear();
             Felhasznalok.felhasznalokFrissit();
             Foglalasok.foglalasokFrissit();
-            foreach (Foglalas f in Foglalasok.foglalasLista.Where(x=>x.megjelent == false))
+            foreach (Foglalas f in Foglalasok.foglalasLista.Where(x=>x.megjelent == false && x.idopontDatum.Month == DateTime.Now.Month && x.idopontDatum.Day == DateTime.Now.Day))
             {
                 foglalasComboBox.Items.Add(f);
             }
@@ -171,7 +171,6 @@ namespace Vizsgaremek.Felszolgalo
                 List<string> foglalase = MySQL.query("vendegfoglalasbeszur", true);
                 Foglalasok.foglalasokFrissit();
                 foglalas = Foglalasok.foglalasLista.Last();
-                MessageBox.Show(foglalase[0]);
             }
 
             

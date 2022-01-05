@@ -57,6 +57,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -67,7 +68,7 @@
                     <Label>Foglalás:</Label>
                     <ComboBox Width="50px" x:Name="foglalasComboBox" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
-                <CheckBox HorizontalAlignment="Center" Unchecked="vendegChecked" Checked="vendegChecked">Vendég</CheckBox>
+                <CheckBox HorizontalAlignment="Center" Unchecked="vendegChecked" Checked="vendegChecked">Betérő vendég</CheckBox>
                 <StackPanel Orientation="Horizontal" Margin="10px">
                     <Label>Asztal:</Label>
                     <ComboBox x:Name="asztalokComboBox" Width="50px" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>

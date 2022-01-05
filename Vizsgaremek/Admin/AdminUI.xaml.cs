@@ -66,6 +66,11 @@ namespace Vizsgaremek.Admin
             }
             aktualisVendegek.Content = vendegek;
         }
+        private void termekekModositasa(object sender, RoutedEventArgs e)
+        {
+            Window termekekUI = new TermekekUI();
+            termekekUI.Show();
+        }
 
         private void kijelentkezes(object sender, RoutedEventArgs e)
         {
@@ -103,5 +108,6 @@ namespace Vizsgaremek.Admin
             asztalokRajzol();
             aktualisVendegekSzamol();
         }
+
     }
 }

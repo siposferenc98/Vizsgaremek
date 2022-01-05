@@ -1,0 +1,30 @@
+﻿<Window x:Class="Vizsgaremek.Admin.TermekekUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vizsgaremek.Admin"
+        mc:Ignorable="d"
+        Title="TermekekUI" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition> 
+            <RowDefinition Height="*"></RowDefinition> 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label>Hamburgerek:</Label>
+        <Label Grid.Column="1">Köretek:</Label>
+        <Label Grid.Column="2">Desszertek:</Label>
+        <Label Grid.Column="3">Ital: </Label>
+        <ListBox Grid.Row="1" x:Name="hamburgerekListBox" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" x:Name="koretekListBox" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2" x:Name="desszertekListBox" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="3" x:Name="italokListBox" MouseDoubleClick="termekModositas"></ListBox>
+    </Grid>
+
+</Window>
