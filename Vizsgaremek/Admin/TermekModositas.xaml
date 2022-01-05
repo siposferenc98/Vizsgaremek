@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
-        Title="TermekModositas" Height="450" Width="800">
+        Title="TermekModositas" Height="250" Width="400">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10px"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label>Név:</Label>
+            <TextBox x:Name="termekNev"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label>Ár:</Label>
+            <TextBox x:Name="termekAr" PreviewTextInput="csakSzamok"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Label>Leírás:</Label>
+            <TextBox x:Name="termekLeiras"></TextBox>
+        </StackPanel>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Click="termekFrissitese">Termék módosítása</Button>
     </Grid>
 </Window>

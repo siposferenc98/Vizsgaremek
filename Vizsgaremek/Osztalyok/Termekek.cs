@@ -41,5 +41,12 @@ namespace Vizsgaremek.Osztalyok
                 }
         }
 
+        public static void mindenListaFrissit()
+        {
+            listaFrissit("hamburgerlekerdezes", 'h');
+            listaFrissit("koretlekerdezes", 'k');
+            listaFrissit("desszerteklekerdezes", 'd');
+            listaFrissit("itallekerdezes", 'i');
+        }
     }
 }

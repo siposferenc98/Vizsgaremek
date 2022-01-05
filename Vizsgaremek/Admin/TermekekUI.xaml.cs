@@ -26,8 +26,13 @@ namespace Vizsgaremek.Admin
             listBoxokFeltolt();
         }
 
-        private void listBoxokFeltolt()
+        public void listBoxokFeltolt()
         {
+            hamburgerekListBox.Items.Clear();
+            koretekListBox.Items.Clear();
+            desszertekListBox.Items.Clear();
+            italokListBox.Items.Clear();
+
             Termekek.listakDictionary['h'].ForEach(x => hamburgerekListBox.Items.Add(x));
             Termekek.listakDictionary['k'].ForEach(x => koretekListBox.Items.Add(x));
             Termekek.listakDictionary['d'].ForEach(x => desszertekListBox.Items.Add(x));
@@ -36,7 +41,10 @@ namespace Vizsgaremek.Admin
 
         private void termekModositas(object sender, MouseButtonEventArgs e)
         {
-            Window termekmodositasUI = new TermekModositas();
+            ListBox lb = (ListBox)sender;
+            Termek termek = (Termek)lb.SelectedItem;
+            Window termekmodositasUI = new TermekModositas(termek, lb.Tag.ToString());
+            termekmodositasUI.Owner = this;
             termekmodositasUI.Show();
         }
     }

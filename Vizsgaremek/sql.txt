@@ -18,3 +18,7 @@ teteltorlese-DELETE FROM tetel WHERE tazon = @tazon
 vendegfoglalasbeszur-INSERT INTO foglalas VALUES('',1,1,now(),now(),now(),0)
 etelkesz-UPDATE tetel SET etelstatus = 2 WHERE tazon = @tazon
 italkesz-UPDATE tetel SET italstatus = 2 WHERE tazon = @tazon
+hamburgerfrissit-UPDATE burger SET bnev = @termeknev , bar = @termekar , bleir = @termekleiras WHERE bazon = @termekazon
+koretfrissit-UPDATE koret SET knev = @termeknev , kar = @termekar , kleir = @termekleiras WHERE kazon = @termekazon
+desszertfrissit-UPDATE desszert SET dnev = @termeknev , dar = @termekar , dleir = @termekleiras WHERE dazon = @termekazon
+italfrissit-UPDATE ital SET inev = @termeknev , iar = @termekar , ileir = @termekleiras WHERE iazon = @termekazon

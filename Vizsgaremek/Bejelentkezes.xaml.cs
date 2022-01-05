@@ -101,10 +101,7 @@ namespace Vizsgaremek
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
 
             //A termékek osztályba van kommentelve
-            Termekek.listaFrissit("hamburgerlekerdezes", 'h');
-            Termekek.listaFrissit("koretlekerdezes", 'k');
-            Termekek.listaFrissit("desszerteklekerdezes", 'd');
-            Termekek.listaFrissit("itallekerdezes", 'i');
+            Termekek.mindenListaFrissit();
             
         }
 

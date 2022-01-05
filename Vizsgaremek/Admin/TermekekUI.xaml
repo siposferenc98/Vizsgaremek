@@ -6,10 +6,17 @@
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
         Title="TermekekUI" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition> 
             <RowDefinition Height="*"></RowDefinition> 
+            <RowDefinition Height="0.1*"></RowDefinition> 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -17,14 +24,20 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <!--Labelek-->
         <Label>Hamburgerek:</Label>
         <Label Grid.Column="1">Köretek:</Label>
         <Label Grid.Column="2">Desszertek:</Label>
         <Label Grid.Column="3">Ital: </Label>
-        <ListBox Grid.Row="1" x:Name="hamburgerekListBox" MouseDoubleClick="termekModositas"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1" x:Name="koretekListBox" MouseDoubleClick="termekModositas"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="2" x:Name="desszertekListBox" MouseDoubleClick="termekModositas"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="3" x:Name="italokListBox" MouseDoubleClick="termekModositas"></ListBox>
+        <!--Listboxok-->
+        <ListBox Grid.Row="1" x:Name="hamburgerekListBox" Tag="hamburgerfrissit" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" x:Name="koretekListBox" Tag="koretfrissit" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2" x:Name="desszertekListBox" Tag="desszertfrissit" MouseDoubleClick="termekModositas"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="3" x:Name="italokListBox" Tag="italfrissit" MouseDoubleClick="termekModositas"></ListBox>
+        <!--Vezérlő-->
+        
+        <Button Grid.Row="2" Grid.ColumnSpan="2">Hozzáadás</Button>
+        <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">Törlés</Button>
     </Grid>
 
 </Window>
