@@ -47,5 +47,12 @@ namespace Vizsgaremek.Admin
             termekmodositasUI.Owner = this;
             termekmodositasUI.Show();
         }
+
+        private void termekHozzaad(object sender, RoutedEventArgs e)
+        {
+            Window termekhozzaadUI = new TermekModositas();
+            termekhozzaadUI.Owner = this;
+            termekhozzaadUI.Show();
+        }
     }
 }

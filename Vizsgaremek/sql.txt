@@ -22,3 +22,7 @@ hamburgerfrissit-UPDATE burger SET bnev = @termeknev , bar = @termekar , bleir =
 koretfrissit-UPDATE koret SET knev = @termeknev , kar = @termekar , kleir = @termekleiras WHERE kazon = @termekazon
 desszertfrissit-UPDATE desszert SET dnev = @termeknev , dar = @termekar , dleir = @termekleiras WHERE dazon = @termekazon
 italfrissit-UPDATE ital SET inev = @termeknev , iar = @termekar , ileir = @termekleiras WHERE iazon = @termekazon
+hamburgerhozzaad-INSERT INTO burger VALUES('',@termeknev,@termekar,@termekleiras)
+korethozzaad-INSERT INTO koret VALUES('',@termeknev,@termekar,@termekleiras)
+desszerthozzaad-INSERT INTO desszert VALUES('',@termeknev,@termekar,@termekleiras)
+italhozzaad-INSERT INTO ital VALUES('',@termeknev,@termekar,@termekleiras)

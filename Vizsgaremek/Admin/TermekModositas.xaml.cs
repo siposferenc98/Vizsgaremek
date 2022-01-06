@@ -24,7 +24,16 @@ namespace Vizsgaremek.Admin
     {
         private readonly Termek termek;
         private readonly string sqlLekerdezes;
-        public TermekModositas(Termek termek, string sqlLekerdezes)
+        private TermekFajtak termekfajta;
+        private enum TermekFajtak
+        {
+            Hamburger,
+            Köret,
+            Desszert,
+            Ital
+        }
+
+        public TermekModositas(Termek termek = null, string sqlLekerdezes = null)
         {
             InitializeComponent();
             this.termek = termek;
@@ -40,27 +49,62 @@ namespace Vizsgaremek.Admin
 
         private void adatokFeltoltese()
         {
-            termekNev.Text = termek.nev;
-            termekAr.Text = termek.ar.ToString();
-            termekLeiras.Text = termek.leiras;
+            if(sqlLekerdezes is not null)
+            {
+                if (sqlLekerdezes.StartsWith('h'))
+                    termekTipus.SelectedIndex = 0;
+                if (sqlLekerdezes.StartsWith('k'))
+                    termekTipus.SelectedIndex = 1;
+                if (sqlLekerdezes.StartsWith('d'))
+                    termekTipus.SelectedIndex = 2;
+                if (sqlLekerdezes.StartsWith('i'))
+                    termekTipus.SelectedIndex = 3;
+
+                termekTipus.IsEnabled = false;
+                termekNev.Text = termek.nev;
+                termekAr.Text = termek.ar.ToString();
+                termekLeiras.Text = termek.leiras;
+            }
         }
 
         private void termekFrissitese(object sender, RoutedEventArgs e)
         {
-            MySqlParameter termekazonparam = new("@termekazon", termek.azon);
             MySqlParameter termeknevparam = new("@termeknev", termekNev.Text);
             MySqlParameter termekarparam = new("@termekar", termekAr.Text);
             MySqlParameter termekleirasparam = new("@termekleiras", termekLeiras.Text);
-            List<MySqlParameter> termekFrissitParams = new() { termekazonparam, termeknevparam, termekarparam, termekleirasparam };
-            List<string> eredmeny = MySQL.query(sqlLekerdezes, true, termekFrissitParams);
-            if(eredmeny.Any())
+            if (termek is not null)
             {
-                TermekekUI owner = (TermekekUI)Owner;
-                Termekek.mindenListaFrissit();
-                owner.listBoxokFeltolt();
+                MySqlParameter termekazonparam = new("@termekazon", termek.azon);
+                List<MySqlParameter> termekFrissitParams = new() { termekazonparam, termeknevparam, termekarparam, termekleirasparam };
+                List<string> eredmeny = MySQL.query(sqlLekerdezes, true, termekFrissitParams);
+                
                 MessageBox.Show(eredmeny[0]);
-                Close();
+                
             }
+            else
+            {
+                string sql= termekfajta switch
+                {
+                    TermekFajtak.Hamburger => "hamburgerhozzaad",
+                    TermekFajtak.Köret => "korethozzaad",
+                    TermekFajtak.Desszert => "desszerthozzaad",
+                    TermekFajtak.Ital => "italhozzaad",
+                    _ => throw new NotImplementedException()
+                };
+                List<MySqlParameter> termekHozzaadParams = new() {termeknevparam, termekarparam, termekleirasparam };
+                List<string> eredmeny = MySQL.query(sql , true, termekHozzaadParams);
+
+                MessageBox.Show(eredmeny[0]);
+            }
+            TermekekUI owner = (TermekekUI)Owner;
+            Termekek.mindenListaFrissit();
+            owner.listBoxokFeltolt();
+            Close();
+        }
+
+        private void termekFajtaBeallit(object sender, SelectionChangedEventArgs e)
+        {
+            termekfajta = (TermekFajtak)termekTipus.SelectedIndex;
         }
     }
 }
