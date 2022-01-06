@@ -30,7 +30,7 @@ namespace Vizsgaremek.Osztalyok
 
         public override string ToString()
         {
-            return $"{fazon} sz.f.,név: {felhasznalo.nev}, {szemelydb} főre, {idopontDatum.Year}/{idopontDatum.Month}/{idopontDatum.Day} {idopontOraPerc.Hour} óra {idopontOraPerc.Minute}0 Perc.";
+            return $"{fazon} sz.f.,név: {felhasznalo.nev}, {szemelydb} főre, {idopontDatum.Year}/{idopontDatum.Month}/{idopontDatum.Day} {idopontOraPerc.Hour}:00 Perc.";
         }
     }
 }

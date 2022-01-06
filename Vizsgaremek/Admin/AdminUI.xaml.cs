@@ -44,7 +44,7 @@ namespace Vizsgaremek.Admin
         private void asztalokRajzol()
         {
             asztalok.Children.Clear();
-            int x = 10;
+            double x = 40;
             bool fentE = true;
             for (int i = 1; i <= 10; i++)
             {

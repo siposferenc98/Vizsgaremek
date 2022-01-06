@@ -109,6 +109,7 @@ namespace Vizsgaremek.Felszolgalo
             foglalasComboBoxFeltolt();
             rendelesekComboBoxFeltolt();
             listboxokFeltolt();
+            asztalokRajzol();
         }
 
 
@@ -238,6 +239,25 @@ namespace Vizsgaremek.Felszolgalo
             }
             else
                 foglalasComboBox.IsEnabled = true;
+        }
+
+        private void vezerlokFrissitese(object sender, RoutedEventArgs e)
+        {
+            comboListBoxokFrissites();
+        }
+
+        private void asztalokRajzol()
+        {
+            asztalokCanvas.Children.Clear();
+            double x = 50;
+            bool fentE = true;
+            for (int i = 1; i <= 10; i++)
+            {
+                asztalokCanvas.Children.Add(Asztalok.rajzol(x, fentE, i));
+                fentE = !fentE;
+                if (i > 0 && fentE)
+                    x += 35;
+            }
         }
     }
 }

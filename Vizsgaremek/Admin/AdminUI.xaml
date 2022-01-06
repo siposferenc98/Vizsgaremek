@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
-        Title="AdminUI" MinHeight="600" Height="600" MinWidth="900" Width="900">
+        Title="AdminUI" MinHeight="600" Height="600" MinWidth="1024" Width="1024">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -62,7 +62,7 @@
                 <Label x:Name="osszesBevetel"></Label>
             </StackPanel>
             
-            <Canvas Grid.Row="2" Grid.ColumnSpan="1" x:Name="asztalok"></Canvas>
+            <Canvas Grid.Row="2" Grid.ColumnSpan="1" x:Name="asztalok" Width="250"></Canvas>
 
             <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top">
                 <Label>Aktuális vendégek:</Label>

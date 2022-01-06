@@ -12,7 +12,7 @@ namespace Vizsgaremek.Osztalyok
 {
     class Asztalok
     {
-        public static Viewbox rajzol(int x, bool fentE, int asztalszam)
+        public static Viewbox rajzol(double x, bool fentE, int asztalszam)
         {
             List<Rendeles> aktivRendelesek = Rendelesek.rendelesekLista.Where(x => x.etelstatus < 4 && x.italstatus < 4).ToList();
             Viewbox vb = new();

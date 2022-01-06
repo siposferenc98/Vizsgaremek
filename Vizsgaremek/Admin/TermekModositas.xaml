@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
-        Title="TermekModositas" Height="250" Width="400">
+        Title="TermekModositas" MinHeight="250" Height="250" MinWidth="400" Width="400">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>

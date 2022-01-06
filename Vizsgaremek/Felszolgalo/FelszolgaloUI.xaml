@@ -11,6 +11,11 @@
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10px"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -41,12 +46,12 @@
         <ListBox Grid.Row="2" Grid.Column="1" x:Name="felvettRendelesek" SelectionChanged="listBoxVezerloIsEnabled"/>
         <ListBox Grid.Row="2" Grid.Column="2" x:Name="keszRendelesek" SelectionChanged="listBoxVezerloIsEnabled"/>
         <!--Aktív rendelések vezérlő-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False" x:Name="felvettRendelesekVezerlo">
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" IsEnabled="False" x:Name="felvettRendelesekVezerlo">
             <Button Margin="10px" Height="30px" Click="rendelesTorles" x:Name="felvettRendelesekTorles">Törlés</Button>
             <Button Margin="10px" Height="30px" Click="rendelesReszletek" x:Name="felvettRendelesekReszletek">Részletek</Button>
         </StackPanel>
         <!--Kész rendelések vezérlő-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" IsEnabled="False" x:Name="keszRendelesekVezerlo">
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" IsEnabled="False" x:Name="keszRendelesekVezerlo">
             <Button Margin="5px" Height="30px" Click="rendelesTorles">Törlés</Button>
             <Button Margin="5px" Height="30px" Click="rendelesReszletek">Részletek</Button>
             <Button Margin="5px" Height="30px" Click="fizetesreVar" x:Name="fVar">Fizetésre vár</Button>
@@ -55,6 +60,7 @@
         <!--Foglalás/tétel-->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -63,27 +69,34 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Margin="10px">
+            
+            <Button Click="vezerlokFrissitese" Grid.ColumnSpan="2" Height="20px" VerticalAlignment="Top">Frissítés</Button>
+            <!--Foglalás asztal kiválasztása, vendég checkbox, rendelés felvétele-->
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
                     <Label>Foglalás:</Label>
                     <ComboBox Width="50px" x:Name="foglalasComboBox" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
+                
                 <CheckBox HorizontalAlignment="Center" Unchecked="vendegChecked" Checked="vendegChecked">Betérő vendég</CheckBox>
-                <StackPanel Orientation="Horizontal" Margin="10px">
+                
+                <StackPanel Orientation="Horizontal">
                     <Label>Asztal:</Label>
                     <ComboBox x:Name="asztalokComboBox" Width="50px" SelectionChanged="rendelesFelvetelIsEnabled"></ComboBox>
                 </StackPanel>
             </StackPanel>
-            <Button Grid.Column="1" Height="30px" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False" x:Name="rendelesFelvetelGomb" Click="rendelesFelvetel">Rendelés felvétele</Button>
-            
-            <!--Rendelés-->
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Grid.Row="1" Grid.Column="1" Height="30px" IsEnabled="False" x:Name="rendelesFelvetelGomb" Click="rendelesFelvetel">Rendelés felvétele</Button>
+
+            <!--Tétel hozzáadása, rendelés combobox-->
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <Label>Rendelés:</Label>
                 <ComboBox Width="50px" x:Name="rendelesekComboBox" SelectionChanged="tetelUIIsEnabled"></ComboBox>
             </StackPanel>
-            <Button Grid.Column="1" Grid.Row="1" Height="30px" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" x:Name="tetelUIGomb" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
+
+            <Button Grid.Column="1" Grid.Row="2" Height="30px" IsEnabled="False" x:Name="tetelUIGomb" Click="tetelUiMegnyit">Tétel hozzáadása</Button>
+
+            <Canvas Grid.Row="3" Grid.ColumnSpan="2" x:Name="asztalokCanvas" Width="300"></Canvas>
         </Grid>
-        
 
     </Grid>
 
