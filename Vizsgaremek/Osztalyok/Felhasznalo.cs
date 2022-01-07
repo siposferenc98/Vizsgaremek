@@ -21,5 +21,10 @@ namespace Vizsgaremek.Osztalyok
             this.id = id;
             this.jog = jog;
         }
+
+        public override string ToString()
+        {
+            return nev;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Vizsgaremek.Admin
         private enum TermekFajtak
         {
             Hamburger,
-            Köret,
+            Koret,
             Desszert,
             Ital
         }
@@ -83,19 +83,21 @@ namespace Vizsgaremek.Admin
             }
             else
             {
-                string sql= termekfajta switch
+                string sql = termekfajta switch
                 {
                     TermekFajtak.Hamburger => "hamburgerhozzaad",
-                    TermekFajtak.Köret => "korethozzaad",
+                    TermekFajtak.Koret => "korethozzaad",
                     TermekFajtak.Desszert => "desszerthozzaad",
                     TermekFajtak.Ital => "italhozzaad",
                     _ => throw new NotImplementedException()
                 };
+
                 List<MySqlParameter> termekHozzaadParams = new() {termeknevparam, termekarparam, termekleirasparam };
                 List<string> eredmeny = MySQL.query(sql , true, termekHozzaadParams);
 
                 MessageBox.Show(eredmeny[0]);
             }
+
             TermekekUI owner = (TermekekUI)Owner;
             Termekek.mindenListaFrissit();
             owner.listBoxokFeltolt();

@@ -80,7 +80,7 @@
             </Grid.RowDefinitions>
 
             <Button Click="termekekModositasa">Termékek módosítása</Button>
-            <Button Grid.Column="1">Felhasználók módosítása</Button>
+            <Button Grid.Column="1" Click="felhasznalokModositasa">Felhasználók módosítása</Button>
             <Button Grid.Row="1">Rendelés előzmények</Button>
             <Button Grid.Column="1" Grid.Row="1">Foglalások</Button>
             

@@ -72,6 +72,13 @@ namespace Vizsgaremek.Admin
             termekekUI.Show();
         }
 
+        private void felhasznalokModositasa(object sender, RoutedEventArgs e)
+        {
+            Window felhasznalokUI = new FelhasznalokModositasaUI();
+            felhasznalokUI.Owner = this;
+            felhasznalokUI.Show();
+        }
+
         private void kijelentkezes(object sender, RoutedEventArgs e)
         {
             AktualisFelhasznalo.felhasznalo = null;

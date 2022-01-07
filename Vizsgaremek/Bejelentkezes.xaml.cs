@@ -90,9 +90,13 @@ namespace Vizsgaremek
                 }
             }
             else if (eredmenyek.Count is 1) //ha a count 1 akkor valószínüleg hiba lesz benne.
+            {
                 MessageBox.Show(eredmenyek[0]);
+            }
             else //ha semmi akkor meg nem jók az adatok
+            {
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
+            }
         }
 
 
