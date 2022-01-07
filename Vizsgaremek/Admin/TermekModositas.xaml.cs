@@ -64,6 +64,7 @@ namespace Vizsgaremek.Admin
                 termekNev.Text = termek.nev;
                 termekAr.Text = termek.ar.ToString();
                 termekLeiras.Text = termek.leiras;
+                aktivCheckBox.IsChecked = termek.aktiv;
             }
         }
 
@@ -72,10 +73,11 @@ namespace Vizsgaremek.Admin
             MySqlParameter termeknevparam = new("@termeknev", termekNev.Text);
             MySqlParameter termekarparam = new("@termekar", termekAr.Text);
             MySqlParameter termekleirasparam = new("@termekleiras", termekLeiras.Text);
+            MySqlParameter aktivparam = new("@aktiv", aktivCheckBox.IsChecked);
             if (termek is not null)
             {
                 MySqlParameter termekazonparam = new("@termekazon", termek.azon);
-                List<MySqlParameter> termekFrissitParams = new() { termekazonparam, termeknevparam, termekarparam, termekleirasparam };
+                List<MySqlParameter> termekFrissitParams = new() { termekazonparam, termeknevparam, termekarparam, termekleirasparam, aktivparam };
                 List<string> eredmeny = MySQL.query(sqlLekerdezes, true, termekFrissitParams);
                 
                 MessageBox.Show(eredmeny[0]);
@@ -92,7 +94,7 @@ namespace Vizsgaremek.Admin
                     _ => throw new NotImplementedException()
                 };
 
-                List<MySqlParameter> termekHozzaadParams = new() {termeknevparam, termekarparam, termekleirasparam };
+                List<MySqlParameter> termekHozzaadParams = new() {termeknevparam, termekarparam, termekleirasparam, aktivparam };
                 List<string> eredmeny = MySQL.query(sql , true, termekHozzaadParams);
 
                 MessageBox.Show(eredmeny[0]);

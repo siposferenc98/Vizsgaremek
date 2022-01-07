@@ -26,7 +26,7 @@ namespace Vizsgaremek.Admin
             listBoxokFeltolt();
         }
 
-        private void listBoxokFeltolt()
+        public void listBoxokFeltolt()
         {
             alkalmazottakListBox.Items.Clear();
             vendegekListBox.Items.Clear();
@@ -39,6 +39,14 @@ namespace Vizsgaremek.Admin
                 else
                     vendegekListBox.Items.Add(f);
             }
+        }
+
+        private void alkalmazottakModositasa(object sender, MouseButtonEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            Window alkalmazottModositasaUI = new Regisztracio((Felhasznalo)lb.SelectedItem);
+            alkalmazottModositasaUI.Owner = this;
+            alkalmazottModositasaUI.Show();
         }
     }
 }

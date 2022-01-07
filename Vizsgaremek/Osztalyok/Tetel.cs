@@ -51,8 +51,8 @@ namespace Vizsgaremek.Osztalyok
                     $"{desszert.nev}, {ddb} db, ár: {ddb * desszert.ar} Ft. \n" +
                     $"Megjegyzés: {megjegyzes} \n " +
                     $"Összesen: {vegosszeg} Ft. \n \n" +
-                    $"Állapot: Étel:{(etelstatus == 3 ? "Felszolgálva" : etelstatus == 2 ? "Kész" : "Folyamatban")} , " +
-                    $"Ital: {(italstatus == 3 ? "Felszolgálva" : italstatus == 2 ? "Kész" : "Folyamatban")}";
+                    $"Állapot: Étel:{(etelstatus == 4 ? "Kész" : etelstatus == 3 ? "Felszolgálva" : etelstatus == 2 ? "Kész" : "Folyamatban")} , " +
+                    $"Ital: {(italstatus == 4 ? "Kész" : italstatus == 3 ? "Felszolgálva" : italstatus == 2 ? "Kész" : "Folyamatban")}";
         }
     }
 }

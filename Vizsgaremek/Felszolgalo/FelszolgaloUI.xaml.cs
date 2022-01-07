@@ -58,16 +58,14 @@ namespace Vizsgaremek.Felszolgalo
         {
             felvettRendelesek.Items.Clear();
             keszRendelesek.Items.Clear();
-            
 
-            if (Rendelesek.rendelesekLista.Any())
-                foreach (Rendeles r in Rendelesek.rendelesekLista)
-                {
-                    if (r.etelstatus == 1 && r.italstatus == 1)
-                        felvettRendelesek.Items.Add(r);
-                    else if(r.etelstatus < 4 && r.italstatus < 4)
-                        keszRendelesek.Items.Add(r);
-                }
+            foreach (Rendeles r in Rendelesek.rendelesekLista)
+            {
+                if (r.etelstatus == 1 && r.italstatus == 1)
+                    felvettRendelesek.Items.Add(r);
+                else if(r.etelstatus < 4 && r.italstatus < 4)
+                    keszRendelesek.Items.Add(r);
+            }
         }
 
         private void rendelesekComboBoxFeltolt()

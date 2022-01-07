@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
-        Title="TermekModositas" MinHeight="300" Height="300" MinWidth="400" Width="400">
+        Title="TermekModositas" MinHeight="350" Height="350" MinWidth="400" Width="400">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -46,6 +46,7 @@
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label>Leírás:</Label>
             <TextBox x:Name="termekLeiras"></TextBox>
+            <CheckBox Margin="5px" Content="Aktív" HorizontalAlignment="Center" IsChecked="True" x:Name="aktivCheckBox"></CheckBox>
         </StackPanel>
         <Button Grid.Row="3" Grid.ColumnSpan="2" Click="termekFrissitese">Termék módosítása</Button>
     </Grid>

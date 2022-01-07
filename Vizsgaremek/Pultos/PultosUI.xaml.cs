@@ -56,7 +56,8 @@ namespace Vizsgaremek.Pultos
             {
                 foreach (Tetel t in r.tetelek.Where(x => x.italstatus == 1))
                 {
-                    StackPanel sp = StackPanelExpander.tetelElemKeszit(t);
+                    StackPanelExpander stackPanelElem = new();
+                    StackPanel sp = stackPanelElem.tetelElemKeszit(r,t);
                     if (!tetelekListBox.Items.OfType<StackPanel>().Any(x => (int)x.Tag == (int)sp.Tag))
                         tetelekListBox.Items.Add(sp);
                 }

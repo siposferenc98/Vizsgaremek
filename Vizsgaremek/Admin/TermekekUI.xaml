@@ -35,9 +35,8 @@
         <ListBox Grid.Row="1" Grid.Column="2" x:Name="desszertekListBox" Tag="desszertfrissit" MouseDoubleClick="termekModositas"></ListBox>
         <ListBox Grid.Row="1" Grid.Column="3" x:Name="italokListBox" Tag="italfrissit" MouseDoubleClick="termekModositas"></ListBox>
         <!--Vezérlő-->
-        
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Click="termekHozzaad">Hozzáadás</Button>
-        <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">Törlés</Button>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="4" Click="termekHozzaad">Hozzáadás</Button>
     </Grid>
 
 </Window>

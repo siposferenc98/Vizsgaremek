@@ -34,10 +34,10 @@ namespace Vizsgaremek.Osztalyok
 
             if (eredmeny.Any())
             {
-                for (int i = 0; i < eredmeny.Count; i += 4) //Minden termék a DB-ben 4 oszlopból áll
+                for (int i = 0; i < eredmeny.Count; i += 5) //Minden termék a DB-ben 4 oszlopból áll
                 {
                     //1.azon - int, 2.nev - string, 3.ar - int, 4.leir - string.
-                    Termek termek = new(int.Parse(eredmeny[i]), eredmeny[i + 1], int.Parse(eredmeny[i + 2]), eredmeny[i + 3]);
+                    Termek termek = new(int.Parse(eredmeny[i]), eredmeny[i + 1], int.Parse(eredmeny[i + 2]), eredmeny[i + 3], bool.Parse(eredmeny[i + 4]));
                     listakDictionary[listaKezdobetu].Add(termek); //hozzáadjuk az adott listához a dictionaryben.
                 }
             }

@@ -40,7 +40,8 @@ namespace Vizsgaremek.Felszolgalo
 
             foreach (Tetel t in rendeles.tetelek)
             {
-                StackPanel sp = StackPanelExpander.tetelElemKeszit(t);
+                StackPanelExpander stackPanelElem = new();
+                StackPanel sp = stackPanelElem.tetelElemKeszit(rendeles,t);
                 tetelekListBox.Items.Add(sp);
             }
         }

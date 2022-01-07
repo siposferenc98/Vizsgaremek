@@ -50,6 +50,7 @@
                 <ComboBoxItem IsSelected="true">Felszolgáló</ComboBoxItem>
                 <ComboBoxItem>Szakács</ComboBoxItem>
                 <ComboBoxItem>Pultos</ComboBoxItem>
+                <ComboBoxItem Visibility="Collapsed">Admin</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         

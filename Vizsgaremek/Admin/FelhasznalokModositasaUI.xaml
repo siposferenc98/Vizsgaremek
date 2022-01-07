@@ -25,6 +25,6 @@
         <Label Grid.Column="1">Alkalmazottak:</Label>
 
         <ListBox Grid.Row="1" x:Name="vendegekListBox"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1" x:Name="alkalmazottakListBox"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" x:Name="alkalmazottakListBox" MouseDoubleClick="alkalmazottakModositasa"></ListBox>
     </Grid>
 </Window>

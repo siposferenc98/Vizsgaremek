@@ -18,11 +18,12 @@ teteltorlese-DELETE FROM tetel WHERE tazon = @tazon
 vendegfoglalasbeszur-INSERT INTO foglalas VALUES('',1,1,now(),now(),now(),0)
 etelkesz-UPDATE tetel SET etelstatus = 2 WHERE tazon = @tazon
 italkesz-UPDATE tetel SET italstatus = 2 WHERE tazon = @tazon
-hamburgerfrissit-UPDATE burger SET bnev = @termeknev , bar = @termekar , bleir = @termekleiras WHERE bazon = @termekazon
-koretfrissit-UPDATE koret SET knev = @termeknev , kar = @termekar , kleir = @termekleiras WHERE kazon = @termekazon
-desszertfrissit-UPDATE desszert SET dnev = @termeknev , dar = @termekar , dleir = @termekleiras WHERE dazon = @termekazon
-italfrissit-UPDATE ital SET inev = @termeknev , iar = @termekar , ileir = @termekleiras WHERE iazon = @termekazon
-hamburgerhozzaad-INSERT INTO burger VALUES('',@termeknev,@termekar,@termekleiras)
-korethozzaad-INSERT INTO koret VALUES('',@termeknev,@termekar,@termekleiras)
-desszerthozzaad-INSERT INTO desszert VALUES('',@termeknev,@termekar,@termekleiras)
-italhozzaad-INSERT INTO ital VALUES('',@termeknev,@termekar,@termekleiras)
+hamburgerfrissit-UPDATE burger SET bnev = @termeknev , bar = @termekar , bleir = @termekleiras, aktiv = @aktiv WHERE bazon = @termekazon
+koretfrissit-UPDATE koret SET knev = @termeknev , kar = @termekar , kleir = @termekleiras, aktiv = @aktiv WHERE kazon = @termekazon
+desszertfrissit-UPDATE desszert SET dnev = @termeknev , dar = @termekar , dleir = @termekleiras, aktiv = @aktiv WHERE dazon = @termekazon
+italfrissit-UPDATE ital SET inev = @termeknev , iar = @termekar , ileir = @termekleiras, aktiv = @aktiv WHERE iazon = @termekazon
+hamburgerhozzaad-INSERT INTO burger VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
+korethozzaad-INSERT INTO koret VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
+desszerthozzaad-INSERT INTO desszert VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
+italhozzaad-INSERT INTO ital VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
+felhasznalofrissit-UPDATE felhasznalo SET nev = @teljesnev, lak = @lakh, tel = @tel, email = @email, jog = @jog WHERE azon = @azon

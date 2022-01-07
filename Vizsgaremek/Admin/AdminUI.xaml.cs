@@ -72,6 +72,13 @@ namespace Vizsgaremek.Admin
             termekekUI.Show();
         }
 
+        private void rendelesElozmenyek(object sender, RoutedEventArgs e)
+        {
+            Window rendelesElozmenyekUI = new RendelesElozmenyekUI();
+            rendelesElozmenyekUI.Owner = this;
+            rendelesElozmenyekUI.Show();
+        }
+
         private void felhasznalokModositasa(object sender, RoutedEventArgs e)
         {
             Window felhasznalokUI = new FelhasznalokModositasaUI();
