@@ -23,14 +23,17 @@ namespace Vizsgaremek
     public partial class Regisztracio : Window
     {
         private Felhasznalo felhasznalo;
-        public Regisztracio(Felhasznalo f = null)
+        public Regisztracio(Felhasznalo f = null) //opcionális paraméter, ha nem kap felhasználót akkor regisztrálni akarunk
         {
             InitializeComponent();
             felhasznalo = f;
-            if (felhasznalo is not null)
-                adatokFeltolt();
+            telszamDoboz.PreviewTextInput += RegexClass.csakSzamok; //event feliratkozás csak szám bevitelre, komment a classban
+            if (felhasznalo is not null) // ha viszont kaptunk egy felhasználót akkor módosítani szeretnénk egy meglévőt
+                adatokFeltolt(); //feltöltjük adatokkal a textboxokat
         }
-        
+
+        //TextBoxok feltöltése ha módosítunk felhasználót
+        #region TextBoxok feltoltese
         private void adatokFeltolt()
         {
             teljesNevDoboz.Text = felhasznalo.nev;
@@ -39,14 +42,45 @@ namespace Vizsgaremek
             emailDoboz.Text = felhasznalo.email;
             jogosultsag.SelectedIndex = felhasznalo.jog - 1;
 
+            //kikapcsoljuk a jelszó mezőt hogy ne lehessen másokét modosítani
             jelszoEloszor.IsEnabled = false;
             jelszoMasodszor.IsEnabled = false;
             if (felhasznalo.jog == 4)
-                jogosultsag.IsEnabled = false;
+                jogosultsag.IsEnabled = false; //és a jogosultságot se tudja az egyik admin levenni másikéról
 
             regisztralasGomb.Content = "Felhasználó frissítése";
         }
+        #endregion
 
+        //TextChanged eventekre
+        #region Eventek
+        /// <summary>
+        /// Regisztrálás gombot engedélyezi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void regisztraciosDobozMindKitoltveE(object sender, RoutedEventArgs e)
+        {
+            //ha regisztrálni akarunk akkor minden mezőt meg kell nézni hogy van-e benne szöveg
+            if (felhasznalo is null)
+            {
+                if (teljesNevDoboz.Text.Length > 0 && jelszoEloszor.Password.Length > 0 && jelszoMasodszor.Password.Length > 0 && lakhelyDoboz.Text.Length > 0 && telszamDoboz.Text.Length > 0 && emailDoboz.Text.Length > 0)
+                    regisztralasGomb.IsEnabled = true;
+                else
+                    regisztralasGomb.IsEnabled = false;
+            }
+            else //különben csak a jelszó dobozokat kihagyjuk
+            {
+                if (teljesNevDoboz.Text.Length > 0 && lakhelyDoboz.Text.Length > 0 && telszamDoboz.Text.Length > 0 && emailDoboz.Text.Length > 0)
+                    regisztralasGomb.IsEnabled = true;
+                else
+                    regisztralasGomb.IsEnabled = false;
+            }
+        }
+        #endregion
+
+        //MySQL regisztráció, felhasználó módosítás
+        #region MySQL eljarasok
         /// <summary>
         /// Végrehajtja a regisztrálást a db-ben, lecsekkolja hogy a jelszó verifikáció jó-e.
         /// </summary>
@@ -54,20 +88,21 @@ namespace Vizsgaremek
         /// <param name="e"></param>
         private void regisztralas(object sender, RoutedEventArgs e)
         {
+            //Létrehozzuk a paramétereket, konstruktor első paraméter a cserélendő paraméter, a második az érték
             MySqlParameter teljesnevparam = new("@teljesnev", teljesNevDoboz.Text);
             MySqlParameter lakhelyparam = new("@lakh", lakhelyDoboz.Text);
             MySqlParameter telparam = new("@tel", telszamDoboz.Text);
             MySqlParameter emailparam = new("@email", emailDoboz.Text);
             MySqlParameter jogparam = new("@jog", jogosultsag.SelectedIndex + 1);
 
+            //hogyha regisztrálni szeretnénk
             if (felhasznalo is null)
             {
-                if (jelszoEloszor.Password != jelszoMasodszor.Password)
+                if (jelszoEloszor.Password != jelszoMasodszor.Password) //megnézzük egyezik-e a jelszó ellenőrzés
                     MessageBox.Show("A jelszavaknak egyeznie kell!");
                 else
                 {
                     string pw = MySQL.hashPW(jelszoEloszor.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
-                    //MySqlParameter , konstruktor első paramétere a cserélendő paraméter, a második az érték hogy mire.
                     MySqlParameter pwparam = new("@pw", pw);
                     List<MySqlParameter> paramListLetezikE = new() { emailparam }; //létrehozunk egy listát csak a felhasználónév paraméterrel
                     List<string> letezikE = MySQL.query("regisztracioletezik", false, paramListLetezikE); //először megnézzük egy selecttel hogy létezik-e ilyen felhasználó, ha nincs benne semmi akkor nem,szóval lehet regisztrálni.
@@ -83,40 +118,17 @@ namespace Vizsgaremek
                         MessageBox.Show("Ez a felhasználó már létezik!");
                 }
             }
-            else
+            else //különben adminUI-ról módosítunk felhasználót
             {
-                Admin.FelhasznalokModositasaUI owner = (Admin.FelhasznalokModositasaUI)Owner;
+                Admin.FelhasznalokModositasaUI owner = (Admin.FelhasznalokModositasaUI)Owner; //ennek az ablaknak az ownerje
                 MySqlParameter azonparam = new("@azon", felhasznalo.id);
                 List<MySqlParameter> felhasznaloFrissitesParams = new() { teljesnevparam, lakhelyparam, telparam, emailparam, jogparam, azonparam};
                 List<string> eredmeny = MySQL.query("felhasznalofrissit", true, felhasznaloFrissitesParams);
                 MessageBox.Show(eredmeny[0].ToString());
-                owner.listBoxokFeltolt();
+                owner.listBoxokFeltolt(); //ráfrissítünk az ownernél a listboxokra amint elvégeztük a módosítást
                 Close();
             }
         }
-
-        private void regisztraciosDobozMindKitoltveE(object sender, RoutedEventArgs e)
-        {
-            if (felhasznalo is null)
-            {
-                if (teljesNevDoboz.Text.Length > 0 && jelszoEloszor.Password.Length > 0 && jelszoMasodszor.Password.Length > 0 && lakhelyDoboz.Text.Length > 0 && telszamDoboz.Text.Length > 0 && emailDoboz.Text.Length > 0)
-                    regisztralasGomb.IsEnabled = true;
-                else
-                    regisztralasGomb.IsEnabled = false;
-            }
-            else
-            {
-                if (teljesNevDoboz.Text.Length > 0 && lakhelyDoboz.Text.Length > 0 && telszamDoboz.Text.Length > 0 && emailDoboz.Text.Length > 0)
-                    regisztralasGomb.IsEnabled = true;
-                else
-                    regisztralasGomb.IsEnabled = false;
-            }
-        }
-
-        private void csakSzamok(object sender, TextCompositionEventArgs e)
-        {
-            Regex szamokPattern = new Regex("[^0-9]+");
-            e.Handled = szamokPattern.IsMatch(e.Text);
-        }
+        #endregion
     }
 }

@@ -21,6 +21,7 @@ namespace Vizsgaremek.Osztalyok
             this.aktiv = aktiv;
         }
 
+        //Ez lesz meghívva minden alkalommal amikor belerakjuk egy listboxba,comboboxba, vagy csak simán kiiratjuk.
         public override string ToString()
         {
             return nev;

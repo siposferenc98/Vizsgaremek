@@ -11,6 +11,7 @@ namespace Vizsgaremek.Osztalyok
         public int fazon, azon, szemelydb;
         public bool megjelent;
         public DateTime idopontDatum, idopontOraPerc, leadva;
+        //Ezzel a propertyvel lekérhető a felhasználó listából a foglaláshoz tartozó felhasználó.
         public Felhasznalo felhasznalo => Felhasznalok.felhasznaloLista.First(x => x.id == azon);
 
         public Foglalas()
@@ -28,6 +29,7 @@ namespace Vizsgaremek.Osztalyok
             this.leadva = leadva;
         }
 
+        //Ez lesz meghívva minden alkalommal amikor belerakjuk egy listboxba,comboboxba, vagy csak simán kiiratjuk.
         public override string ToString()
         {
             return $"{fazon} sz.f.,név: {felhasznalo.nev}, {szemelydb} főre, {idopontDatum.Year}/{idopontDatum.Month}/{idopontDatum.Day} {idopontOraPerc.Hour}:00 Perc.";

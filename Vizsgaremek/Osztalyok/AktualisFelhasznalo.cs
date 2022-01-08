@@ -8,6 +8,7 @@ namespace Vizsgaremek.Osztalyok
 {
     public class AktualisFelhasznalo
     {
+        //Itt tároljuk az aktuálisan bejelentkezett felhasználót
         public static Felhasznalo felhasznalo;
     }
 }

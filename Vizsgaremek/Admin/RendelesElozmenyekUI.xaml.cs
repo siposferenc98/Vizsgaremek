@@ -26,14 +26,18 @@ namespace Vizsgaremek.Admin
             InitializeComponent();
             listBoxFeltolt();
         }
-
+        //Listbox feltöltése
+        #region Listboxok feltoltese
         private void listBoxFeltolt()
         {
+            //végigmegyünk a rendeléseklistán ahol 4-4esek a statusok,szóval már fizetett(régi) rendelések
             foreach (Rendeles r in Rendelesek.rendelesekLista.Where(x=>x.etelstatus == 4 && x.italstatus == 4))
             {
+                //és minden rendelésből készíttetünk egy rendeléses stackpanelt expanderrel, aminek a contentje a többi expanderes tétel lesz
                 rendelesElozmenyekListBox.Items.Add(RendelesStackPanelExpander.rendelesElemKeszit(r));
             }
 
         }
+        #endregion
     }
 }

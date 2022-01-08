@@ -28,10 +28,17 @@ namespace Vizsgaremek.Admin
             aktualisVendegekSzamol();
         }
 
+        //Bevétel labelek, aktuális vendégek frissítése
+        #region Labelek frissitese
+        /// <summary>
+        /// Kiszámolja a már kifizetett rendelésekből a napi,havi,összes bevételt.
+        /// </summary>
         private void bevetelSzamol()
         {
-            Rendelesek.rendelesekFrissit();
+            Rendelesek.rendelesekFrissit(); //ráfrissítünk a rendelésekre
+            //Csak a 4-4es statussal rendelkező rendeléseket (már fizetett) szeretnénk
             List<Rendeles> fizetettRendelesek = Rendelesek.rendelesekLista.Where(x => x.etelstatus == 4 && x.italstatus == 4).ToList();
+            //dátumokat egyeztetünk és Sum()oljuk a végösszegeket
             int maiOsszeg = fizetettRendelesek.Where(x => x.ido.Date == DateTime.Today).Sum(x => x.vegosszeg);
             int haviOsszeg = fizetettRendelesek.Where(x => x.ido.Month == DateTime.Today.Month).Sum(x => x.vegosszeg);
             int osszesOsszeg = fizetettRendelesek.Sum(x => x.vegosszeg);
@@ -41,34 +48,42 @@ namespace Vizsgaremek.Admin
             osszesBevetel.Content = $"{osszesOsszeg} Ft.";
         }
 
-        private void asztalokRajzol()
-        {
-            asztalok.Children.Clear();
-            double x = 40;
-            bool fentE = true;
-            for (int i = 1; i <= 10; i++)
-            {
-                asztalok.Children.Add(Asztalok.rajzol(x, fentE, i));
-                fentE = !fentE;
-                if(i > 0 && fentE)
-                    x += 35;
-            }
-        }
-
+        /// <summary>
+        /// Kiszámolja az aktuálisan bent tartozkodó vendégek számát.
+        /// </summary>
         private void aktualisVendegekSzamol()
         {
-            Foglalasok.foglalasokFrissit();
+            Foglalasok.foglalasokFrissit();//ráfrissítünk a foglalásokra
+            Rendelesek.rendelesekFrissit();//meg a rendelésekre
+            //csak a 4es statusnál kisebb rendelések (még nincsenek fizetve) kellenek
             List<Rendeles> aktualisRendelesek = Rendelesek.rendelesekLista.Where(x => x.etelstatus < 4 && x.italstatus < 4).ToList();
-            int vendegek = 0;
-            foreach (Rendeles r in aktualisRendelesek)
+            int vendegek = 0; //default 0 vendég ül bent, ehhez adogatjuk hozzá
+            foreach (Rendeles r in aktualisRendelesek) //végigmegyünk a rendeléseken
             {
-                vendegek += Foglalasok.foglalasLista.First(x => x.fazon == r.fazon).szemelydb;
+                vendegek += Foglalasok.foglalasLista.First(x => x.fazon == r.fazon).szemelydb; //és a hozzá tartozó foglalás személy db számát hozzáadjuk a vendégekhez
             }
             aktualisVendegek.Content = vendegek;
         }
+
+        /// <summary>
+        /// Lefrissíti az összes adatot(bevételek,asztalok,vendégek).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frissites(object sender, RoutedEventArgs e)
+        {
+            bevetelSzamol();
+            asztalokRajzol();
+            aktualisVendegekSzamol();
+        }
+        #endregion
+
+        //Új ablakok megnyitása
+        #region Uj ablakok
         private void termekekModositasa(object sender, RoutedEventArgs e)
         {
             Window termekekUI = new TermekekUI();
+            termekekUI.Owner = this;
             termekekUI.Show();
         }
 
@@ -93,15 +108,6 @@ namespace Vizsgaremek.Admin
             foglalasokUI.Show();
         }
 
-        private void kijelentkezes(object sender, RoutedEventArgs e)
-        {
-            AktualisFelhasznalo.felhasznalo = null;
-            Window bejelentkezes = new Bejelentkezes();
-            bejelentkezes.Show();
-            Close();
-        }
-
-
         private void felszolgaloraValtas(object sender, RoutedEventArgs e)
         {
             Window felszolgaloUI = new Felszolgalo.FelszolgaloUI();
@@ -122,12 +128,30 @@ namespace Vizsgaremek.Admin
             pultosUI.Owner = this;
             pultosUI.Show();
         }
+        #endregion
 
-        private void frissites(object sender, RoutedEventArgs e)
+        //Asztalok rajzolása, kijelentkezés
+        #region Egyeb eljarasok
+        private void asztalokRajzol()
         {
-            bevetelSzamol();
-            asztalokRajzol();
-            aktualisVendegekSzamol();
+            asztalok.Children.Clear();
+            double x = 40;
+            bool fentE = true;
+            for (int i = 1; i <= 10; i++)
+            {
+                asztalok.Children.Add(Asztalok.rajzol(x, fentE, i));
+                fentE = !fentE;
+                if (i > 0 && fentE)
+                    x += 35;
+            }
         }
+        private void kijelentkezes(object sender, RoutedEventArgs e)
+        {
+            AktualisFelhasznalo.felhasznalo = null;
+            Window bejelentkezes = new Bejelentkezes();
+            bejelentkezes.Show();
+            Close();
+        }
+        #endregion
     }
 }

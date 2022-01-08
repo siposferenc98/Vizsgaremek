@@ -28,6 +28,8 @@ namespace Vizsgaremek
             inditasiEljarasok();
         }
 
+        //TextChanged eventek
+        #region Eventek
         /// <summary>
         /// Ez az eljárás minden alkalommal meghívásra kerül amikor a szövegdobozokban az érték változik.
         /// </summary>
@@ -41,7 +43,10 @@ namespace Vizsgaremek
             else 
                 loginBTN.IsEnabled = false;
         }
+        #endregion
 
+        //Új ablakok megnyitása
+        #region Uj ablakok
         /// <summary>
         /// Ez az eljárás indítja el a bejelentkezést.
         /// </summary>
@@ -51,16 +56,21 @@ namespace Vizsgaremek
         {
             string felhasznalo = felhasznaloBX.Text;
             string pw = MySQL.hashPW(jelszoBX.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
-            //Létrehozzuk a paramétereket
+
+            //Létrehozzuk a paramétereket, konstruktor első paraméter a cserélendő paraméter, a második az érték
             MySqlParameter fparam = new("@felh", felhasznalo);
             MySqlParameter pwparam = new("@pw", pw);
+
             List<MySqlParameter> param = new() {fparam, pwparam}; //hozzáadjuk egy paraméter típusú listához
             List<string> eredmenyek = MySQL.query("bejelentkezes", false, param); //A listánk üres lesz ha nincs ilyen felhasználó, ha lesz benne 1 érték akkor vagy sikerült a bejelentkezés, vagy hibát fog tartalmazni.
 
             if (eredmenyek.Count > 1)
             {
+                // id, nev , lakh, tel, email, jog
                 AktualisFelhasznalo.felhasznalo = new Felhasznalo(int.Parse(eredmenyek[0]), eredmenyek[1], eredmenyek[2], eredmenyek[3], eredmenyek[4], int.Parse(eredmenyek[5]));
                 MessageBox.Show($"Üdvözlünk {AktualisFelhasznalo.felhasznalo.nev} !");
+
+                //switchelünk egyet az aktuális bejelentkeztetett felhasználó jogán és megjelenítjük az UI-ját
                 //1-Felszolgáló, 2-Szakács, 3-Pultos, 4-Admin
                 switch (AktualisFelhasznalo.felhasznalo.jog)
                 {
@@ -93,13 +103,22 @@ namespace Vizsgaremek
             {
                 MessageBox.Show(eredmenyek[0]);
             }
-            else //ha semmi akkor meg nem jók az adatok
+            else //ha semmi akkor meg nem jók a bejelentkezési adatok
             {
                 MessageBox.Show("Nincs ilyen felhasználónév vagy hibás jelszó!");
             }
         }
 
+        private void regisztracio(object sender, RoutedEventArgs e)
+        {
+            Window reg = new Regisztracio();
+            reg.Show();
+        }
 
+        #endregion
+
+        //Indítási eljárások
+        #region Egyeb eljarasok
         private void inditasiEljarasok()
         {
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
@@ -113,22 +132,18 @@ namespace Vizsgaremek
             {
                 MessageBoxResult messageboxEredmeny = MessageBox.Show($"MySQL csatlakozási / formátum hiba \n ({e.Message}) \n Újra próbálja?","Hiba",MessageBoxButton.YesNo);
 
-                if(messageboxEredmeny == MessageBoxResult.Yes)
+                if(messageboxEredmeny == MessageBoxResult.Yes) //ha igenre nyom, újra meghívjuk az indítási eljárásokat
                 {
                     inditasiEljarasok();
                 }
-                else
+                else // különben bezárjuk a programot
                 {
                     Close();
                 }
 
             }
         }
-
-        private void regisztracio(object sender, RoutedEventArgs e)
-        {
-            Window reg = new Regisztracio();
-            reg.Show();
-        }
+        #endregion
+        
     }
 }

@@ -36,7 +36,7 @@
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
             <Label Content="Telefonszám:" Height="26" HorizontalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="telszamDoboz" TextChanged="regisztraciosDobozMindKitoltveE" PreviewTextInput="csakSzamok"/>
+            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Width="120" x:Name="telszamDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
             <Label Content="Teljes Név:" Height="26" HorizontalAlignment="Center"/>

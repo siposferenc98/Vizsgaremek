@@ -42,6 +42,9 @@ namespace Vizsgaremek.Osztalyok
             }
         }
 
+        /// <summary>
+        /// Frissíti mind a 4 listánkat.
+        /// </summary>
         public static void mindenListaFrissit()
         {
             listaFrissit("hamburgerlekerdezes", 'h');

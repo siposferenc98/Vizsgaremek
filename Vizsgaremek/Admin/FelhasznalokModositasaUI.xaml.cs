@@ -25,28 +25,34 @@ namespace Vizsgaremek.Admin
             InitializeComponent();
             listBoxokFeltolt();
         }
-
+        //Listbox feltöltése
+        #region Listboxok feltoltese
         public void listBoxokFeltolt()
         {
+            //töröljük a listboxokat
             alkalmazottakListBox.Items.Clear();
             vendegekListBox.Items.Clear();
 
-            Felhasznalok.felhasznalokFrissit();
-            foreach (Felhasznalo f in Felhasznalok.felhasznaloLista)
+            Felhasznalok.felhasznalokFrissit(); //ráfrissítünk a felhasználókra
+            foreach (Felhasznalo f in Felhasznalok.felhasznaloLista) //végigmegyünk a listán
             {
-                if (f.jog > 0)
+                if (f.jog > 0) //ha nagyobb a joga mint 0 akkor ott dolgozó
                     alkalmazottakListBox.Items.Add(f);
-                else
+                else //különben vendég
                     vendegekListBox.Items.Add(f);
             }
         }
+        #endregion
 
+        //Dupla klikk event
+        #region Eventek
         private void alkalmazottakModositasa(object sender, MouseButtonEventArgs e)
         {
-            ListBox lb = (ListBox)sender;
-            Window alkalmazottModositasaUI = new Regisztracio((Felhasznalo)lb.SelectedItem);
+            ListBox lb = (ListBox)sender; //a senderünk a listbox
+            Window alkalmazottModositasaUI = new Regisztracio((Felhasznalo)lb.SelectedItem); //létrehozunk egy új regisztráció ablakot és paraméterbe átadjuk a kiválasztott felhasználót, így a regisztráció ablakunk módosításként fog szolgálni mert kap paramétert(kommentek ott)
             alkalmazottModositasaUI.Owner = this;
             alkalmazottModositasaUI.Show();
         }
+        #endregion
     }
 }

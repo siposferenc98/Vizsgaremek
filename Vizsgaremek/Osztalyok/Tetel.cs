@@ -43,6 +43,7 @@ namespace Vizsgaremek.Osztalyok
             this.megjegyzes = megjegyzes;
         }
 
+        //Ez lesz meghívva minden alkalommal amikor belerakjuk egy listboxba,comboboxba, vagy csak simán kiiratjuk.
         public override string ToString()
         {
             return $"{burger.nev}, {bdb} db, ár: {bdb * burger.ar} Ft. \n" +

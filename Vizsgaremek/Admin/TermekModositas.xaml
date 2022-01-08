@@ -41,7 +41,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1"  Grid.Column="1">
             <Label>Ár:</Label>
-            <TextBox x:Name="termekAr" PreviewTextInput="csakSzamok"></TextBox>
+            <TextBox x:Name="termekAr"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label>Leírás:</Label>

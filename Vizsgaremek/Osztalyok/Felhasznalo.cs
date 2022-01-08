@@ -9,6 +9,8 @@ namespace Vizsgaremek.Osztalyok
     public class Felhasznalo
     {
         public string nev, lakh, email, tel;
+
+        //biztonság kedvéért ez a kettő private setre lett állítva
         public int id { get; private set; }
         public int jog { get; private set; }
 
@@ -22,6 +24,7 @@ namespace Vizsgaremek.Osztalyok
             this.jog = jog;
         }
 
+        //Ez lesz meghívva minden alkalommal amikor belerakjuk egy listboxba,comboboxba, vagy csak simán kiiratjuk.
         public override string ToString()
         {
             return nev;

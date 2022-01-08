@@ -25,11 +25,13 @@ namespace Vizsgaremek.Admin
             InitializeComponent();
             listBoxFeltolt();
         }
-
+        //Listbox feltöltése
+        #region Listboxok feltoltese
         private void listBoxFeltolt()
         {
-            Felhasznalok.felhasznalokFrissit();
-            Foglalasok.foglalasLista.ForEach(x => foglalasokListBox.Items.Add(x));
+            Felhasznalok.felhasznalokFrissit(); //ráfrissítünk a felhasználókra
+            Foglalasok.foglalasLista.ForEach(x => foglalasokListBox.Items.Add(x)); //hozzáadjuk a listboxunkhoz
         }
+        #endregion
     }
 }

@@ -68,19 +68,19 @@
             <!--Darab input-->
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label>Darab:</Label>
-                <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="hamburgerDB">1</TextBox>
+                <TextBox TextChanged="dbErtekBeallitas" x:Name="hamburgerDB">1</TextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Label>Darab:</Label>
-                <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="koretDB">1</TextBox>
+                <TextBox TextChanged="dbErtekBeallitas" x:Name="koretDB">1</TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <Label>Darab:</Label>
-                <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="italDB">1</TextBox>
+                <TextBox TextChanged="dbErtekBeallitas" x:Name="italDB">1</TextBox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1">
                 <Label>Darab:</Label>
-                <TextBox PreviewTextInput="csakSzamok" TextChanged="dbErtekBeallitas" x:Name="desszertDB">1</TextBox>
+                <TextBox TextChanged="dbErtekBeallitas" x:Name="desszertDB">1</TextBox>
             </StackPanel>
             <Label Grid.Row="4">Megjegyzés:</Label>
             <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5px" x:Name="megjegyzesTextBox"></TextBox>
