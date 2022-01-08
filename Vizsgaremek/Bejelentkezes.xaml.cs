@@ -104,9 +104,25 @@ namespace Vizsgaremek
         {
             MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
 
-            //A termékek osztályba van kommentelve
-            Termekek.mindenListaFrissit();
-            
+            try
+            {
+                //A termékek osztályba van kommentelve
+                Termekek.mindenListaFrissit();
+            }
+            catch (Exception e)
+            {
+                MessageBoxResult messageboxEredmeny = MessageBox.Show($"MySQL csatlakozási / formátum hiba \n ({e.Message}) \n Újra próbálja?","Hiba",MessageBoxButton.YesNo);
+
+                if(messageboxEredmeny == MessageBoxResult.Yes)
+                {
+                    inditasiEljarasok();
+                }
+                else
+                {
+                    Close();
+                }
+
+            }
         }
 
         private void regisztracio(object sender, RoutedEventArgs e)

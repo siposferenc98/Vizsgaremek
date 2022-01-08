@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Vizsgaremek.Osztalyok
 {
@@ -29,17 +30,15 @@ namespace Vizsgaremek.Osztalyok
         /// <param name="listaKezdobetu">Egy betű ami a listakDictionaryban a kulcs lesz, h-hamburger,k-köret,d-desszert,i-ital.</param>
         public static void listaFrissit(string command, char listaKezdobetu)
         {
+            
             List<string> eredmeny = MySQL.query(command, false); //lekérjük az adott tábla értékeit
             listakDictionary[listaKezdobetu] = new(); //töröljük/új üres listára cseréljük ki az adott listát kulcs alapján
 
-            if (eredmeny.Any())
+            for (int i = 0; i < eredmeny.Count; i += 5) //Minden termék a DB-ben 4 oszlopból áll
             {
-                for (int i = 0; i < eredmeny.Count; i += 5) //Minden termék a DB-ben 4 oszlopból áll
-                {
-                    //1.azon - int, 2.nev - string, 3.ar - int, 4.leir - string.
-                    Termek termek = new(int.Parse(eredmeny[i]), eredmeny[i + 1], int.Parse(eredmeny[i + 2]), eredmeny[i + 3], bool.Parse(eredmeny[i + 4]));
-                    listakDictionary[listaKezdobetu].Add(termek); //hozzáadjuk az adott listához a dictionaryben.
-                }
+                //1.azon - int, 2.nev - string, 3.ar - int, 4.leir - string.
+                Termek termek = new(int.Parse(eredmeny[i]), eredmeny[i + 1], int.Parse(eredmeny[i + 2]), eredmeny[i + 3], bool.Parse(eredmeny[i + 4]));
+                listakDictionary[listaKezdobetu].Add(termek); //hozzáadjuk az adott listához a dictionaryben.
             }
         }
 
