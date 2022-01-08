@@ -86,6 +86,13 @@ namespace Vizsgaremek.Admin
             felhasznalokUI.Show();
         }
 
+        private void foglalasokListaMegnyit(object sender, RoutedEventArgs e)
+        {
+            Window foglalasokUI = new FoglalasokUI();
+            foglalasokUI.Owner = this;
+            foglalasokUI.Show();
+        }
+
         private void kijelentkezes(object sender, RoutedEventArgs e)
         {
             AktualisFelhasznalo.felhasznalo = null;
@@ -122,6 +129,5 @@ namespace Vizsgaremek.Admin
             asztalokRajzol();
             aktualisVendegekSzamol();
         }
-
     }
 }
