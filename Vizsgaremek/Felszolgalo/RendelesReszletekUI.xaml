@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Felszolgalo"
         mc:Ignorable="d"
-        Title="RendelesReszletekUI" MinHeight="550" Height="550" Width="900" MinWidth="900">
+        Title="Rendelés részletei" MinHeight="550" Height="550" Width="900" MinWidth="900">
     <Window.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="10"></Setter>

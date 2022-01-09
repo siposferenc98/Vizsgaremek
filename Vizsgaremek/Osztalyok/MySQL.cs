@@ -8,12 +8,13 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.IO;
 
+
 namespace Vizsgaremek.Osztalyok
 {
     public class MySQL
     {
         //MySqlConnection példányosítva, paraméterbe a connection stringet kapja meg.
-        private static MySqlConnection conn = new("server=localhost;database=burgeretterem1;username=root;pwd=;sslmode=none;");
+        public static MySqlConnection conn = new();
         //ebben tároljuk az összes sql lekérdezést, formátum : 'kulcs'-'lekérdezés'
         private static Dictionary<string, string> lekerdezesekDict = new();
 

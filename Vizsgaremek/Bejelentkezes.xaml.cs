@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Vizsgaremek.Osztalyok;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace Vizsgaremek
 {
@@ -25,7 +26,6 @@ namespace Vizsgaremek
         public Bejelentkezes()
         {
             InitializeComponent();
-            inditasiEljarasok();
         }
 
         //TextChanged eventek
@@ -43,6 +43,16 @@ namespace Vizsgaremek
             else 
                 loginBTN.IsEnabled = false;
         }
+        private void adatbazisValasztoComboBox(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            switch (cb.SelectedIndex)
+            {
+                case 0:
+                    MySQL.conn = new(ConfigurationManager.ConnectionStrings["localhost"].ConnectionString);
+                    break;
+            }
+        }
         #endregion
 
         //Új ablakok megnyitása
@@ -54,6 +64,7 @@ namespace Vizsgaremek
         /// <param name="e"></param>
         private void bejelentkezes(object sender, RoutedEventArgs e)
         {
+            inditasiEljarasok();
             string felhasznalo = felhasznaloBX.Text;
             string pw = MySQL.hashPW(jelszoBX.Password); //stringet MD5 technológiával hasheljük, csakis hash-t tárolunk.
 
@@ -136,14 +147,14 @@ namespace Vizsgaremek
                 {
                     inditasiEljarasok();
                 }
-                else // különben bezárjuk a programot
-                {
-                    Close();
-                }
 
             }
         }
+
         #endregion
         
+
+
+
     }
 }

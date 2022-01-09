@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vizsgaremek.Admin"
         mc:Ignorable="d"
-        Title="AdminUI" MinHeight="600" Height="600" MinWidth="1024" Width="1024">
+        Title="Admin felület" MinHeight="600" Height="600" MinWidth="1024" Width="1024">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
