@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vizsgaremek.Osztalyok
 {
-    class Foglalas
+    public class Foglalas
     {
         public int fazon, azon, szemelydb;
         public bool megjelent;

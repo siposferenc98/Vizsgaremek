@@ -21,11 +21,16 @@ namespace Vizsgaremek.Admin
     /// </summary>
     public partial class RendelesElozmenyekUI : Window
     {
-        public RendelesElozmenyekUI()
+        public RendelesElozmenyekUI(Foglalas f = null)
         {
             InitializeComponent();
-            listBoxFeltolt();
+            if (f is not null)
+                foglalasRendeleseiListBoxFeltolt(f);
+            else
+                listBoxFeltolt();
         }
+
+
         //Listbox feltöltése
         #region Listboxok feltoltese
         private void listBoxFeltolt()
@@ -37,6 +42,16 @@ namespace Vizsgaremek.Admin
                 rendelesElozmenyekListBox.Items.Add(RendelesStackPanelExpander.rendelesElemKeszit(r));
             }
 
+        }
+        private void foglalasRendeleseiListBoxFeltolt(Foglalas f)
+        {
+            //végigmegyünk a rendeléseklistán amibe a kapott foglalás fazonjával azonos rendelések vannak
+            foreach (Rendeles r in Rendelesek.rendelesekLista.Where(x => x.fazon == f.fazon))
+            {
+                //és minden rendelésből készíttetünk egy rendeléses stackpanelt expanderrel, aminek a contentje a többi expanderes tétel lesz
+                rendelesElozmenyekListBox.Items.Add(RendelesStackPanelExpander.rendelesElemKeszit(r));
+
+            }
         }
         #endregion
     }
