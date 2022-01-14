@@ -93,11 +93,14 @@ namespace Vizsgaremek.Osztalyok
         public static void dictionaryFeltolt()
         {
             lekerdezesekDict = new();
-            StreamReader sr = new("./sql.txt");
-            while (!sr.EndOfStream)
+            //a resources file a properties mappába található, Resources.resx néven
+            string sql = Properties.Resources.ResourceManager.GetString("sql"); //resource managerből stringként kiolvassuk az sql txt fileunkat
+            List<string> sorok = sql.Split("\n",StringSplitOptions.RemoveEmptyEntries).ToList(); //mivel az egész file 1 stringbe van, feltördeljük a sorok végén,StringSplitOptions-al meg tudjuk adni neki hogy az üres sorokat ne vegye figyelembe
+            
+            foreach(string sor in sorok)
             {
-                List<string> sor = sr.ReadLine().Split("-").ToList(); //beolvasunk egy sort, feltördeljük '-'-nél, és listát csinálunk belőle.
-                lekerdezesekDict.Add(sor[0], sor[1]); //Lista 0. eleme az utasítás neve, 1. maga a parancs.
+                List<string> sor1 = sor.Split("-").ToList(); //beolvasunk egy sort, feltördeljük '-'-nél, és listát csinálunk belőle.
+                lekerdezesekDict.Add(sor1[0], sor1[1]); //Lista 0. eleme az utasítás neve, 1. maga a parancs.
             }
         }
     }

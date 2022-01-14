@@ -34,6 +34,7 @@
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Opciók">
+                    <MenuItem Header="Jelszó változtatás" x:Name="jelszoValtoztatMenu"></MenuItem>
                     <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
                 </MenuItem>
             </Menu>

@@ -24,6 +24,7 @@ namespace Vizsgaremek.Szakacs
         public SzakacsUI()
         {
             InitializeComponent();
+            jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
             Task.Run(() => listboxFrissitAsync()); //Task.Run egy async eljárást fog elindítani
         }
 
@@ -67,7 +68,7 @@ namespace Vizsgaremek.Szakacs
             //minden alkalommal végigmegyünk ezen a listán
             foreach (StackPanel sp in listboxitemek)
             {
-                Expander expander = (Expander)sp.Children[1]; //a stackpanel [0] eleme a labelünk, az [1] az expander
+                Expander expander = (Expander)sp.Children[0]; //a stackpanel [0] eleme az expanderünk.
                 if (expander.Content is null) //ha az expander contentje null, akkor idő közben a tételt törölték
                     tetelekListBox.Items.Remove(sp); //szóval mi is töröljük a listboxunkból
             }
@@ -78,7 +79,7 @@ namespace Vizsgaremek.Szakacs
                 .OrderBy(x => x.ido))
             {
                 //minden rendelésnek a tételein végigmegyünk ahol szintén folyamatban van az italstatus
-                foreach (Tetel t in r.tetelek.Where(x => x.etelstatus == 1))
+                foreach (Tetel t in r.tetelek.Where(x => x.Etelstatus == 1))
                 {
                     //megnézzük hogy ha nincs még benne az elem aminek a tagje(tazon van bele mentve készítéskor) megegyezik a mostanival
                     if (!listboxitemek.Any(x => (int)x.Tag == t.tazon))

@@ -36,15 +36,16 @@ namespace Vizsgaremek
         #region TextBoxok feltoltese
         private void adatokFeltolt()
         {
+            Title = "Felhasználó módosítása";
             teljesNevDoboz.Text = felhasznalo.nev;
             lakhelyDoboz.Text = felhasznalo.lakh;
             telszamDoboz.Text = felhasznalo.tel;
             emailDoboz.Text = felhasznalo.email;
             jogosultsag.SelectedIndex = felhasznalo.jog - 1;
 
-            //kikapcsoljuk a jelszó mezőt hogy ne lehessen másokét modosítani
-            jelszoEloszor.IsEnabled = false;
-            jelszoMasodszor.IsEnabled = false;
+            //eltűntetjük a jelszó mezőt hogy ne lehessen másokét modosítani
+            jelszoStackBox.Visibility = Visibility.Hidden;
+            jelszoUjraStackBox.Visibility = Visibility.Hidden;
             if (felhasznalo.jog == 4)
                 jogosultsag.IsEnabled = false; //és a jogosultságot se tudja az egyik admin levenni másikéról
 

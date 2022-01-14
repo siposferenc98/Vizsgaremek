@@ -23,10 +23,22 @@ namespace Vizsgaremek.Admin
         public AdminUI()
         {
             InitializeComponent();
-            bevetelSzamol();
-            asztalokRajzol();
-            aktualisVendegekSzamol();
+            jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
+            Task.Run(() => uiFrissitAsync()); //Task.Run egy async eljárást fog elindítani
         }
+
+        //Async frissítések
+        #region Async funkciok
+        private async void uiFrissitAsync()
+        {
+            while (true)
+            {
+                frissites();
+                await Task.Delay(5000);
+            }
+        }
+
+        #endregion
 
         //Bevétel labelek, aktuális vendégek frissítése
         #region Labelek frissitese
@@ -70,11 +82,15 @@ namespace Vizsgaremek.Admin
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frissites(object sender, RoutedEventArgs e)
+        private void frissites()
         {
-            bevetelSzamol();
-            asztalokRajzol();
-            aktualisVendegekSzamol();
+            Dispatcher.Invoke(() =>
+            {
+                bevetelSzamol();
+                asztalokRajzol();
+                aktualisVendegekSzamol();
+            }
+            );
         }
         #endregion
 

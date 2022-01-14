@@ -27,3 +27,5 @@ korethozzaad-INSERT INTO koret VALUES('',@termeknev,@termekar,@termekleiras,@akt
 desszerthozzaad-INSERT INTO desszert VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
 italhozzaad-INSERT INTO ital VALUES('',@termeknev,@termekar,@termekleiras,@aktiv)
 felhasznalofrissit-UPDATE felhasznalo SET nev = @teljesnev, lak = @lakh, tel = @tel, email = @email, jog = @jog WHERE azon = @azon
+aktualisjelszo-SELECT email FROM felhasznalo WHERE azon = @azon AND pw = @pw
+jelszovaltoztat-UPDATE felhasznalo SET pw = @pw WHERE azon = @azon

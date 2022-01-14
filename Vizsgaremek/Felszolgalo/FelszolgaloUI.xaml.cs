@@ -27,6 +27,7 @@ namespace Vizsgaremek.Felszolgalo
         {
             InitializeComponent();
             comboListBoxokFrissites(); //Feltöltjük a combo meg listboxokat
+            jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
             Task.Run(() => listboxokFrissitAsync()); //Task.Run egy async eljárást fog elindítani
             
         }
@@ -271,7 +272,10 @@ namespace Vizsgaremek.Felszolgalo
                 MySqlParameter allapotparam = new("@allapot", allapot);
                 List<MySqlParameter> rendelesAllapotValtoztat = new() { razonparam, allapotparam}; //paraméter listát is létrehozzuk
                 List<string> eredmeny = MySQL.query("rendelesallapotvaltoztat", true, rendelesAllapotValtoztat); //lementjük az eredményt
-                MessageBox.Show(eredmeny[0]);
+
+                if(eredmeny.Any())
+                    MessageBox.Show(eredmeny[0]);
+
                 comboListBoxokFrissites(); //ráfrissítünk a combo és listboxokra
             }
         }

@@ -29,6 +29,7 @@
         <DockPanel Grid.ColumnSpan="2">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Opciók">
+                    <MenuItem Header="Jelszó változtatás" x:Name="jelszoValtoztatMenu"></MenuItem>
                     <MenuItem Header="Kijelentkezés" Click="kijelentkezes"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Felületek">
@@ -46,26 +47,26 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="121*"/>
+                <ColumnDefinition Width="128*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel>
+            <StackPanel Grid.ColumnSpan="2">
                 <Label>Mai bevétel:</Label>
                 <Label x:Name="maiBevetel"></Label>
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="2">
                 <Label>Havi bevétel:</Label>
                 <Label x:Name="haviBevetel"></Label>
             </StackPanel>
-                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="frissites">Frissítés</Button>
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
                 <Label>Összes bevétel:</Label>
                 <Label x:Name="osszesBevetel"></Label>
             </StackPanel>
-            
-            <Canvas Grid.Row="2" Grid.ColumnSpan="1" x:Name="asztalok" Width="250"></Canvas>
 
-            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top">
+            <Canvas Grid.Row="1" Grid.ColumnSpan="2" x:Name="asztalok" Width="250" Margin="3,188,3,0" Grid.RowSpan="2"></Canvas>
+
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="0,188,0,0" Grid.RowSpan="2">
                 <Label>Aktuális vendégek:</Label>
                 <Label x:Name="aktualisVendegek"></Label>
             </StackPanel>
@@ -85,7 +86,7 @@
             <Button Grid.Column="1" Click="felhasznalokModositasa">Felhasználók módosítása</Button>
             <Button Grid.Row="1" Click="rendelesElozmenyek">Rendelés előzmények</Button>
             <Button Grid.Column="1" Grid.Row="1" Click="foglalasokListaMegnyit">Foglalások</Button>
-            
+
         </Grid>
     </Grid>
 </Window>

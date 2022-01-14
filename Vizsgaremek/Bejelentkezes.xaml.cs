@@ -26,6 +26,7 @@ namespace Vizsgaremek
         public Bejelentkezes()
         {
             InitializeComponent();
+            MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
         }
 
         //TextChanged eventek
@@ -131,8 +132,7 @@ namespace Vizsgaremek
         //Indítási eljárások
         #region Egyeb eljarasok
         private void inditasiEljarasok()
-        {
-            MySQL.dictionaryFeltolt(); //minden indításnál feltöltjük a dictionarynkat az sql.txtben található értékekkel.
+        { 
 
             try
             {

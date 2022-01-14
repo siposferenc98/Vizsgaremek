@@ -22,17 +22,14 @@ namespace Vizsgaremek.Osztalyok
             StackPanel sp = new();//legkülső stackpanel
             sp.Orientation = Orientation.Horizontal; //vízszintesen, először a cím lesz benne, mellé jobbra az expanderünk
             sp.Tag = t.tazon; //stackpanel tagjének beállítjuk a tétel azonosítóját,frissítésnél szükség lesz rá
-            Label cim = new();
-            cim.Content = $"{t.tazon} számú tétel.";
-
             Expander expander = new();
+            expander.Header = $"{t.tazon} számú tétel.";
             expander.Expanded += expanderLenyitva; //az expander lenyitás eventjére hozzáadjuk a funkciót
 
             Label rendelesreszletek = new();
             rendelesreszletek.Content = t; // a content a tételünk lesz, mivel csak magát a tételt adtuk meg automatikusan a .ToString lesz rá meghívva
 
             expander.Content = rendelesreszletek;
-            sp.Children.Add(cim); //hozzáadjuk a legkülső stackpanelhez a címet meg az expandert
             sp.Children.Add(expander);
             return sp;
         }

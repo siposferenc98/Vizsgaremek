@@ -106,17 +106,17 @@ namespace Vizsgaremek.Felszolgalo
                 tetel = rendeles.tetelek.First(x => x.tazon == (int)sp.Tag); //ez alapján be tudjuk állítani az adott tételt a classunk mezőjébe
 
                 //és ezek után feltölteni mindent az adataival
-                hamburgerComboBox.SelectedItem = tetel.burger;
-                hamburgerDB.Text = tetel.bdb.ToString();
+                hamburgerComboBox.SelectedItem = tetel.Burger;
+                hamburgerDB.Text = tetel.Bdb.ToString();
 
-                koretComboBox.SelectedItem = tetel.koret;
-                koretDB.Text = tetel.kdb.ToString();
+                koretComboBox.SelectedItem = tetel.Koret;
+                koretDB.Text = tetel.Kdb.ToString();
 
-                italComboBox.SelectedItem = tetel.ital;
-                italDB.Text = tetel.idb.ToString();
+                italComboBox.SelectedItem = tetel.Ital;
+                italDB.Text = tetel.Idb.ToString();
 
-                desszertComboBox.SelectedItem = tetel.desszert;
-                desszertDB.Text = tetel.ddb.ToString();
+                desszertComboBox.SelectedItem = tetel.Desszert;
+                desszertDB.Text = tetel.Ddb.ToString();
 
                 megjegyzesTextBox.Text = tetel.megjegyzes;
 
