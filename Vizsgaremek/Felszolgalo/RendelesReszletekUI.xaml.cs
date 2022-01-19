@@ -122,7 +122,9 @@ namespace Vizsgaremek.Felszolgalo
 
             }
             else //különben kikapcsoljuk a vezérlőket
+            {
                 tetelSzerkesztesTorles.IsEnabled = false;
+            }
 
         }
         #endregion

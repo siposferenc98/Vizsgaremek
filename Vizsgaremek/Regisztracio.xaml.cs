@@ -23,13 +23,24 @@ namespace Vizsgaremek
     public partial class Regisztracio : Window
     {
         private Felhasznalo felhasznalo;
-        public Regisztracio(Felhasznalo f = null) //opcionális paraméter, ha nem kap felhasználót akkor regisztrálni akarunk
+
+        //opcionális paraméterek, ha nem kap felhasználót,se boolt akkor sima felhasználót akarunk regisztrálni
+        public Regisztracio(Felhasznalo f = null, bool adminReg = false) 
         {
             InitializeComponent();
             felhasznalo = f;
             telszamDoboz.PreviewTextInput += RegexClass.csakSzamok; //event feliratkozás csak szám bevitelre, komment a classban
-            if (felhasznalo is not null) // ha viszont kaptunk egy felhasználót akkor módosítani szeretnénk egy meglévőt
+            if (felhasznalo is not null) // ha kaptunk egy felhasználót akkor módosítani szeretnénk egy meglévőt
+            {
                 adatokFeltolt(); //feltöltjük adatokkal a textboxokat
+            }
+            if(adminReg) //ha admint akarunk regelni, akkor nem kapott felhasználót, csak egy true boolt
+            {
+                jogosultsag.SelectedIndex = 3;
+                jogosultsag.IsEnabled = false;
+            }
+
+
         }
 
         //TextBoxok feltöltése ha módosítunk felhasználót

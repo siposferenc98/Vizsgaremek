@@ -53,6 +53,13 @@ namespace Vizsgaremek.Admin
             alkalmazottModositasaUI.Owner = this;
             alkalmazottModositasaUI.Show();
         }
+        private void adminFelhasznaloRegisztralas(object sender, RoutedEventArgs e)
+        {
+            Window adminFelhasznaloReg = new Regisztracio(adminReg: true); //mivel 2 opcionális paramétert kaphat az ablak, név szerint adjuk meg
+            adminFelhasznaloReg.Owner = this;
+            adminFelhasznaloReg.Show();
+        }
         #endregion
+
     }
 }
