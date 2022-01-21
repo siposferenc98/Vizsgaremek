@@ -55,6 +55,7 @@ namespace Vizsgaremek.Felszolgalo
             {
                 Rendelesek.rendelesekFrissit(); //ráfrissítünk a rendelések listánkra
                 listboxokFeltolt(); //és mostmár ő fel tudja tölteni a listboxainkat
+                asztalokRajzol();
             });
             
         }

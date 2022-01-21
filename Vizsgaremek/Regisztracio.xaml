@@ -22,11 +22,12 @@
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="120"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="TextWrapping" Value="NoWrap"></Setter>
         </Style>
         <Style TargetType="PasswordBox">
             <Setter Property="Width" Value="120"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
@@ -41,33 +42,33 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Text="Email:" HorizontalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" x:Name="emailDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+            <TextBlock Text="Email:"/>
+            <TextBox HorizontalAlignment="Center" x:Name="emailDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Lakhely:" HorizontalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" x:Name="lakhelyDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+            <TextBlock Text="Lakhely:"/>
+            <TextBox HorizontalAlignment="Center" x:Name="lakhelyDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <TextBlock Text="Telefonszám:" HorizontalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" x:Name="telszamDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+            <TextBlock Text="Telefonszám:"/>
+            <TextBox HorizontalAlignment="Center" x:Name="telszamDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <TextBlock Text="Teljes Név:" HorizontalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" x:Name="teljesNevDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
+            <TextBlock Text="Teljes Név:"/>
+            <TextBox HorizontalAlignment="Center" x:Name="teljesNevDoboz" TextChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel Grid.Row="4" x:Name="jelszoStackBox">
-            <TextBlock Text="Jelszó:" HorizontalAlignment="Center" />
+            <TextBlock Text="Jelszó:" />
             <PasswordBox x:Name="jelszoEloszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         <StackPanel Grid.Row="5" x:Name="jelszoUjraStackBox">
-            <TextBlock Text="Jelszó újra:" HorizontalAlignment="Center"/>
+            <TextBlock Text="Jelszó újra:" />
             <PasswordBox x:Name="jelszoMasodszor" PasswordChanged="regisztraciosDobozMindKitoltveE"/>
         </StackPanel>
         
         <!--Jogosultság-->
         <StackPanel Grid.Row="6">
-            <TextBlock Text="Jogosultság:" HorizontalAlignment="Center"/>
+            <TextBlock Text="Jogosultság:" />
             <ComboBox HorizontalAlignment="Center" Height="25" x:Name="jogosultsag" Width="200">
                 <ComboBoxItem IsSelected="true">Felszolgáló</ComboBoxItem>
                 <ComboBoxItem>Szakács</ComboBoxItem>

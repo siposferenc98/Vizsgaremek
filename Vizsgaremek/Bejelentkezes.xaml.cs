@@ -47,12 +47,10 @@ namespace Vizsgaremek
         private void adatbazisValasztoComboBox(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
-            switch (cb.SelectedIndex)
-            {
-                case 0:
-                    MySQL.conn = new(ConfigurationManager.ConnectionStrings["localhost"].ConnectionString);
-                    break;
-            }
+            if (cb.SelectedIndex > 0)
+                dbConnStackPanel.Visibility = Visibility.Visible;
+            else
+                dbConnStackPanel.Visibility = Visibility.Hidden;
         }
         #endregion
 
@@ -136,6 +134,12 @@ namespace Vizsgaremek
 
             try
             {
+                MySQL.conn = adatbazisValasztCB.SelectedIndex switch
+                {
+                    0 => MySQL.conn = new(ConfigurationManager.ConnectionStrings["localhost"].ConnectionString),
+                    1 => MySQL.conn = new($"server={connStringServer.Text};database={connStringDbnev.Text};username={connStringName.Text};pwd={connStringPw.Password};sslmode=none;"),
+                    _ => throw new NotImplementedException()
+                };
                 //A termékek osztályba van kommentelve
                 Termekek.mindenListaFrissit();
             }

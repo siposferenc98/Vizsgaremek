@@ -61,11 +61,26 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label>Kiválaszott adatbázis:</Label>
-            <ComboBox SelectionChanged="adatbazisValasztoComboBox">
-                <ComboBoxItem IsSelected="True">localhost</ComboBoxItem>
-            </ComboBox>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" x:Name="dbConnStackPanel" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label>IP cím:</Label>
+                <TextBox Width="100px" x:Name="connStringServer"></TextBox>
+                <Label>Adatbázis:</Label>
+                <TextBox Width="100px" x:Name="connStringDbnev"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Felhasználónév:</Label>
+                <TextBox Width="100px" x:Name="connStringName"></TextBox>
+                <Label>Jelszó:</Label>
+                <PasswordBox Width="100px" x:Name="connStringPw"></PasswordBox>
+            </StackPanel>
         </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+            <Label>Adatbázis:</Label>
+                <ComboBox SelectionChanged="adatbazisValasztoComboBox" x:Name="adatbazisValasztCB" Height="25" Width="80">
+                    <ComboBoxItem IsSelected="True">localhost</ComboBoxItem>
+                    <ComboBoxItem>Másik szerver</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
     </Grid>
 </Window>
