@@ -28,6 +28,7 @@ namespace Vizsgaremek.Felszolgalo
             InitializeComponent();
             comboListBoxokFrissites(); //Feltöltjük a combo meg listboxokat
             jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
+            kijelentkezesMenu.Click += Kijelentkezes.kijelentkezes;
             Task.Run(() => listboxokFrissitAsync()); //Task.Run egy async eljárást fog elindítani
             
         }
@@ -297,15 +298,6 @@ namespace Vizsgaremek.Felszolgalo
                 if (i > 0 && fentE) //a legelső asztalt még nem akarjuk +35el eltolni, de a következő fentit már mellé akarjuk mindig rakni
                     x += 35;
             }
-        }
-
-        private void kijelentkezes(object sender, RoutedEventArgs e)
-        {
-            //Kijelentkezés felső menü
-            AktualisFelhasznalo.felhasznalo = null; //az aktuális felhasználónkat null-ra rakjuk
-            Window bejelentkezes = new Bejelentkezes(); //létrehozunk egy új bejelentkezés ablakot
-            bejelentkezes.Show(); //előhozzuk
-            Close(); //ezt meg bezárjuk
         }
         #endregion
 

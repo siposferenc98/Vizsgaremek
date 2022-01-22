@@ -24,6 +24,7 @@ namespace Vizsgaremek.Admin
         {
             InitializeComponent();
             jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
+            kijelentkezesMenu.Click += Kijelentkezes.kijelentkezes;
             Task.Run(() => uiFrissitAsync()); //Task.Run egy async eljárást fog elindítani
         }
 
@@ -55,9 +56,9 @@ namespace Vizsgaremek.Admin
             int haviOsszeg = fizetettRendelesek.Where(x => x.ido.Month == DateTime.Today.Month).Sum(x => x.vegosszeg);
             int osszesOsszeg = fizetettRendelesek.Sum(x => x.vegosszeg);
 
-            maiBevetel.Content = $"{maiOsszeg} Ft.";
-            haviBevetel.Content = $"{haviOsszeg} Ft.";
-            osszesBevetel.Content = $"{osszesOsszeg} Ft.";
+            maiBevetel.Content = $"{maiOsszeg.ToString("N0")} Ft.";
+            haviBevetel.Content = $"{haviOsszeg.ToString("N0")} Ft.";
+            osszesBevetel.Content = $"{osszesOsszeg.ToString("N0")} Ft.";
         }
 
         /// <summary>
@@ -160,13 +161,6 @@ namespace Vizsgaremek.Admin
                 if (i > 0 && fentE)
                     x += 35;
             }
-        }
-        private void kijelentkezes(object sender, RoutedEventArgs e)
-        {
-            AktualisFelhasznalo.felhasznalo = null;
-            Window bejelentkezes = new Bejelentkezes();
-            bejelentkezes.Show();
-            Close();
         }
         #endregion
     }

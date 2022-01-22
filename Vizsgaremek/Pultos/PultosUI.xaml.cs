@@ -25,6 +25,7 @@ namespace Vizsgaremek.Pultos
         {
             InitializeComponent();
             jelszoValtoztatMenu.Click += JelszoValtoztatEljaras.jelszoValtoztat;
+            kijelentkezesMenu.Click += Kijelentkezes.kijelentkezes;
             Task.Run(() => listboxFrissitAsync()); //Task.Run egy async eljárást fog elindítani
 
         }
@@ -136,16 +137,5 @@ namespace Vizsgaremek.Pultos
         }
         #endregion
 
-        //Kijelentkezés
-        #region Egyeb eljarasok
-        private void kijelentkezes(object sender, RoutedEventArgs e)
-        {
-            //Kijelentkezés felső menü
-            AktualisFelhasznalo.felhasznalo = null; //az aktuális felhasználónkat null-ra rakjuk
-            Window bejelentkezes = new Bejelentkezes(); //létrehozunk egy új bejelentkezés ablakot
-            bejelentkezes.Show();
-            Close();
-        }
-        #endregion
     }
 }

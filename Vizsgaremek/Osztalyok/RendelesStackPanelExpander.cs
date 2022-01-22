@@ -14,7 +14,7 @@ namespace Vizsgaremek.Osztalyok
     {
         private static Dictionary<string, string> bindingNevErtek = new()
         {
-            { "tazon", "Tétel azonosító"},
+            //{ "tazon", "Tétel azonosító"},
             { "Burger", "Hamburger"},
             { "Bdb", "DB"},
             { "Desszert", "Desszert"},
